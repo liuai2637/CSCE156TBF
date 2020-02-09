@@ -1,6 +1,6 @@
 
 public class DepositAccount {
-	//if using asset class, put code into asset class
+	
 	private String code;
 	private String label;
 	private double apr;
