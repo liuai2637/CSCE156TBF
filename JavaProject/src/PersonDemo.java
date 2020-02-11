@@ -1,6 +1,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class PersonDemo {
@@ -25,8 +27,8 @@ public class PersonDemo {
 	        String[] info = acc.split(";");
 	        String[] address = info[5].split(",");
 	        Address a = new Address(address[0], address[1], address[2], address[3], address[4]);
-	        //TODO:email list
-	        Person p = new Person(info[0], info[1].charAt(0), info[2], info[3], info[4], a, null);
+	        List<String> emails = Arrays.asList(info[6].split(",")); 
+	        Person p = new Person(info[0], info[1].charAt(0), info[2], info[3], info[4], a, emails);
 	        peopleArrayList.add(p);
 	    }    
 	    //TODO: output to xml
