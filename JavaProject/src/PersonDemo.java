@@ -18,10 +18,15 @@ public class PersonDemo {
 		
 		ArrayList<Person> peopleArrayList = new ArrayList<>();
 		
-		for(int i = 0; i < n; i++) {
-			//TODO: split line by "," and ";"
-		}
-
+	    s.useDelimiter("\n");
+	    
+	    while(scan.hasNext()){
+	        String acc = s.nextLine();
+	        String[] info = acc.split(";");
+	        Person p = new Person(info[0], info[1], info[2], info[3], info[4]);
+	        peopleArrayList.add(p);
+	    }    
+	    //TODO: output to xml
 	}
 
 }
