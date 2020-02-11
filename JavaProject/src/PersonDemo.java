@@ -20,10 +20,13 @@ public class PersonDemo {
 		
 	    s.useDelimiter("\n");
 	    
-	    while(scan.hasNext()){
+	    while(s.hasNext()){
 	        String acc = s.nextLine();
 	        String[] info = acc.split(";");
-	        Person p = new Person(info[0], info[1], info[2], info[3], info[4]);
+	        String[] address = info[5].split(",");
+	        Address a = new Address(address[0], address[1], address[2], address[3], address[4]);
+	        //TODO:email list
+	        Person p = new Person(info[0], info[1].charAt(0), info[2], info[3], info[4], a, null);
 	        peopleArrayList.add(p);
 	    }    
 	    //TODO: output to xml
