@@ -30,8 +30,8 @@ public class AssetDemo {
 			String[] info = entry.split(";");
 			int numInfo = info.length;
 			
-			//Depending on the length of the numInfo, construct the corresponding type of asset and 
-			//add to asset list
+			//Depending on the length of the numInfo, construct the corresponding type of asset
+			//and add to asset list
 			//Checking the label doesn't work for some reason
 			//e.g. if(num[1] == "D") doesn't work, when it is D, it just skips
 			if(numInfo == 4) {
