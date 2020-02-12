@@ -7,6 +7,17 @@ public class Stock {
 	private String stockSymbol;
 	private double sharePrice;
 	private double beta;
+	
+	public Stock(String code, String label, double baseQuarterlyDividend, double baseRateOfReturn, double beta, String stockSymbol, double sharePrice) {
+		this.code = code;
+		this.label = label;
+		this.baseQuarterlyDividend = baseQuarterlyDividend;
+		this.baseRateOfReturn = baseRateOfReturn;
+		this.beta = beta;
+		this.stockSymbol = stockSymbol;
+		this.sharePrice = sharePrice;
+	}
+	
 	public String getCode() {
 		return code;
 	}
@@ -29,14 +40,5 @@ public class Stock {
 		return beta;
 	}
 	
-	public Stock(String code, String label, double baseQuarterlyDividend, double baseRateOfReturn, String stockSymbol,
-			double sharePrice, double beta) {
-		this.code = code;
-		this.label = label;
-		this.baseQuarterlyDividend = baseQuarterlyDividend;
-		this.baseRateOfReturn = baseRateOfReturn;
-		this.stockSymbol = stockSymbol;
-		this.sharePrice = sharePrice;
-		this.beta = beta;
-	}
+	
 }

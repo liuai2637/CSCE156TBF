@@ -7,6 +7,16 @@ public class PrivateInvestment {
 	private double baseRateOfReturn;
 	private double totalAmount;
 	private double omega;
+	
+	public PrivateInvestment(String code, String label, double baseQuarterlyDividend, double baseRateOfReturn, double omega, double totalAmount) {
+		this.code = code;
+		this.label = label;
+		this.baseQuarterlyDividend = baseQuarterlyDividend;
+		this.baseRateOfReturn = baseRateOfReturn;
+		this.omega = omega;
+		this.totalAmount = totalAmount;
+	}
+	
 	public String getCode() {
 		return code;
 	}
@@ -25,13 +35,5 @@ public class PrivateInvestment {
 	public double getOmega() {
 		return omega;
 	}
-	public PrivateInvestment(String code, String label, double baseQuarterlyDividend, double baseRateOfReturn,
-			double totalAmount, double omega) {
-		this.code = code;
-		this.label = label;
-		this.baseQuarterlyDividend = baseQuarterlyDividend;
-		this.baseRateOfReturn = baseRateOfReturn;
-		this.totalAmount = totalAmount;
-		this.omega = omega;
-	}
+	
 }
