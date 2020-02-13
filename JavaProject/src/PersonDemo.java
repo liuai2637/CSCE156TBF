@@ -1,9 +1,16 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 
 public class PersonDemo {
 
@@ -51,17 +58,35 @@ public class PersonDemo {
 					email.add(x);
 				}
 			}
+			if(!broker.isBroker()) {
+				Person person = new Person(personCode, name, address, email);
+				peopleArrayList.add(person);
+			} else {
+				Person person = new Person(personCode, broker, name, address, email);
+				peopleArrayList.add(person);
+			}
 
-			Person person = new Person(personCode, broker, name, address, email);
-
-			peopleArrayList.add(person);
+			
 
 		}
 
-		// TODO: output to xml, no need to loop through the whole file
+		// TODO: output to xml
 		// I also download the JSON library since I cannot download xml 
 		// library also and it is easy to convert from Json to xml
 		
+		Gson g = new GsonBuilder().setPrettyPrinting().create();
+		try {
+			File output = new File("data/Persons.json");
+			PrintWriter pw = new PrintWriter(output);
+			for(Person p: peopleArrayList) {
+				pw.println(g.toJson(p));
+			}
+			pw.close();
+		} catch (JsonIOException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	

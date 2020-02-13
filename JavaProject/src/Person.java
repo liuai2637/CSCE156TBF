@@ -8,6 +8,14 @@ public class Person {
 	private Address address;
 	private List<String> emailAddresses = new ArrayList<>();
 	
+	public Person(String personCode, Name name,
+			Address address, List<String> emailAddresses) {
+		this.personCode = personCode;
+		this.name = name;
+		this.address = address;
+		this.emailAddresses = emailAddresses;
+	}
+	
 	public Person(String personCode, Broker broker, Name name,
 			Address address, List<String> emailAddresses) {
 		this.personCode = personCode;

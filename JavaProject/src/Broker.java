@@ -15,6 +15,12 @@
 		public String getCode() {
 			return brokerCode;
 		}
-
+		public boolean isBroker() {
+			if(this.type.isBlank()) {
+				return false;
+			} else {
+				return true;
+			}
+		}
 	}
 
