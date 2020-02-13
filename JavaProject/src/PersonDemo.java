@@ -58,6 +58,12 @@ public class PersonDemo {
 
 		}
 
-		// TODO: output to xml
+		// TODO: output to xml, no need to loop through the whole file
+		// I also download the JSON library since I cannot download xml 
+		// library also and it is easy to convert from Json to xml
+		
+		
 	}
+	
+	
 }
