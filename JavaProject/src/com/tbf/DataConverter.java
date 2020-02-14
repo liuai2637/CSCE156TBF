@@ -12,15 +12,16 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.thoughtworks.xstream.XStream;
 
+
+/**
+ * Author: Sunny Liu, Bryce Yong
+ * Date: 02/14/2020
+ * This program convert a flat data file with data about TBF's person 
+ * and assets to json and xml format.
+ * 
+ */
+
 public class DataConverter {
-	
-	/**
-	 * Author: Sunny Liu, Bryce Yong
-	 * Date: 02/14/2020
-	 * This program convert a flat data file with data about TBF's person 
-	 * and assets to json and xml format.
-	 * @param args
-	 */
 
 	public static void main(String[] args) {
 		//read in the file
