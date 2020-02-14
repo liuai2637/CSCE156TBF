@@ -23,7 +23,7 @@ public class DataConverter {
 	 */
 
 	public static void main(String[] args) {
-
+		//read in the file
 		String fileName = "data/Persons.dat";
 		Scanner s = null;
 		try {
@@ -52,7 +52,7 @@ public class DataConverter {
 
 			String[] add = info[3].split(",");
 			Address address = new Address(add[0], add[1], add[2], add[3], add[4]);
-
+			
 			List<String> email = new ArrayList<>();
 			if (info.length == 5) {
 				String[] ema = info[4].split(",");
@@ -60,6 +60,7 @@ public class DataConverter {
 					email.add(x);
 				}
 			}
+			//Input different formatted person object depend on whether the person is a broker or not
 			if (!broker.isBroker()) {
 				Person person = new Person(personCode, name, address, email);
 				peopleArrayList.add(person);
@@ -70,13 +71,13 @@ public class DataConverter {
 		}
 
 		
-
+		//Initialize new json object g
 		Gson g = new GsonBuilder().setPrettyPrinting().create();
-		//TODO: Pretty Writer for xml
-		
+		//Initialize new xml object xstream
 		XStream xstream = new XStream();
 
 		try {
+			//print formatted files to new output file
 			File outputJson = new File("data/Persons.json");
 			File outputXml = new File("data/Persons.xml");
 			PrintWriter pwJson = new PrintWriter(outputJson);
