@@ -3,7 +3,7 @@ package com.tbf;
 /**
  * 
  * @author Sunny Liu and Bryce Yong
- * Constructor class for Asset (composed of DepositAccount, Stock, And PrivateInvestment classes)
+ * Constructor class for Asset (Composed of DepositAccount, Stock, And PrivateInvestment classes)
  * 14 February 2020
  */
 public class Asset {
