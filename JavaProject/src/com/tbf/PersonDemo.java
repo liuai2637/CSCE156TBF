@@ -1,3 +1,4 @@
+package com.tbf;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -10,10 +11,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.DomDriver;
 import com.thoughtworks.xstream.io.xml.StaxDriver;
 
 public class PersonDemo {
+	
+	//TODO: Documentation
+	//TODO: Combine two classes to DataConverter.java in com.tbf package
 
 	public static void main(String[] args) {
 
@@ -64,8 +67,7 @@ public class PersonDemo {
 			}
 		}
 
-		// I also download the JSON library since I cannot download xml
-		// library also and it is easy to convert from Json to xml
+		
 
 		Gson g = new GsonBuilder().setPrettyPrinting().create();
 		XStream xstream = new XStream(new StaxDriver());

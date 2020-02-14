@@ -1,3 +1,4 @@
+package com.tbf;
 
 public class Asset {
 	
