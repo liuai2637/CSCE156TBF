@@ -1,5 +1,11 @@
 package com.tbf;
 
+/**
+ * 
+ * @author Sunny Liu and Bryce Yong
+ * Constructor class for PrivateInvestment
+ * 14 February 2020
+ */
 public class PrivateInvestment {
 
 	private String code;
@@ -9,6 +15,7 @@ public class PrivateInvestment {
 	private double totalAmount;
 	private double omega;
 	
+	//PrivateInvestment Constructor
 	public PrivateInvestment(String code, String label, double baseQuarterlyDividend, double baseRateOfReturn, double omega, double totalAmount) {
 		this.code = code;
 		this.label = label;
@@ -18,6 +25,7 @@ public class PrivateInvestment {
 		this.totalAmount = totalAmount;
 	}
 	
+	//Getters for all fields
 	public String getCode() {
 		return code;
 	}

@@ -1,5 +1,11 @@
 package com.tbf;
 
+/**
+ * 
+ * @author Sunny Liu and Bryce Yong
+ * Constructor class for Stock
+ * 14 February 2020
+ */
 public class Stock {
 	private String code;
 	private String label;
@@ -9,6 +15,7 @@ public class Stock {
 	private double sharePrice;
 	private double beta;
 	
+	//Stock Constructor
 	public Stock(String code, String label, double baseQuarterlyDividend, double baseRateOfReturn, double beta, String stockSymbol, double sharePrice) {
 		this.code = code;
 		this.label = label;
@@ -19,6 +26,7 @@ public class Stock {
 		this.sharePrice = sharePrice;
 	}
 	
+	//Getters for all fields
 	public String getCode() {
 		return code;
 	}
