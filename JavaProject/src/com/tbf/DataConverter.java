@@ -33,26 +33,23 @@ public class DataConverter {
 		}
 		int n = Integer.parseInt(s.nextLine());
 		ArrayList<Person> peopleArrayList = new ArrayList<>();
-
+		// Iterate through each entry
 		for (int i = 1; i <= n; i++) {
 			String account = s.nextLine();
-
 			String[] info = account.split(";");
-
 			String personCode = info[0];
-
 			Broker broker = new Broker("", "");
 			if (info[1].length() != 0) {
 				String[] bro = info[1].split(",");
 				broker = new Broker(bro[0], bro[1]);
 			}
-
+			//split last name and first name by "," and put into name class
 			String[] nam = info[2].split(",");
 			Name name = new Name(nam[0], nam[1]);
-
+			//split each element of address and put into address class
 			String[] add = info[3].split(",");
 			Address address = new Address(add[0], add[1], add[2], add[3], add[4]);
-			
+			// create ArrayList for list of email that is separated by ","
 			List<String> email = new ArrayList<>();
 			if (info.length == 5) {
 				String[] ema = info[4].split(",");
@@ -127,8 +124,7 @@ public class DataConverter {
 					int numInfoAsset = infoAsset.length;
 
 					// Depending on the length of the numInfoAsset, construct the corresponding type of
-					// asset
-					// and add to asset list
+					// asset and add to asset list
 					// Checking the label doesn't work for some reason
 					// e.g. if(num[1] == "D") doesn't work, when it is D, it just skips
 					if (numInfoAsset == 4) {
@@ -165,9 +161,6 @@ public class DataConverter {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-
-
 	}
-
 }
 
