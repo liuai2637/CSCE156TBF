@@ -10,6 +10,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
+import com.thoughtworks.xstream.io.xml.StaxDriver;
 
 public class AssetDemo {
 
@@ -61,7 +62,8 @@ public class AssetDemo {
 		}
 
 		Gson g = new GsonBuilder().setPrettyPrinting().create();
-		XStream xstream = new XStream(new DomDriver());
+		XStream xstream = new XStream(new StaxDriver());
+		
 
 		try {
 			File outputJson = new File("data/Assets.json");

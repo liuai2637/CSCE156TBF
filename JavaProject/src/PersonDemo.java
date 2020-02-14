@@ -11,6 +11,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
+import com.thoughtworks.xstream.io.xml.StaxDriver;
 
 public class PersonDemo {
 
@@ -54,7 +55,7 @@ public class PersonDemo {
 					email.add(x);
 				}
 			}
-			if(!broker.isBroker()) {
+			if (!broker.isBroker()) {
 				Person person = new Person(personCode, name, address, email);
 				peopleArrayList.add(person);
 			} else {
@@ -63,21 +64,20 @@ public class PersonDemo {
 			}
 		}
 
-		// I also download the JSON library since I cannot download xml 
+		// I also download the JSON library since I cannot download xml
 		// library also and it is easy to convert from Json to xml
-		
+
 		Gson g = new GsonBuilder().setPrettyPrinting().create();
-		XStream xstream = new XStream(new DomDriver());
-		
+		XStream xstream = new XStream(new StaxDriver());
+
 		try {
 			File outputJson = new File("data/Persons.json");
 			File outputXml = new File("data/PersonsTest.xml");
 			PrintWriter pwJson = new PrintWriter(outputJson);
 			PrintWriter pwXml = new PrintWriter(outputXml);
-			for(Person p: peopleArrayList) {
-				pwJson.println(g.toJson(p));
-				pwXml.println(xstream.toXML(p));
-			}
+			pwJson.println(g.toJson(peopleArrayList));
+			pwXml.println(xstream.toXML(peopleArrayList));
+
 			pwJson.close();
 			pwXml.close();
 		} catch (JsonIOException e) {
@@ -85,8 +85,7 @@ public class PersonDemo {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
-	
+
 }

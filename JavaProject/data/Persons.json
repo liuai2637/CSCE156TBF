@@ -1,132 +1,134 @@
-{
-  "personCode": "123d",
-  "broker": {
-    "type": "E",
-    "brokerCode": "sec082"
+[
+  {
+    "personCode": "123d",
+    "broker": {
+      "type": "E",
+      "brokerCode": "sec082"
+    },
+    "name": {
+      "lastName": "McGee",
+      "firstName": " Jake"
+    },
+    "address": {
+      "street": "687 N 697th Street",
+      "city": "New York",
+      "state": " NY",
+      "zip": " 10006",
+      "country": " USA"
+    },
+    "emailAddresses": [
+      "jmcgee263@gmail.com",
+      "happyj@who.com"
+    ]
   },
-  "name": {
-    "lastName": "McGee",
-    "firstName": " Jake"
+  {
+    "personCode": "nj78",
+    "name": {
+      "lastName": "Johnson",
+      "firstName": " Allison"
+    },
+    "address": {
+      "street": "8930 S 167th Street",
+      "city": " Omaha",
+      "state": " NE",
+      "zip": " 68138",
+      "country": " USA"
+    },
+    "emailAddresses": [
+      "ajohnson97@gmail.com"
+    ]
   },
-  "address": {
-    "street": "687 N 697th Street",
-    "city": "New York",
-    "state": " NY",
-    "zip": " 10006",
-    "country": " USA"
+  {
+    "personCode": "is973",
+    "broker": {
+      "type": "J",
+      "brokerCode": "sec928"
+    },
+    "name": {
+      "lastName": "Kane",
+      "firstName": " Elly"
+    },
+    "address": {
+      "street": "3124  Doctors Drive",
+      "city": " Los Angeles",
+      "state": " CA",
+      "zip": " 90017",
+      "country": " USA"
+    },
+    "emailAddresses": []
   },
-  "emailAddresses": [
-    "jmcgee263@gmail.com",
-    "happyj@who.com"
-  ]
-}
-{
-  "personCode": "nj78",
-  "name": {
-    "lastName": "Johnson",
-    "firstName": " Allison"
+  {
+    "personCode": "898gj",
+    "name": {
+      "lastName": "Baker",
+      "firstName": " Peter"
+    },
+    "address": {
+      "street": "6596 Santana St",
+      "city": " San Gabriel",
+      "state": " CA",
+      "zip": " 90035",
+      "country": " USA"
+    },
+    "emailAddresses": [
+      "chaikin@yahoo.com"
+    ]
   },
-  "address": {
-    "street": "8930 S 167th Street",
-    "city": " Omaha",
-    "state": " NE",
-    "zip": " 68138",
-    "country": " USA"
+  {
+    "personCode": "732y9",
+    "broker": {
+      "type": "E",
+      "brokerCode": "sec027"
+    },
+    "name": {
+      "lastName": "Gregory",
+      "firstName": " Zach"
+    },
+    "address": {
+      "street": "908 N 22nd St APT693",
+      "city": " Chicago",
+      "state": "IL",
+      "zip": "60289",
+      "country": "USA"
+    },
+    "emailAddresses": []
   },
-  "emailAddresses": [
-    "ajohnson97@gmail.com"
-  ]
-}
-{
-  "personCode": "is973",
-  "broker": {
-    "type": "J",
-    "brokerCode": "sec928"
+  {
+    "personCode": "9379",
+    "broker": {
+      "type": "E",
+      "brokerCode": "sec038"
+    },
+    "name": {
+      "lastName": "Donald",
+      "firstName": " Trump"
+    },
+    "address": {
+      "street": "1600 Pennsylvania Ave NW",
+      "city": " Washington",
+      "state": " DC",
+      "zip": " 20500",
+      "country": " USA"
+    },
+    "emailAddresses": [
+      "dtrump001@gmail.com"
+    ]
   },
-  "name": {
-    "lastName": "Kane",
-    "firstName": " Elly"
-  },
-  "address": {
-    "street": "3124  Doctors Drive",
-    "city": " Los Angeles",
-    "state": " CA",
-    "zip": " 90017",
-    "country": " USA"
-  },
-  "emailAddresses": []
-}
-{
-  "personCode": "898gj",
-  "name": {
-    "lastName": "Baker",
-    "firstName": " Peter"
-  },
-  "address": {
-    "street": "6596 Santana St",
-    "city": " San Gabriel",
-    "state": " CA",
-    "zip": " 90035",
-    "country": " USA"
-  },
-  "emailAddresses": [
-    "chaikin@yahoo.com"
-  ]
-}
-{
-  "personCode": "732y9",
-  "broker": {
-    "type": "E",
-    "brokerCode": "sec027"
-  },
-  "name": {
-    "lastName": "Gregory",
-    "firstName": " Zach"
-  },
-  "address": {
-    "street": "908 N 22nd St APT693",
-    "city": " Chicago",
-    "state": "IL",
-    "zip": "60289",
-    "country": "USA"
-  },
-  "emailAddresses": []
-}
-{
-  "personCode": "9379",
-  "broker": {
-    "type": "E",
-    "brokerCode": "sec038"
-  },
-  "name": {
-    "lastName": "Donald",
-    "firstName": " Trump"
-  },
-  "address": {
-    "street": "1600 Pennsylvania Ave NW",
-    "city": " Washington",
-    "state": " DC",
-    "zip": " 20500",
-    "country": " USA"
-  },
-  "emailAddresses": [
-    "dtrump001@gmail.com"
-  ]
-}
-{
-  "personCode": "7379g",
-  "name": {
-    "lastName": "Zhang",
-    "firstName": "Kexin"
-  },
-  "address": {
-    "street": "13 Jinyu Hutong Dongcheng",
-    "city": " Beijing",
-    "state": " BJ",
-    "zip": " 100012",
-    "country": " China"
-  },
-  "emailAddresses": [
-    "639837278@qq.com"
-  ]
-}
+  {
+    "personCode": "7379g",
+    "name": {
+      "lastName": "Zhang",
+      "firstName": "Kexin"
+    },
+    "address": {
+      "street": "13 Jinyu Hutong Dongcheng",
+      "city": " Beijing",
+      "state": " BJ",
+      "zip": " 100012",
+      "country": " China"
+    },
+    "emailAddresses": [
+      "639837278@qq.com"
+    ]
+  }
+]
