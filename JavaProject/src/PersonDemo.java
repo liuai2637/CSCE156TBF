@@ -61,12 +61,8 @@ public class PersonDemo {
 				Person person = new Person(personCode, broker, name, address, email);
 				peopleArrayList.add(person);
 			}
-
-			
-
 		}
 
-		// TODO: output to xml
 		// I also download the JSON library since I cannot download xml 
 		// library also and it is easy to convert from Json to xml
 		
