@@ -11,12 +11,16 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.StaxDriver;
 
 public class DataConverter {
 	
-	//TODO: Documentation
-	//TODO: Combine two classes to DataConverter.java in com.tbf package
+	/**
+	 * Author: Sunny Liu, Bryce Yong
+	 * Date: 02/14/2020
+	 * This program convert a flat data file with data about TBF's person 
+	 * and assets to json and xml format.
+	 * @param args
+	 */
 
 	public static void main(String[] args) {
 
@@ -70,11 +74,11 @@ public class DataConverter {
 		Gson g = new GsonBuilder().setPrettyPrinting().create();
 		//TODO: Pretty Writer for xml
 		
-		XStream xstream = new XStream(new StaxDriver());
+		XStream xstream = new XStream();
 
 		try {
 			File outputJson = new File("data/Persons.json");
-			File outputXml = new File("data/PersonsTest.xml");
+			File outputXml = new File("data/Persons.xml");
 			PrintWriter pwJson = new PrintWriter(outputJson);
 			PrintWriter pwXml = new PrintWriter(outputXml);
 			pwJson.println(g.toJson(peopleArrayList));
@@ -99,7 +103,7 @@ public class DataConverter {
 			e.printStackTrace();
 		}
 		
-		// Scan in the asset data file and record number of entries into n
+		// Scan in the asset data file and record number of entries into nAsset
 				String fileNameAsset = "data/Assets.dat";
 				Scanner sAsset = null;
 				try {
@@ -121,7 +125,7 @@ public class DataConverter {
 					String[] infoAsset = entry.split(";");
 					int numInfoAsset = infoAsset.length;
 
-					// Depending on the length of the numInfo, construct the corresponding type of
+					// Depending on the length of the numInfoAsset, construct the corresponding type of
 					// asset
 					// and add to asset list
 					// Checking the label doesn't work for some reason
@@ -145,12 +149,10 @@ public class DataConverter {
 				}
 
 				Gson gAsset = new GsonBuilder().setPrettyPrinting().create();
-				XStream xstreamAsset = new XStream(new StaxDriver());
-				
-
+				XStream xstreamAsset = new XStream();
 				try {
 					File outputJson = new File("data/Assets.json");
-					File outputXml = new File("data/AssetsTest.xml");
+					File outputXml = new File("data/Assets.xml");
 					PrintWriter pwJson = new PrintWriter(outputJson);
 					PrintWriter pwXml = new PrintWriter(outputXml);
 					pwJson.println(gAsset.toJson(assetArrayList));
