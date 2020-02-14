@@ -1,5 +1,11 @@
 package com.tbf;
 
+/**
+ * 
+ * @author Sunny Liu and Bryce Yong
+ * Constructor class for Address
+ * 14 February 2020
+ */
 public class Address {
 	private String street;
 	private String city;
@@ -7,6 +13,7 @@ public class Address {
 	private String zip;
 	private String country;
 	
+	//Constructor
 	public Address(String street, String city, String state, String zip, String country) {
 		this.street = street;
 		this.city = city;
@@ -15,6 +22,7 @@ public class Address {
 		this.country = country;
 	}
 	
+	//Getters for all fields
 	public String getStreet() {
 		return street;
 	}
