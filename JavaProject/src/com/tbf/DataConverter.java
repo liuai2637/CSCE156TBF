@@ -28,8 +28,6 @@ public class DataConverter {
 			e.printStackTrace();
 		}
 		int n = Integer.parseInt(s.nextLine());
-
-		System.out.println(n);
 		ArrayList<Person> peopleArrayList = new ArrayList<>();
 
 		for (int i = 1; i <= n; i++) {
@@ -70,6 +68,8 @@ public class DataConverter {
 		
 
 		Gson g = new GsonBuilder().setPrettyPrinting().create();
+		//TODO: Pretty Writer for xml
+		
 		XStream xstream = new XStream(new StaxDriver());
 
 		try {
