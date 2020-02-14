@@ -78,6 +78,17 @@ public class DataConverter {
 			PrintWriter pwJson = new PrintWriter(outputJson);
 			PrintWriter pwXml = new PrintWriter(outputXml);
 			pwJson.println(g.toJson(peopleArrayList));
+			
+			String people = xstream.toXML(peopleArrayList);
+			int locOfFirstTransaction = people.indexOf("<list");
+			String firstPart = people.substring(0, locOfFirstTransaction);
+		    firstPart = firstPart.concat("\n\t<person>\n\t"); 
+		    // Define the remaining part of the string and concatenate the firstPart to it
+		    String lastPart = people.substring(locOfFirstTransaction, people.length());
+		    people = firstPart.concat(lastPart);
+
+		    // Replace the closing tag for rootTag
+		    people = people.replace("</list", "\t</person>\n</currentscreen");
 			pwXml.println(xstream.toXML(peopleArrayList));
 
 			pwJson.close();
