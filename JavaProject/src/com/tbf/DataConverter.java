@@ -74,25 +74,13 @@ public class DataConverter {
 		XStream xstream = new XStream();
 
 		try {
-			//print formatted files to new output file
+			//print formatted files to new output file using print writers
 			File outputJson = new File("data/Persons.json");
 			File outputXml = new File("data/Persons.xml");
 			PrintWriter pwJson = new PrintWriter(outputJson);
 			PrintWriter pwXml = new PrintWriter(outputXml);
 			pwJson.println(g.toJson(peopleArrayList));
-			
-			String people = xstream.toXML(peopleArrayList);
-			int locOfFirstTransaction = people.indexOf("<list");
-			String firstPart = people.substring(0, locOfFirstTransaction);
-		    firstPart = firstPart.concat("\n\t<person>\n\t"); 
-		    // Define the remaining part of the string and concatenate the firstPart to it
-		    String lastPart = people.substring(locOfFirstTransaction, people.length());
-		    people = firstPart.concat(lastPart);
-
-		    // Replace the closing tag for rootTag
-		    people = people.replace("</list", "\t</person>\n</currentscreen");
 			pwXml.println(xstream.toXML(peopleArrayList));
-
 			pwJson.close();
 			pwXml.close();
 		} catch (JsonIOException e) {
@@ -144,7 +132,7 @@ public class DataConverter {
 						assetArrayList.add(asset);
 					}
 				}
-
+				//output in format of jason and xml with Gson and xstream
 				Gson gAsset = new GsonBuilder().setPrettyPrinting().create();
 				XStream xstreamAsset = new XStream();
 				try {
