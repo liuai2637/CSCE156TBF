@@ -9,7 +9,9 @@ import java.util.Scanner;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonIOException;
+import com.google.gson.annotations.SerializedName;
 import com.thoughtworks.xstream.XStream;
 
 
@@ -80,6 +82,7 @@ public class DataConverter {
 			File outputXml = new File("data/Persons.xml");
 			PrintWriter pwJson = new PrintWriter(outputJson);
 			PrintWriter pwXml = new PrintWriter(outputXml);
+			
 			pwJson.println(g.toJson(peopleArrayList));
 			pwXml.println(xstream.toXML(peopleArrayList));
 			pwJson.close();
@@ -114,8 +117,6 @@ public class DataConverter {
 
 					// Depending on the length of the numInfoAsset, construct the corresponding type of
 					// asset and add to asset list
-					// Checking the label doesn't work for some reason
-					// e.g. if(num[1] == "D") doesn't work, when it is D, it just skips
 					if (numInfoAsset == 4) {
 						DepositAccount depositAccount = new DepositAccount(infoAsset[0], infoAsset[2], Double.parseDouble(infoAsset[3]));
 						Asset asset = new Asset(depositAccount);

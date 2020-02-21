@@ -1,8 +1,10 @@
 
 Portfolio Summary Report
 ===============================================================================================================================
-Portfolio  Owner                Manager                       Fees     Commisions   Weighted Risk         Return          Total
-ptoo1      Jake, McGee          Elly, Kane                    225      1341.021     0.0894                107281.68      288629.8
-pf404      Allison, Johnson     Jack, McGee                   0        1.43         0.0000                38.14          457.98
-mags09     Elly, Kane           Jake, McGee                   0        1106.57      0.0099                29508.54       10581.43                                                        
-kapa05     Trump, Donald        Kexin, Zhang                  0        506.28       0.6673                13500.82       4153.9
+Portfolio  Owner                Manager                        Fees      Commisions   Weighted Risk         Return          Total
+PT001      Jake, McGee          Elly, Kane            $        225  $    1341.021     0.0894       $         107281.68      288629.8
+PF404      Allison, Johnson     Jack, McGee           $        0    $    1.43         0.0000       $         38.14          457.98
+MAGS09     Elly, Kane           Jake, McGee           $        0    $    1106.57      0.0099       $         29508.54       10581.43                                                        
+KAPA05     Trump, Donald        Kexin, Zhang          $        0    $    506.28       0.6673       $         13500.82       4153.9
+IDK400     Gregory, Zach        Gregory, Zach         $        0    $    0.00         0.00         $         0.00
+PF457      Allison, Johnson     Gregory, Zach         $        0    $    0.00         0.00         $         0.00
