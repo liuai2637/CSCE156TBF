@@ -1,18 +1,6 @@
-7
+4
 pt001;123d;is973;gsycr;nj78;GOYGRC:245689.67,KIWIAT:35.0,ASCEST:67.67
 pf404;nj78;123d;;WHATUI:457.98
 mags09;is973;123d;123d;VALVE01:25.0,GOYGRC,78.93
-whopa7;898gj;123d;123d;VALVE01:12.0,YUPPI08:4.89,WHATUI:79803.78
-kaza86;is973;732y9;;VALVE01:8.90;ASCEST;4.29,GOYGRC:6456.76,WHATUI:7964.22
 kapa50;9379;9379;7379g;YUPPI08:6.89,ASCEST;12.29
-chig09;7379;732y9;7372y9;ASCEST;2.54,GOYGRC:646.72,WHATUI:542.32
 
-code;D;label;apr
-code;S;label;quarterlyDividend;baseRateOfReturn;betaMeasure;stockSymbol;sharePrice
-code;P;label;quarterlyDividend;baseRateOfReturn;baseOmegaMeasure;totalValue
-
-output
-Portfolio Summary Report
-===============================================================================================================================
-Portfolio  Owner                Manager                       Fees     Commisions   Weighted Risk         Return          Total
-ptoo1      Jake, McGee          Elly, Kane                    225                                                        262129.8
