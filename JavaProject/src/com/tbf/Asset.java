@@ -6,36 +6,25 @@ package com.tbf;
  * Constructor class for Asset (Composed of DepositAccount, Stock, And PrivateInvestment classes)
  * 14 February 2020
  */
-public class Asset {
+public abstract class Asset {
 	
-	private DepositAccount depositAccount;
-	private Stock stock;
-	private PrivateInvestment privateInvestment;
+	private String code;
+	private String label;
 	
 	//Constructors for each object
-	public Asset(PrivateInvestment privateInvestment) {
-		this.privateInvestment = privateInvestment;
+
+	public String getCode() {
+		return code;
 	}
 
-	public Asset(Stock stock) {
-		this.stock = stock;
+	public String getLabel() {
+		return label;
 	}
 
-	public Asset(DepositAccount depositAccount) {
-		this.depositAccount = depositAccount;
-	}
-
-	//Getters for each object
-	public DepositAccount getDepositAccount() {
-		return depositAccount;
+	public Asset(String code, String label) {
+		this.code = code;
+		this.label = label;
 	}
 	
-	public Stock getStock() {
-		return stock;
-	}
-	
-	public PrivateInvestment getPrivateInvestment() {
-		return privateInvestment;
-	}
 	
 }

@@ -6,10 +6,8 @@ package com.tbf;
  * Constructor class for PrivateInvestment
  * 14 February 2020
  */
-public class PrivateInvestment {
+public class PrivateInvestment extends Asset{
 
-	private String code;
-	private String label;
 	private double baseQuarterlyDividend;
 	private double baseRateOfReturn;
 	private double totalAmount;
@@ -17,8 +15,7 @@ public class PrivateInvestment {
 	
 	//PrivateInvestment Constructor
 	public PrivateInvestment(String code, String label, double baseQuarterlyDividend, double baseRateOfReturn, double omega, double totalAmount) {
-		this.code = code;
-		this.label = label;
+		super(code, label);
 		this.baseQuarterlyDividend = baseQuarterlyDividend;
 		this.baseRateOfReturn = baseRateOfReturn;
 		this.omega = omega;
@@ -26,12 +23,6 @@ public class PrivateInvestment {
 	}
 	
 	//Getters for all fields
-	public String getCode() {
-		return code;
-	}
-	public String getLabel() {
-		return label;
-	}
 	public double getBaseQuarterlyDividend() {
 		return baseQuarterlyDividend;
 	}

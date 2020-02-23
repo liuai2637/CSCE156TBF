@@ -1,58 +1,46 @@
 [
   {
-    "depositAccount": {
-      "code": "GOYGRC",
-      "label": "Checkings Account",
-      "apr": 0.02
-    }
+    "apr": 0.02,
+    "code": "GOYGRC",
+    "label": "Checkings Account"
   },
   {
-    "depositAccount": {
-      "code": "WHATUI",
-      "label": "Savings Account",
-      "apr": 0.08
-    }
+    "apr": 0.08,
+    "code": "WHATUI",
+    "label": "Savings Account"
   },
   {
-    "stock": {
-      "code": "VALVE01",
-      "label": "Counter Strike",
-      "baseQuarterlyDividend": 3.1,
-      "baseRateOfReturn": 2.78,
-      "stockSymbol": "CSS",
-      "sharePrice": 420.1,
-      "beta": 0.01
-    }
+    "baseQuarterlyDividend": 3.1,
+    "baseRateOfReturn": 2.78,
+    "stockSymbol": "CSS",
+    "sharePrice": 420.1,
+    "beta": 0.01,
+    "code": "VALVE01",
+    "label": "Counter Strike"
   },
   {
-    "stock": {
-      "code": "KIWIAT",
-      "label": "Australao",
-      "baseQuarterlyDividend": 2.5,
-      "baseRateOfReturn": 1.98,
-      "stockSymbol": "AUS",
-      "sharePrice": 764.78,
-      "beta": 0.02
-    }
+    "baseQuarterlyDividend": 2.5,
+    "baseRateOfReturn": 1.98,
+    "stockSymbol": "AUS",
+    "sharePrice": 764.78,
+    "beta": 0.02,
+    "code": "KIWIAT",
+    "label": "Australao"
   },
   {
-    "privateInvestment": {
-      "code": "YUPPI08",
-      "label": "Yogurt Wow",
-      "baseQuarterlyDividend": 6754.23,
-      "baseRateOfReturn": 1.59,
-      "totalAmount": 17658.09,
-      "omega": 0.43
-    }
+    "baseQuarterlyDividend": 6754.23,
+    "baseRateOfReturn": 1.59,
+    "totalAmount": 17658.09,
+    "omega": 0.43,
+    "code": "YUPPI08",
+    "label": "Yogurt Wow"
   },
   {
-    "privateInvestment": {
-      "code": "ACSEST",
-      "label": "AppleWasps",
-      "baseQuarterlyDividend": 4565.21,
-      "baseRateOfReturn": 2.54,
-      "totalAmount": 23899.56,
-      "omega": 0.76
-    }
+    "baseQuarterlyDividend": 4565.21,
+    "baseRateOfReturn": 2.54,
+    "totalAmount": 23899.56,
+    "omega": 0.76,
+    "code": "ACSEST",
+    "label": "AppleWasps"
   }
 ]

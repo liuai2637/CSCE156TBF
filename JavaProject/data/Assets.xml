@@ -1,58 +1,46 @@
 <list>
-  <com.tbf.Asset>
-    <depositAccount>
-      <code>GOYGRC</code>
-      <label>Checkings Account</label>
-      <apr>0.02</apr>
-    </depositAccount>
-  </com.tbf.Asset>
-  <com.tbf.Asset>
-    <depositAccount>
-      <code>WHATUI</code>
-      <label>Savings Account</label>
-      <apr>0.08</apr>
-    </depositAccount>
-  </com.tbf.Asset>
-  <com.tbf.Asset>
-    <stock>
-      <code>VALVE01</code>
-      <label>Counter Strike</label>
-      <baseQuarterlyDividend>3.1</baseQuarterlyDividend>
-      <baseRateOfReturn>2.78</baseRateOfReturn>
-      <stockSymbol>CSS</stockSymbol>
-      <sharePrice>420.1</sharePrice>
-      <beta>0.01</beta>
-    </stock>
-  </com.tbf.Asset>
-  <com.tbf.Asset>
-    <stock>
-      <code>KIWIAT</code>
-      <label>Australao</label>
-      <baseQuarterlyDividend>2.5</baseQuarterlyDividend>
-      <baseRateOfReturn>1.98</baseRateOfReturn>
-      <stockSymbol>AUS</stockSymbol>
-      <sharePrice>764.78</sharePrice>
-      <beta>0.02</beta>
-    </stock>
-  </com.tbf.Asset>
-  <com.tbf.Asset>
-    <privateInvestment>
-      <code>YUPPI08</code>
-      <label>Yogurt Wow</label>
-      <baseQuarterlyDividend>6754.23</baseQuarterlyDividend>
-      <baseRateOfReturn>1.59</baseRateOfReturn>
-      <totalAmount>17658.09</totalAmount>
-      <omega>0.43</omega>
-    </privateInvestment>
-  </com.tbf.Asset>
-  <com.tbf.Asset>
-    <privateInvestment>
-      <code>ACSEST</code>
-      <label>AppleWasps</label>
-      <baseQuarterlyDividend>4565.21</baseQuarterlyDividend>
-      <baseRateOfReturn>2.54</baseRateOfReturn>
-      <totalAmount>23899.56</totalAmount>
-      <omega>0.76</omega>
-    </privateInvestment>
-  </com.tbf.Asset>
+  <com.tbf.DepositAccount>
+    <code>GOYGRC</code>
+    <label>Checkings Account</label>
+    <apr>0.02</apr>
+  </com.tbf.DepositAccount>
+  <com.tbf.DepositAccount>
+    <code>WHATUI</code>
+    <label>Savings Account</label>
+    <apr>0.08</apr>
+  </com.tbf.DepositAccount>
+  <com.tbf.Stock>
+    <code>VALVE01</code>
+    <label>Counter Strike</label>
+    <baseQuarterlyDividend>3.1</baseQuarterlyDividend>
+    <baseRateOfReturn>2.78</baseRateOfReturn>
+    <stockSymbol>CSS</stockSymbol>
+    <sharePrice>420.1</sharePrice>
+    <beta>0.01</beta>
+  </com.tbf.Stock>
+  <com.tbf.Stock>
+    <code>KIWIAT</code>
+    <label>Australao</label>
+    <baseQuarterlyDividend>2.5</baseQuarterlyDividend>
+    <baseRateOfReturn>1.98</baseRateOfReturn>
+    <stockSymbol>AUS</stockSymbol>
+    <sharePrice>764.78</sharePrice>
+    <beta>0.02</beta>
+  </com.tbf.Stock>
+  <com.tbf.PrivateInvestment>
+    <code>YUPPI08</code>
+    <label>Yogurt Wow</label>
+    <baseQuarterlyDividend>6754.23</baseQuarterlyDividend>
+    <baseRateOfReturn>1.59</baseRateOfReturn>
+    <totalAmount>17658.09</totalAmount>
+    <omega>0.43</omega>
+  </com.tbf.PrivateInvestment>
+  <com.tbf.PrivateInvestment>
+    <code>ACSEST</code>
+    <label>AppleWasps</label>
+    <baseQuarterlyDividend>4565.21</baseQuarterlyDividend>
+    <baseRateOfReturn>2.54</baseRateOfReturn>
+    <totalAmount>23899.56</totalAmount>
+    <omega>0.76</omega>
+  </com.tbf.PrivateInvestment>
 </list>
