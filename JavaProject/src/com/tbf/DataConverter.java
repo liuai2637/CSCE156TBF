@@ -73,19 +73,16 @@ public class DataConverter {
 					// Depending on the length of the numInfoAsset, construct the corresponding type of
 					// asset and add to asset list
 					if (numInfoAsset == 4) {
-						DepositAccount depositAccount = new DepositAccount(infoAsset[0], infoAsset[2], Double.parseDouble(infoAsset[3]));
-						Asset asset = new Asset(depositAccount);
+						Asset asset = new DepositAccount(infoAsset[0], infoAsset[2], Double.parseDouble(infoAsset[3]));
 						assetArrayList.add(asset);
 					} else if (numInfoAsset == 8) {
-						Stock stock = new Stock(infoAsset[0], infoAsset[2], Double.parseDouble(infoAsset[3]), Double.parseDouble(infoAsset[4]),
+						Asset asset = new Stock(infoAsset[0], infoAsset[2], Double.parseDouble(infoAsset[3]), Double.parseDouble(infoAsset[4]),
 								Double.parseDouble(infoAsset[5]), infoAsset[6], Double.parseDouble(infoAsset[7]));
-						Asset asset = new Asset(stock);
 						assetArrayList.add(asset);
 					} else {
-						PrivateInvestment privateInvestment = new PrivateInvestment(infoAsset[0], infoAsset[2],
+						Asset asset = new PrivateInvestment(infoAsset[0], infoAsset[2],
 								Double.parseDouble(infoAsset[3]), Double.parseDouble(infoAsset[4]), Double.parseDouble(infoAsset[5]),
 								Double.parseDouble(infoAsset[6]));
-						Asset asset = new Asset(privateInvestment);
 						assetArrayList.add(asset);
 					}
 				}

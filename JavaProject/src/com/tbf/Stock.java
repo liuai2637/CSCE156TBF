@@ -6,9 +6,7 @@ package com.tbf;
  * Constructor class for Stock
  * 14 February 2020
  */
-public class Stock {
-	private String code;
-	private String label;
+public class Stock extends Asset{
 	private double baseQuarterlyDividend;
 	private double baseRateOfReturn;
 	private String stockSymbol;
@@ -17,8 +15,7 @@ public class Stock {
 	
 	//Stock Constructor
 	public Stock(String code, String label, double baseQuarterlyDividend, double baseRateOfReturn, double beta, String stockSymbol, double sharePrice) {
-		this.code = code;
-		this.label = label;
+		super(code, label);
 		this.baseQuarterlyDividend = baseQuarterlyDividend;
 		this.baseRateOfReturn = baseRateOfReturn;
 		this.beta = beta;
@@ -27,12 +24,6 @@ public class Stock {
 	}
 	
 	//Getters for all fields
-	public String getCode() {
-		return code;
-	}
-	public String getLabel() {
-		return label;
-	}
 	public double getBaseQuarterlyDividend() {
 		return baseQuarterlyDividend;
 	}
@@ -48,6 +39,4 @@ public class Stock {
 	public double getBeta() {
 		return beta;
 	}
-	
-	
 }
