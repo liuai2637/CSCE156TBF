@@ -22,7 +22,7 @@ public class DataConverter {
 	public static void main(String[] args) {
 		//read in the file
 		String fileName = "data/Persons.dat";
-		ArrayList<Person> peopleArrayList = DataLoader.dataReadIn(fileName);
+		ArrayList<Person> peopleArrayList = DataLoader.peopleReadIn(fileName);
 		
 		//Initialize new json object g
 		Gson g = new GsonBuilder().setPrettyPrinting().create();

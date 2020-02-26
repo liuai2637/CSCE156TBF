@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class DataLoader {
-	public static ArrayList<Person> dataReadIn(String fileName) {
+	public static ArrayList<Person> peopleReadIn(String fileName) {
 		Scanner s = null;
 		try {
 			s = new Scanner(new File(fileName));
@@ -28,7 +28,7 @@ public class DataLoader {
 			}
 			// split last name and first name by "," and put into name class
 			String[] nam = info[2].split(",");
-			Name name = new Name(nam[0], nam[1]);
+			Name name = new Name(nam[0].trim(), nam[1].trim());
 			// split each element of address and put into address class
 			String[] add = info[3].split(",");
 			Address address = new Address(add[0], add[1], add[2], add[3], add[4]);
@@ -91,5 +91,34 @@ public class DataLoader {
 		}
 		return assetArrayList;
 		
+	}
+	//data loader for portfolio
+	public static ArrayList<Portfolio> portReadIn(String fileName) {
+		Scanner s = null;
+		try {
+			s = new Scanner(new File(fileName));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		int n = Integer.parseInt(s.nextLine());
+		ArrayList<Portfolio> portfolioArrayList = new ArrayList<>();
+		for(int i=0; i<n; i++) {
+			String data = s.nextLine();
+			String[] info = data.split(";", -1);
+			String portfolioCode = info[0];
+			String ownerCode = info[1];
+			String managerCode = info[2];
+			String beneficiaryCode = info[3];
+			String[] assetArr = info[4].split(",", -1);
+			List<String> assetList = new ArrayList<String>();
+			for(String x: assetArr) {
+				assetList.add(x);
+			}
+			Portfolio portfolio = new Portfolio(portfolioCode, ownerCode, managerCode, beneficiaryCode, assetList);
+			portfolioArrayList.add(portfolio);		
+ 					
+		}
+		return portfolioArrayList;				
 	}
 }

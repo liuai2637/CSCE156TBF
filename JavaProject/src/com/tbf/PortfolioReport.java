@@ -3,39 +3,61 @@ package com.tbf;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
 public class PortfolioReport {
-	
-	public static ArrayList<Portfolio> dataReadIn(String fileName) {
-		Scanner s = null;
-		try {
-			s = new Scanner(new File(fileName));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		
-		int n = Integer.parseInt(s.nextLine());
-		ArrayList<Portfolio> portfolioArrayList = new ArrayList<>();
-		for(int i=0; i<=n; i++) {
-			String data = s.nextLine();
-			String[] info = data.split(";");
-			String portfolioCode = info[0];
-			String ownerCode = info[1];
-			String managerCode = info[2];
-			String beneficiaryCode = info[3];
-			String[] assetArr = info[4].split(",");
-			List<String> assetList = new ArrayList<String>();
-			for(String x: assetArr) {
-				assetList.add(x);
+
+	public static void main(String[] args) {
+
+		ArrayList<PortfolioString> portfolioStringArray = new ArrayList<>();
+		for (Portfolio x : DataLoader.portReadIn("data/Portfolios.dat")) {
+			String owner = x.getOwnerCode();
+			String manager = x.getManagerCode();
+			String beneficiary = x.getBeneficiaryCode();
+			String pCode = x.getPortfolioCode();
+			
+			String pOwnerFirst = "";
+			String pOwnerLast = "";
+			String pManagerFirst = "";
+			String pManagerLast = "";
+			String pBeneficiaryFirst = "";
+			String pBeneficiaryLast = "";
+			double pFees = 0.0;
+			double pCommissions = 0.0;
+			double pRisk = 0.0;
+			double pReturns = 0.0;
+			double pValue = 0.0;
+
+			for (Person y : DataLoader.peopleReadIn("data/Persons.dat")) {
+				if (owner.equals(y.getPersonCode())) {
+					pOwnerFirst = y.getName().getFirstName();
+					pOwnerLast = y.getName().getLastName();
+				}
+				if (manager.equals(y.getPersonCode())) {
+					pManagerFirst = y.getName().getFirstName();
+					pManagerLast = y.getName().getLastName();
+				}
+				if (beneficiary.equals(y.getPersonCode())) {
+					pBeneficiaryFirst = y.getName().getFirstName();
+					pBeneficiaryLast = y.getName().getLastName();
+				}
 			}
-			Portfolio portfolio = new Portfolio(portfolioCode, ownerCode, managerCode, beneficiaryCode, assetList);
-			portfolioArrayList.add(portfolio);		
- 					
+			PortfolioString portfolioReport = new PortfolioString(pCode, pOwnerFirst, pOwnerLast, pManagerFirst,
+					pManagerLast, pBeneficiaryFirst, pBeneficiaryLast, pFees, pCommissions, pRisk, pReturns, pValue);
+			portfolioStringArray.add(portfolioReport);
 		}
-		return portfolioArrayList;
+		Collections.sort(portfolioStringArray, new SortByOwnerLast());
+		System.out.println("Portfolio Summary Report");		
+		System.out.println("===============================================================================================================================");
+		System.out.println("Portfolio  Owner                Manager                       Fees     Commisions  Weighted Risk         Return          Total");
+		for(PortfolioString x: portfolioStringArray) {
+			System.out.printf("%-11s", x.getpCode());
+			System.out.printf("%-21s",String.format("%s, %s",x.getpOwnerLast(), x.getpOwnerFirst()));
+			System.out.printf("%s",String.format("%s, %s",x.getpManagerLast(), x.getpManagerFirst()));
+			System.out.printf("\n");
+		}
+
 	}
-	
-	//hi
 }
