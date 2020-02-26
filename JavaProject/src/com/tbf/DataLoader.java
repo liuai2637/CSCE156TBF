@@ -52,4 +52,44 @@ public class DataLoader {
 		}
 		return peopleArrayList;
 	}
+	public static ArrayList<Asset> assetReadIn(String fileName){
+		Scanner sAsset = null;
+		try {
+			sAsset = new Scanner(new File(fileName));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		int nAsset = Integer.parseInt(sAsset.nextLine());
+
+		// List to store the assets
+		ArrayList<Asset> assetArrayList = new ArrayList<>();
+
+		// Iterate through each entry
+		for (int i = 0; i < nAsset; i++) {
+
+			String entry = sAsset.nextLine();
+
+			// Split entry into different info fields and record length into numInfo
+			String[] infoAsset = entry.split(";");
+			int numInfoAsset = infoAsset.length;
+
+			// Depending on the length of the numInfoAsset, construct the corresponding type of
+			// asset and add to asset list
+			if (numInfoAsset == 4) {
+				Asset asset = new DepositAccount(infoAsset[0], infoAsset[2], Double.parseDouble(infoAsset[3]));
+				assetArrayList.add(asset);
+			} else if (numInfoAsset == 8) {
+				Asset asset = new Stock(infoAsset[0], infoAsset[2], Double.parseDouble(infoAsset[3]), Double.parseDouble(infoAsset[4]),
+						Double.parseDouble(infoAsset[5]), infoAsset[6], Double.parseDouble(infoAsset[7]));
+				assetArrayList.add(asset);
+			} else {
+				Asset asset = new PrivateInvestment(infoAsset[0], infoAsset[2],
+						Double.parseDouble(infoAsset[3]), Double.parseDouble(infoAsset[4]), Double.parseDouble(infoAsset[5]),
+						Double.parseDouble(infoAsset[6]));
+				assetArrayList.add(asset);
+			}
+		}
+		return assetArrayList;
+		
+	}
 }

@@ -1,10 +1,8 @@
 package com.tbf;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Scanner;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
@@ -50,42 +48,7 @@ public class DataConverter {
 		
 		// Scan in the asset data file and record number of entries into nAsset
 				String fileNameAsset = "data/Assets.dat";
-				Scanner sAsset = null;
-				try {
-					sAsset = new Scanner(new File(fileNameAsset));
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				}
-				int nAsset = Integer.parseInt(sAsset.nextLine());
-
-				// List to store the assets
-				ArrayList<Asset> assetArrayList = new ArrayList<>();
-
-				// Iterate through each entry
-				for (int i = 0; i < nAsset; i++) {
-
-					String entry = sAsset.nextLine();
-
-					// Split entry into different info fields and record length into numInfo
-					String[] infoAsset = entry.split(";");
-					int numInfoAsset = infoAsset.length;
-
-					// Depending on the length of the numInfoAsset, construct the corresponding type of
-					// asset and add to asset list
-					if (numInfoAsset == 4) {
-						Asset asset = new DepositAccount(infoAsset[0], infoAsset[2], Double.parseDouble(infoAsset[3]));
-						assetArrayList.add(asset);
-					} else if (numInfoAsset == 8) {
-						Asset asset = new Stock(infoAsset[0], infoAsset[2], Double.parseDouble(infoAsset[3]), Double.parseDouble(infoAsset[4]),
-								Double.parseDouble(infoAsset[5]), infoAsset[6], Double.parseDouble(infoAsset[7]));
-						assetArrayList.add(asset);
-					} else {
-						Asset asset = new PrivateInvestment(infoAsset[0], infoAsset[2],
-								Double.parseDouble(infoAsset[3]), Double.parseDouble(infoAsset[4]), Double.parseDouble(infoAsset[5]),
-								Double.parseDouble(infoAsset[6]));
-						assetArrayList.add(asset);
-					}
-				}
+				ArrayList<Asset> assetArrayList = DataLoader.assetReadIn(fileNameAsset);
 				//output in format of jason and xml with Gson and xstream
 				Gson gAsset = new GsonBuilder().setPrettyPrinting().create();
 				XStream xstreamAsset = new XStream();
