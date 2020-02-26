@@ -44,6 +44,12 @@ public class PortfolioReport {
 					pBeneficiaryLast = y.getName().getLastName();
 				}
 			}
+			
+			//TODO: Calculate the total Annual Return for the person x
+			//By looping through each asset inside the current Portfolio x
+			//Calling the getAnnualReturn method for each of them
+			//Set pReturn to the sum of them
+			
 			PortfolioString portfolioReport = new PortfolioString(pCode, pOwnerFirst, pOwnerLast, pManagerFirst,
 					pManagerLast, pBeneficiaryFirst, pBeneficiaryLast, pFees, pCommissions, pRisk, pReturns, pValue);
 			portfolioStringArray.add(portfolioReport);

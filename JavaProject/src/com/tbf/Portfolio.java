@@ -8,8 +8,11 @@ public class Portfolio {
 	private String ownerCode;
 	private String managerCode;
 	private String beneficiaryCode;
+	
+	//Maybe make this a List<Asset>
+	//Or mauybe not becasue a portfolio may not have a asset
 	private List<String> assets;
-		
+	
 	public Portfolio(String portfolioCode, String ownerCode, String managerCode, String beneficiaryCode,
 			List<String> assets) {
 		this.portfolioCode = portfolioCode;
