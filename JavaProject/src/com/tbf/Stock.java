@@ -39,4 +39,17 @@ public class Stock extends Asset{
 	public double getBeta() {
 		return beta;
 	}
+	
+	//Method to return value of stock
+	public double getValue(double numStock) {
+		return (numStock * this.sharePrice);
+	}
+	//Method to return the Annual Return for Stocks
+	public double getAnnualReturn(double numStock) {
+		return ((this.baseRateOfReturn/100) * this.sharePrice * numStock) + (4 * this.baseQuarterlyDividend * numStock);
+	}
+	//Method to return risk
+	public double getRisk() {
+		return this.beta;
+	}
 }

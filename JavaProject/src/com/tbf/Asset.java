@@ -11,8 +11,14 @@ public abstract class Asset {
 	private String code;
 	private String label;
 	
-	//Constructors for each object
+	//Constructor
+	public Asset(String code, String label) {
+		super();
+		this.code = code;
+		this.label = label;
+	}
 
+	//Getters
 	public String getCode() {
 		return code;
 	}
@@ -21,11 +27,10 @@ public abstract class Asset {
 		return label;
 	}
 
-	public Asset(String code, String label) {
-		super();
-		this.code = code;
-		this.label = label;
-	}
-	
-	
+
+	public abstract double getAnnualReturn(double input);
+
+	public abstract double getValue(double input);
+
+	public abstract double getRisk();
 }
