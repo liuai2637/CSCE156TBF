@@ -12,7 +12,6 @@ public class Stock extends Asset{
 	private String stockSymbol;
 	private double sharePrice;
 	private double beta;
-	private double numOfShares;
 	
 	//Stock Constructor
 	public Stock(String code, String label, double baseQuarterlyDividend, double baseRateOfReturn, double beta, String stockSymbol, double sharePrice) {
@@ -41,13 +40,8 @@ public class Stock extends Asset{
 		return beta;
 	}
 	
-	//Maybe implement the setter for Number of Shares?
-	public void setInput(double numOfShares) {
-		this.numOfShares = numOfShares;
-	}
-	
 	//Method to return the Annual Return for Stocks
-	public double getAnnualReturn() {
-		return ((this.baseRateOfReturn/100) * this.sharePrice * this.numOfShares) + (4 * this.baseQuarterlyDividend * this.numOfShares);
+	public double getAnnualReturn(double input) {
+		return ((this.baseRateOfReturn/100) * this.sharePrice * input) + (4 * this.baseQuarterlyDividend * input);
 	}
 }

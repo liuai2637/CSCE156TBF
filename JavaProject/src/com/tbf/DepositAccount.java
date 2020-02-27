@@ -10,7 +10,6 @@ import java.lang.Math;
  */
 public class DepositAccount extends Asset{
 	private double apr;
-	private double balance;
 	
 	//DepositAccount Constructor
 	public DepositAccount(String code, String label, double apr) {
@@ -23,13 +22,8 @@ public class DepositAccount extends Asset{
 		return apr;
 	}
 	
-	//Maybe implement the setter for balance?
-	public void setInput(double balance) {
-		this.balance = balance;
-	}
-	
 	//Method to return the Annual Return for Deposit Accounts
-		public double getAnnualReturn() {
-			return (Math.exp(this.apr) - 1) * this.balance;
-		}
+	public double getAnnualReturn(double input) {
+		return (Math.exp(this.apr) - 1) * input;
+	}
 }

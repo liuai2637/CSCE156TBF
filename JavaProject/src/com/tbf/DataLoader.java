@@ -112,12 +112,10 @@ public class DataLoader {
 			String beneficiaryCode = info[3];
 			String[] assetArr = info[4].split(",", -1);
 			
-			//TODO: Split each x into assetCode and input value
-			//NO idea: Determine the type of asset from the assetCode by searching through the assetArrayList inside DataConverter class
-			//	and getting their label using the getter inside the Asset class
-			//Depending on the label, set the input value
-			
-			//Maybe make this a List<Asset>
+			//Instead of making it a list of assets, make it a list of assetWrappers
+			//This way we can pass the value and the asset into the assetWrapper and have the portfolio 
+			//contain a list of assetWrappers for each asset it has
+			//Still need to determine the type of asset first so that we can construct it adn add it to the assetWrapper
 			List<String> assetList = new ArrayList<String>();
 			for(String x: assetArr) {
 				assetList.add(x);

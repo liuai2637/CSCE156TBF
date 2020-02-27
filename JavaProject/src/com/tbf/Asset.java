@@ -25,4 +25,6 @@ public abstract class Asset {
 	public String getLabel() {
 		return label;
 	}
+	
+	public abstract double getAnnualReturn(double input);
 }
