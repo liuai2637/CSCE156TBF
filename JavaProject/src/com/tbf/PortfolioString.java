@@ -1,5 +1,7 @@
 package com.tbf;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class PortfolioString {
 	 
@@ -15,6 +17,7 @@ public class PortfolioString {
 	private double pRisk;
 	private double pReturns;
 	private double pValue;
+
 	
 	public PortfolioString (String pCode, String pOwnerFirst, String pOwnerLast, String pManagerFirst,
 			String pManagerLast, String pBeneficiaryFirst, String pBeneficiaryLast, double pFees, 
@@ -27,6 +30,7 @@ public class PortfolioString {
 		this.pBeneficiaryFirst = pBeneficiaryFirst;
 		this.pBeneficiaryLast = pBeneficiaryLast;
 		this.pFees = pFees;
+		this.pCommissions = pCommissions;
 		this.pRisk = pRisk;
 		this.pReturns = pReturns;
 		this.pValue = pValue;
