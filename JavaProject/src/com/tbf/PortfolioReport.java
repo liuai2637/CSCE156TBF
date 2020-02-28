@@ -29,7 +29,10 @@ public class PortfolioReport {
 			String pBeneficiaryFirst = "";
 			String pBeneficiaryLast = "";
 			List<String> pEmailAddresses = new ArrayList<>();
-			Address pAddress = null;
+			Address pAddress = new Address("st", "ct", "sta", "zc", "cy"); 
+			Address pAddressB = new Address("st", "ct", "sta", "zc", "cy"); 
+			List<String> pEmailAddressesB = new ArrayList<>();
+			List<AssetString> pAssetString= new ArrayList<>();
 			String pBroker = "";
 			double pFees = 0.0;
 			double pCommissions = 0.0;
@@ -41,7 +44,20 @@ public class PortfolioReport {
 			double risk = 0.0;
 			double weightedRisk = 0.0;
 			int count = 0;
-
+			String sAssetCode;
+			String sTitle;
+			double sReturnRate;
+			double sRisk;
+			double sAnnualReturn;
+			double sValue;
+			
+			
+			
+			
+			if(beneficiary.isBlank()) {
+				pBeneficiaryFirst = "";
+				pBeneficiaryLast = "";
+			}
 			for (String z : x.getAssets()) {
 				String info[] = z.split(":", -1);
 				for (Asset i : DataLoader.assetReadIn("data/Assets.dat")) {
@@ -59,20 +75,35 @@ public class PortfolioReport {
 				if (owner.equals(y.getPersonCode())) {
 					pOwnerFirst = y.getName().getFirstName();
 					pOwnerLast = y.getName().getLastName();
+					if(y.getBroker() == null) {
+						pBroker = "";
+					} else {
+						if ((y.getBroker().getType()).equals("E")) {
+							pBroker = "Expert Broker";
+						} else if ((y.getBroker().getType()).equals("J")) {
+							pBroker = "Junior Broker";
+						}
+					}
+					pEmailAddresses = y.getEmailAddresses();
+					pAddress = y.getAddress(); 
+				}
+				if (beneficiary.equals(y.getPersonCode())) {
+					pBeneficiaryFirst = y.getName().getFirstName();
+					pBeneficiaryLast = y.getName().getLastName();
+					pEmailAddressesB = y.getEmailAddresses();
+					pAddressB = y.getAddress();
 				}
 				if (manager.equals(y.getPersonCode())) {
 					pManagerFirst = y.getName().getFirstName();
 					pManagerLast = y.getName().getLastName();
-					pEmailAddresses = y.getEmailAddresses();
-					pAddress = y.getAddress();
+					
+				
 					if ((y.getBroker().getType()).equals("E")) {
-						pFees = 0.0;
-						pBroker = "Expert Broker";
+						pFees = 0.0;					
 						pCommissions = 0.0375 * annualReturn;
 						totalFees = totalFees + pFees;
 						totalCommissions = totalCommissions + pCommissions;
 					} else if ((y.getBroker().getType()).equals("J")) {
-						pBroker = "Junior Broker";
 						for (String j : x.getAssets()) {
 							if (!j.isBlank()) {
 								count++;
@@ -111,7 +142,7 @@ public class PortfolioReport {
 
 			PortfolioString portfolioReport = new PortfolioString(pCode, pOwnerFirst, pOwnerLast, pManagerFirst,
 					pManagerLast, pBeneficiaryFirst, pBeneficiaryLast, pFees, pCommissions, pRisk, pReturns, pValue,
-					pEmailAddresses, pAddress, pBroker);
+					pEmailAddresses, pAddress, pBroker, pEmailAddressesB, pAddressB);
 			portfolioStringArray.add(portfolioReport);
 		}
 		Collections.sort(portfolioStringArray, new SortByOwnerLast());
@@ -146,8 +177,26 @@ public class PortfolioReport {
 			System.out.printf("%s, %s\n", x.getpOwnerLast(), x.getpOwnerFirst());
 			// TODO: get email from Person
 			if(!x.getpBroker().isBlank()) {
-				System.out.printf("%f\n",x.getpBroker());
+				System.out.printf("%s\n",x.getpBroker());
 			}
+			System.out.println(x.getpEmailAddresses());
+			System.out.printf("%s\n",x.getpAddress().getStreet());
+			System.out.printf("%s, %s %s %s\n",x.getpAddress().getCity(), x.getpAddress().getState(), x.getpAddress().getCountry(), x.getpAddress().getZip());
+			System.out.println("Manager:");
+			System.out.printf("%s, %s\n", x.getpManagerLast(), x.getpManagerFirst());
+			System.out.println("Beneficiary:");
+			if(x.getpBeneficiaryFirst().isBlank() && x.getpBeneficiaryLast().isBlank()) {
+				System.out.println("none");
+			} else {
+				System.out.printf("%s, %s\n", x.getpBeneficiaryLast(), x.getpBeneficiaryFirst());
+			}
+			System.out.println(x.getpEmailAddressesB());
+			System.out.printf("%s\n",x.getpAddressB().getStreet());
+			System.out.printf("%s, %s %s %s\n",x.getpAddressB().getCity(), x.getpAddressB().getState(), x.getpAddressB().getCountry(), x.getpAddressB().getZip());
+			System.out.println("Assets");
+			System.out.println("Code       Asset                           Return Rate          Risk  Annual Return          Value");
+
+
 			System.out.printf("\n");
 		}
 	}

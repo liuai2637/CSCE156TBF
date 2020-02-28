@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PortfolioString {
-	 
+
 	private String pCode;
 	private String pOwnerFirst;
 	private String pOwnerLast;
@@ -20,16 +20,21 @@ public class PortfolioString {
 	private List<String> pEmailAddresses = new ArrayList<>();
 	private Address pAddress;
 	private String pBroker;
+	private List<String> pEmailAddressesB = new ArrayList<>();
+	private Address pAddressB;
+	private List<AssetString> pAssetString= new ArrayList<>();
 
 	
-	public PortfolioString (String pCode, String pOwnerFirst, String pOwnerLast, String pManagerFirst,
-			String pManagerLast, String pBeneficiaryFirst, String pBeneficiaryLast, double pFees, 
-			double pCommissions, double pRisk, double pReturns, double pValue, List<String> pEmailAddress, Address pAddress, String pBroker) {
+	public PortfolioString(String pCode, String pOwnerFirst, String pOwnerLast, String pManagerFirst,
+			String pManagerLast, String pBeneficiaryFirst, String pBeneficiaryLast, double pFees, double pCommissions,
+			double pRisk, double pReturns, double pValue, List<String> pEmailAddresses, Address pAddress,
+			String pBroker, List<String> pEmailAddressesB, Address pAddressB, List<AssetString> pAssetString) {
+		super();
 		this.pCode = pCode;
 		this.pOwnerFirst = pOwnerFirst;
 		this.pOwnerLast = pOwnerLast;
-		this.pManagerFirst= pManagerFirst;
-		this.pManagerLast= pManagerLast;
+		this.pManagerFirst = pManagerFirst;
+		this.pManagerLast = pManagerLast;
 		this.pBeneficiaryFirst = pBeneficiaryFirst;
 		this.pBeneficiaryLast = pBeneficiaryLast;
 		this.pFees = pFees;
@@ -37,10 +42,26 @@ public class PortfolioString {
 		this.pRisk = pRisk;
 		this.pReturns = pReturns;
 		this.pValue = pValue;
-		this.pEmailAddresses = pEmailAddress;
+		this.pEmailAddresses = pEmailAddresses;
+		this.pAddress = pAddress;
 		this.pBroker = pBroker;
+		this.pEmailAddressesB = pEmailAddressesB;
+		this.pAddressB = pAddressB;
+		this.pAssetString = pAssetString;
 	}
-	
+
+	public List<AssetString> getpAssetString() {
+		return pAssetString;
+	}
+
+	public List<String> getpEmailAddressesB() {
+		return pEmailAddressesB;
+	}
+
+	public Address getpAddressB() {
+		return pAddressB;
+	}
+
 	public String getpCode() {
 		return pCode;
 	}
@@ -52,7 +73,7 @@ public class PortfolioString {
 	public String getpOwnerLast() {
 		return pOwnerLast;
 	}
-	
+
 	public String getpManagerFirst() {
 		return pManagerFirst;
 	}
@@ -60,15 +81,15 @@ public class PortfolioString {
 	public String getpManagerLast() {
 		return pManagerLast;
 	}
-	
+
 	public String getpBeneficiaryFirst() {
 		return pBeneficiaryFirst;
 	}
-	
+
 	public String getpBeneficiaryLast() {
 		return pBeneficiaryLast;
 	}
-	
+
 	public double getpFees() {
 		return pFees;
 	}
