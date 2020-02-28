@@ -17,8 +17,8 @@ public class PortfolioReport {
 		double totalCommissions = 0.0;
 		double totalFees = 0.0;
 		for (Portfolio x : DataLoader.portReadIn("data/Portfolios.dat")) {
-			String owner = x.getOwnerCode();
-			String manager = x.getManagerCode();
+			String ownerCode = x.getOwnerCode();
+			String managerCode = x.getManagerCode();
 			String beneficiary = x.getBeneficiaryCode();
 			String pCode = x.getPortfolioCode();
 
@@ -39,8 +39,8 @@ public class PortfolioReport {
 			double pRisk = 0.0;
 			double pReturns = 0.0;
 			double pValue = 0.0;
-			double value = 0.0;
-			double annualReturn = 0.0;
+			double tValue = 0.0;
+			double tAnnualReturn = 0.0;
 			double risk = 0.0;
 			double weightedRisk = 0.0;
 			int count = 0;
@@ -50,9 +50,6 @@ public class PortfolioReport {
 			double sRisk = 0.0;
 			double sAnnualReturn= 0.0;
 			double sValue = 0.0;
-			
-			
-			
 			
 			if(beneficiary.isBlank()) {
 				pBeneficiaryFirst = "";
@@ -68,10 +65,10 @@ public class PortfolioReport {
 						sRisk = i.getRisk();
 						sAnnualReturn = i.getAnnualReturn(Double.parseDouble(info[1]));
 						sValue = i.getValue(Double.parseDouble(info[1]));
-						value = i.getValue(Double.parseDouble(info[1])) + value;
-						annualReturn = i.getAnnualReturn(Double.parseDouble(info[1])) + annualReturn;
+						tValue += i.getValue(Double.parseDouble(info[1]));
+						tAnnualReturn += i.getAnnualReturn(Double.parseDouble(info[1]));
 						risk = i.getRisk() * i.getValue(Double.parseDouble(info[1]));
-						weightedRisk = risk + weightedRisk;
+						weightedRisk += risk;
 						
 					}
 				}
@@ -81,7 +78,7 @@ public class PortfolioReport {
 
 			for (Person y : DataLoader.peopleReadIn("data/Persons.dat")) {
 
-				if (owner.equals(y.getPersonCode())) {
+				if (ownerCode.equals(y.getPersonCode())) {
 					pOwnerFirst = y.getName().getFirstName();
 					pOwnerLast = y.getName().getLastName();
 					if(y.getBroker() == null) {
@@ -102,14 +99,14 @@ public class PortfolioReport {
 					pEmailAddressesB = y.getEmailAddresses();
 					pAddressB = y.getAddress();
 				}
-				if (manager.equals(y.getPersonCode())) {
+				if (managerCode.equals(y.getPersonCode())) {
 					pManagerFirst = y.getName().getFirstName();
 					pManagerLast = y.getName().getLastName();
 					
 				
 					if ((y.getBroker().getType()).equals("E")) {
 						pFees = 0.0;					
-						pCommissions = 0.0375 * annualReturn;
+						pCommissions = 0.0375 * tAnnualReturn;
 						totalFees = totalFees + pFees;
 						totalCommissions = totalCommissions + pCommissions;
 					} else if ((y.getBroker().getType()).equals("J")) {
@@ -120,7 +117,7 @@ public class PortfolioReport {
 						}
 						pFees = 75 * count;
 
-						pCommissions = 0.0125 * annualReturn;
+						pCommissions = 0.0125 * tAnnualReturn;
 						totalFees = totalFees + pFees;
 						totalCommissions = totalCommissions + pCommissions;
 					}
@@ -131,17 +128,17 @@ public class PortfolioReport {
 				}
 			}
 
-			pValue = value;
-			pReturns = annualReturn;
-			if (value == 0.0) {
+			pValue = tValue;
+			pReturns = tAnnualReturn;
+			if (tValue == 0.0) {
 				pRisk = 0.0;
 			} else {
-				pRisk = weightedRisk / value;
+				pRisk = weightedRisk / tValue;
 			}
-			totalValue = totalValue + value;
-			totalAnnualReturn = totalAnnualReturn + annualReturn;
-			value = 0.0;
-			annualReturn = 0.0;
+			totalValue = totalValue + tValue;
+			totalAnnualReturn = totalAnnualReturn + tAnnualReturn;
+			tValue = 0.0;
+			tAnnualReturn = 0.0;
 			weightedRisk = 0.0;
 
 			// TODO: Calculate the total Annual Return for the person x
