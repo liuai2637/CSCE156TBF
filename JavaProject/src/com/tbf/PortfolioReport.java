@@ -28,6 +28,9 @@ public class PortfolioReport {
 			String pManagerLast = "";
 			String pBeneficiaryFirst = "";
 			String pBeneficiaryLast = "";
+			List<String> pEmailAddresses = new ArrayList<>();
+			Address pAddress = null;
+			String pBroker = "";
 			double pFees = 0.0;
 			double pCommissions = 0.0;
 			double pRisk = 0.0;
@@ -38,10 +41,6 @@ public class PortfolioReport {
 			double risk = 0.0;
 			double weightedRisk = 0.0;
 			int count = 0;
-
-			
-
-	
 
 			for (String z : x.getAssets()) {
 				String info[] = z.split(":", -1);
@@ -54,9 +53,9 @@ public class PortfolioReport {
 					}
 				}
 			}
-			
+
 			for (Person y : DataLoader.peopleReadIn("data/Persons.dat")) {
-			
+
 				if (owner.equals(y.getPersonCode())) {
 					pOwnerFirst = y.getName().getFirstName();
 					pOwnerLast = y.getName().getLastName();
@@ -64,20 +63,23 @@ public class PortfolioReport {
 				if (manager.equals(y.getPersonCode())) {
 					pManagerFirst = y.getName().getFirstName();
 					pManagerLast = y.getName().getLastName();
-					if((y.getBroker().getType()).equals("E")){
+					pEmailAddresses = y.getEmailAddresses();
+					pAddress = y.getAddress();
+					if ((y.getBroker().getType()).equals("E")) {
 						pFees = 0.0;
+						pBroker = "Expert Broker";
 						pCommissions = 0.0375 * annualReturn;
 						totalFees = totalFees + pFees;
 						totalCommissions = totalCommissions + pCommissions;
-					} else if ((y.getBroker().getType()).equals("J")){
-						for(String j: x.getAssets()) {
-							if(!j.isBlank()) {
+					} else if ((y.getBroker().getType()).equals("J")) {
+						pBroker = "Junior Broker";
+						for (String j : x.getAssets()) {
+							if (!j.isBlank()) {
 								count++;
 							}
-						}						
-							pFees =75 * count;
-						
-					
+						}
+						pFees = 75 * count;
+
 						pCommissions = 0.0125 * annualReturn;
 						totalFees = totalFees + pFees;
 						totalCommissions = totalCommissions + pCommissions;
@@ -88,7 +90,7 @@ public class PortfolioReport {
 					pBeneficiaryLast = y.getName().getLastName();
 				}
 			}
-			
+
 			pValue = value;
 			pReturns = annualReturn;
 			if (value == 0.0) {
@@ -108,7 +110,8 @@ public class PortfolioReport {
 			// Set pReturn to the sum of them
 
 			PortfolioString portfolioReport = new PortfolioString(pCode, pOwnerFirst, pOwnerLast, pManagerFirst,
-					pManagerLast, pBeneficiaryFirst, pBeneficiaryLast, pFees, pCommissions, pRisk, pReturns, pValue);
+					pManagerLast, pBeneficiaryFirst, pBeneficiaryLast, pFees, pCommissions, pRisk, pReturns, pValue,
+					pEmailAddresses, pAddress, pBroker);
 			portfolioStringArray.add(portfolioReport);
 		}
 		Collections.sort(portfolioStringArray, new SortByOwnerLast());
@@ -120,7 +123,7 @@ public class PortfolioReport {
 		for (PortfolioString x : portfolioStringArray) {
 			System.out.printf("%-11s", x.getpCode());
 			System.out.printf("%-21s", String.format("%s, %s", x.getpOwnerLast(), x.getpOwnerFirst()));
-			System.out.printf("%-20s", String.format("%s, %s", x.getpManagerLast(), x.getpManagerFirst()));			
+			System.out.printf("%-20s", String.format("%s, %s", x.getpManagerLast(), x.getpManagerFirst()));
 			System.out.printf("$ %12.2f", x.getpFees());
 			System.out.printf("  $ %11.2f", x.getpCommissions());
 			System.out.printf("%15.4f", x.getpRisk());
@@ -131,18 +134,21 @@ public class PortfolioReport {
 		System.out.println(
 				"                                                     -------------------------------------------------------------------------");
 		System.out.printf(
-				"                                             Totals $      %.2f  $     %.2f                 $   %.2f  $  %.2f"
-				, totalFees, totalCommissions, totalAnnualReturn, totalValue);
+				"                                             Totals $      %.2f  $     %.2f                 $   %.2f  $  %.2f",
+				totalFees, totalCommissions, totalAnnualReturn, totalValue);
 		System.out.printf("\n\n\n\n\n");
-		System.out.printf("Portfolio Details\r\n" + 
-				"================================================================================================================\n");
+		System.out.printf("Portfolio Details\r\n"
+				+ "================================================================================================================\n");
 		for (PortfolioString x : portfolioStringArray) {
-		System.out.printf("Portfolio %s",x.getpCode());
-		System.out.printf("------------------------------------------\n");
-		System.out.printf("Owner:\n");
-		System.out.printf("%s, %s\n", x.getpOwnerLast(), x.getpOwnerFirst());
-
-		System.out.printf("\n");
+			System.out.printf("Portfolio %s", x.getpCode());
+			System.out.printf("------------------------------------------\n");
+			System.out.printf("Owner:\n");
+			System.out.printf("%s, %s\n", x.getpOwnerLast(), x.getpOwnerFirst());
+			// TODO: get email from Person
+			if(!x.getpBroker().isBlank()) {
+				System.out.printf("%f\n",x.getpBroker());
+			}
+			System.out.printf("\n");
 		}
 	}
 }

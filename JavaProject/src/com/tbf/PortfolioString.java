@@ -17,11 +17,14 @@ public class PortfolioString {
 	private double pRisk;
 	private double pReturns;
 	private double pValue;
+	private List<String> pEmailAddresses = new ArrayList<>();
+	private Address pAddress;
+	private String pBroker;
 
 	
 	public PortfolioString (String pCode, String pOwnerFirst, String pOwnerLast, String pManagerFirst,
 			String pManagerLast, String pBeneficiaryFirst, String pBeneficiaryLast, double pFees, 
-			double pCommissions, double pRisk, double pReturns, double pValue) {
+			double pCommissions, double pRisk, double pReturns, double pValue, List<String> pEmailAddress, Address pAddress, String pBroker) {
 		this.pCode = pCode;
 		this.pOwnerFirst = pOwnerFirst;
 		this.pOwnerLast = pOwnerLast;
@@ -34,6 +37,8 @@ public class PortfolioString {
 		this.pRisk = pRisk;
 		this.pReturns = pReturns;
 		this.pValue = pValue;
+		this.pEmailAddresses = pEmailAddress;
+		this.pBroker = pBroker;
 	}
 	
 	public String getpCode() {
@@ -84,6 +89,15 @@ public class PortfolioString {
 		return pValue;
 	}
 
-	
-	
+	public List<String> getpEmailAddresses() {
+		return pEmailAddresses;
+	}
+
+	public Address getpAddress() {
+		return pAddress;
+	}
+
+	public String getpBroker() {
+		return pBroker;
+	}
 }
