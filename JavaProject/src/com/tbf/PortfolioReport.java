@@ -54,7 +54,8 @@ public class PortfolioReport {
 			for (String assetStringList : port.getAssets()) {
 				String info[] = assetStringList.split(":", -1);
 				for (Asset asset : DataLoader.assetReadIn("data/Assets.dat")) {
-					if (info[0].equals(asset.getCode())) {
+					String assetGetCode = asset.getCode();
+					if (info[0].equals(assetGetCode)) {
 						sAssetCode = asset.getCode();
 						sTitle = asset.getLabel();
 						sReturnRate = asset.getAnnualReturn(Double.parseDouble(info[1]))
@@ -198,15 +199,15 @@ public class PortfolioReport {
 					System.out.printf("%-11s", y.getsAssetCode());
 					System.out.printf("%-39s", y.getsTitle());
 					System.out.printf("%-15.2f", y.getsReturnRate());
-					System.out.printf("%-15.2f  $", y.getsRisk());
-					System.out.printf("%-13.2f  $", y.getsAnnualReturn());
-					System.out.printf("%-13.2f\n", y.getsValue());
+					System.out.printf("%-13.2f", y.getsRisk());
+					System.out.printf("$  %-13.2f", y.getsAnnualReturn());
+					System.out.printf("$  %-15.2f\n", y.getsValue());
 				}
 			}
 			System.out.println(
 					"                                                        --------------------------------------------");
 			System.out.printf(
-					"                                                         Totals %-13.4f  $%-13.2f  $%-13.2f\n",
+					"                                                         Totals %-13.4f  $  %-13.2f  $  %-15.2f\n",
 					x.getpRisk(), x.getpReturns(), x.getpValue());
 			System.out.printf("\n");
 		}
