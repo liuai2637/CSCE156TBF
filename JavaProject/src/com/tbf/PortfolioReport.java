@@ -1,11 +1,8 @@
 package com.tbf;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 
 public class PortfolioReport {
 
@@ -16,11 +13,11 @@ public class PortfolioReport {
 		double totalAnnualReturn = 0.0;
 		double totalCommissions = 0.0;
 		double totalFees = 0.0;
-		for (Portfolio x : DataLoader.portReadIn("data/Portfolios.dat")) {
-			String ownerCode = x.getOwnerCode();
-			String managerCode = x.getManagerCode();
-			String beneficiary = x.getBeneficiaryCode();
-			String pCode = x.getPortfolioCode();
+		for (Portfolio port : DataLoader.portReadIn("data/Portfolios.dat")) {
+			String ownerCode = port.getOwnerCode();
+			String managerCode = port.getManagerCode();
+			String beneficiaryCode = port.getBeneficiaryCode();
+			String pCode = port.getPortfolioCode();
 
 			String pOwnerFirst = "";
 			String pOwnerLast = "";
@@ -29,126 +26,118 @@ public class PortfolioReport {
 			String pBeneficiaryFirst = "";
 			String pBeneficiaryLast = "";
 			List<String> pEmailAddresses = new ArrayList<>();
-			Address pAddress = new Address("st", "ct", "sta", "zc", "cy"); 
-			Address pAddressB = new Address("st", "ct", "sta", "zc", "cy"); 
+			Address pAddress = new Address("st", "ct", "sta", "zc", "cy");
+			Address pAddressB = new Address("st", "ct", "sta", "zc", "cy");
 			List<String> pEmailAddressesB = new ArrayList<>();
-			List<AssetString> pAssetString= new ArrayList<>();
+			List<AssetString> pAssetString = new ArrayList<>();
 			String pBroker = "";
 			double pFees = 0.0;
 			double pCommissions = 0.0;
 			double pRisk = 0.0;
 			double pReturns = 0.0;
 			double pValue = 0.0;
-			double tValue = 0.0;
+			double tValuePerPort = 0.0;
 			double tAnnualReturn = 0.0;
 			double risk = 0.0;
 			double weightedRisk = 0.0;
-			int count = 0;
 			String sAssetCode = "";
 			String sTitle = "";
 			double sReturnRate = 0.0;
 			double sRisk = 0.0;
-			double sAnnualReturn= 0.0;
+			double sAnnualReturn = 0.0;
 			double sValue = 0.0;
-			
-			if(beneficiary.isBlank()) {
+
+			if (beneficiaryCode.isBlank()) {
 				pBeneficiaryFirst = "";
 				pBeneficiaryLast = "";
 			}
-			for (String z : x.getAssets()) {
-				String info[] = z.split(":", -1);
-				for (Asset i : DataLoader.assetReadIn("data/Assets.dat")) {
-					if (info[0].equals(i.getCode())) {
-						sAssetCode = i.getCode();
-						sTitle = i.getLabel();
-						sReturnRate = i.getAnnualReturn(Double.parseDouble(info[1])) / i.getValue(Double.parseDouble(info[1]))  * 100.0;
-						sRisk = i.getRisk();
-						sAnnualReturn = i.getAnnualReturn(Double.parseDouble(info[1]));
-						sValue = i.getValue(Double.parseDouble(info[1]));
-						tValue += i.getValue(Double.parseDouble(info[1]));
-						tAnnualReturn += i.getAnnualReturn(Double.parseDouble(info[1]));
-						risk = i.getRisk() * i.getValue(Double.parseDouble(info[1]));
+			for (String assetStringList : port.getAssets()) {
+				String info[] = assetStringList.split(":", -1);
+				for (Asset asset : DataLoader.assetReadIn("data/Assets.dat")) {
+					if (info[0].equals(asset.getCode())) {
+						sAssetCode = asset.getCode();
+						sTitle = asset.getLabel();
+						sReturnRate = asset.getAnnualReturn(Double.parseDouble(info[1]))
+								/ asset.getValue(Double.parseDouble(info[1])) * 100.0;
+						sRisk = asset.getRisk();
+						sAnnualReturn = asset.getAnnualReturn(Double.parseDouble(info[1]));
+						sValue = asset.getValue(Double.parseDouble(info[1]));
+						tValuePerPort += asset.getValue(Double.parseDouble(info[1]));
+						tAnnualReturn += asset.getAnnualReturn(Double.parseDouble(info[1]));
+						risk = asset.getRisk() * asset.getValue(Double.parseDouble(info[1]));
 						weightedRisk += risk;
-						
+
 					}
 				}
-				AssetString assetString = new AssetString(sAssetCode, sTitle, sReturnRate,  sRisk, sAnnualReturn, sValue);
+				AssetString assetString = new AssetString(sAssetCode, sTitle, sReturnRate, sRisk, sAnnualReturn,
+						sValue);
 				pAssetString.add(assetString);
 			}
 
-			for (Person y : DataLoader.peopleReadIn("data/Persons.dat")) {
+			for (Person person : DataLoader.peopleReadIn("data/Persons.dat")) {
 
-				if (ownerCode.equals(y.getPersonCode())) {
-					pOwnerFirst = y.getName().getFirstName();
-					pOwnerLast = y.getName().getLastName();
-					if(y.getBroker() == null) {
+				if (ownerCode.equals(person.getPersonCode())) {
+					pOwnerFirst = person.getName().getFirstName();
+					pOwnerLast = person.getName().getLastName();
+					if (person.getBroker() == null) {
 						pBroker = "";
-					} else {
-						if ((y.getBroker().getType()).equals("E")) {
-							pBroker = "Expert Broker";
-						} else if ((y.getBroker().getType()).equals("J")) {
-							pBroker = "Junior Broker";
-						}
+					} else if ((person.getBroker().getType()).equals("E")) {
+						pBroker = "Expert Broker";
+					} else if ((person.getBroker().getType()).equals("J")) {
+						pBroker = "Junior Broker";
 					}
-					pEmailAddresses = y.getEmailAddresses();
-					pAddress = y.getAddress(); 
+					pEmailAddresses = person.getEmailAddresses();
+					pAddress = person.getAddress();
 				}
-				if (beneficiary.equals(y.getPersonCode())) {
-					pBeneficiaryFirst = y.getName().getFirstName();
-					pBeneficiaryLast = y.getName().getLastName();
-					pEmailAddressesB = y.getEmailAddresses();
-					pAddressB = y.getAddress();
+				if (beneficiaryCode.equals(person.getPersonCode())) {
+					pBeneficiaryFirst = person.getName().getFirstName();
+					pBeneficiaryLast = person.getName().getLastName();
+					pEmailAddressesB = person.getEmailAddresses();
+					pAddressB = person.getAddress();
 				}
-				if (managerCode.equals(y.getPersonCode())) {
-					pManagerFirst = y.getName().getFirstName();
-					pManagerLast = y.getName().getLastName();
-					
-				
-					if ((y.getBroker().getType()).equals("E")) {
-						pFees = 0.0;					
+				if (managerCode.equals(person.getPersonCode())) {
+					pManagerFirst = person.getName().getFirstName();
+					pManagerLast = person.getName().getLastName();
+
+					if ((person.getBroker().getType()).equals("E")) {
+						pFees = 0.0;
 						pCommissions = 0.0375 * tAnnualReturn;
 						totalFees = totalFees + pFees;
 						totalCommissions = totalCommissions + pCommissions;
-					} else if ((y.getBroker().getType()).equals("J")) {
-						for (String j : x.getAssets()) {
+					} else if ((person.getBroker().getType()).equals("J")) {
+						for (String j : port.getAssets()) {
 							if (!j.isBlank()) {
-								count++;
+								pFees += 75;
 							}
 						}
-						pFees = 75 * count;
+						
 
 						pCommissions = 0.0125 * tAnnualReturn;
 						totalFees = totalFees + pFees;
 						totalCommissions = totalCommissions + pCommissions;
 					}
 				}
-				if (beneficiary.equals(y.getPersonCode())) {
-					pBeneficiaryFirst = y.getName().getFirstName();
-					pBeneficiaryLast = y.getName().getLastName();
+				if (beneficiaryCode.equals(person.getPersonCode())) {
+					pBeneficiaryFirst = person.getName().getFirstName();
+					pBeneficiaryLast = person.getName().getLastName();
 				}
 			}
 
-			pValue = tValue;
+			pValue = tValuePerPort;
 			pReturns = tAnnualReturn;
-			if (tValue == 0.0) {
+			if (tValuePerPort == 0.0) {
 				pRisk = 0.0;
 			} else {
-				pRisk = weightedRisk / tValue;
+				pRisk = weightedRisk / tValuePerPort;
 			}
-			totalValue = totalValue + tValue;
+			totalValue += tValuePerPort;
 			totalAnnualReturn = totalAnnualReturn + tAnnualReturn;
-			tValue = 0.0;
-			tAnnualReturn = 0.0;
-			weightedRisk = 0.0;
+			
 
-			// TODO: Calculate the total Annual Return for the person x
-			// By looping through each asset inside the current Portfolio x
-			// Calling the getAnnualReturn method for each of them
-			// Set pReturn to the sum of them
 
-			PortBeneficiaryString portfolioReport = new PortBeneficiaryString(pCode, pOwnerFirst, pOwnerLast, pManagerFirst,
-					pManagerLast, pBeneficiaryFirst, pBeneficiaryLast, pFees, pCommissions, pRisk, pReturns, pValue,
-					pEmailAddresses, pAddress, pBroker, pEmailAddressesB, pAddressB, pAssetString);
+			PortBeneficiaryString portfolioReport = new PortBeneficiaryString(pCode, pOwnerFirst, pOwnerLast,
+					pManagerFirst, pManagerLast, pBeneficiaryFirst, pBeneficiaryLast, pFees, pCommissions, pRisk,
+					pReturns, pValue, pEmailAddresses, pAddress, pBroker, pEmailAddressesB, pAddressB, pAssetString);
 			portfolioStringArray.add(portfolioReport);
 		}
 		Collections.sort(portfolioStringArray, new SortByOwnerLast());
@@ -181,29 +170,31 @@ public class PortfolioReport {
 			System.out.printf("------------------------------------------\n");
 			System.out.printf("Owner:\n");
 			System.out.printf("%s, %s\n", x.getpOwnerLast(), x.getpOwnerFirst());
-			// TODO: get email from Person
-			if(!x.getpBroker().isBlank()) {
-				System.out.printf("%s\n",x.getpBroker());
+			if (!x.getpBroker().isBlank()) {
+				System.out.printf("%s\n", x.getpBroker());
 			}
 			System.out.println(x.getpEmailAddresses());
-			System.out.printf("%s\n",x.getpAddress().getStreet());
-			System.out.printf("%s, %s %s %s\n",x.getpAddress().getCity(), x.getpAddress().getState(), x.getpAddress().getCountry(), x.getpAddress().getZip());
+			System.out.printf("%s\n", x.getpAddress().getStreet());
+			System.out.printf("%s, %s %s %s\n", x.getpAddress().getCity(), x.getpAddress().getState(),
+					x.getpAddress().getCountry(), x.getpAddress().getZip());
 			System.out.println("Manager:");
 			System.out.printf("%s, %s\n", x.getpManagerLast(), x.getpManagerFirst());
 			System.out.println("Beneficiary:");
-			if(x.getpBeneficiaryFirst().isBlank() && x.getpBeneficiaryLast().isBlank()) {
+			if (x.getpBeneficiaryFirst().isBlank() && x.getpBeneficiaryLast().isBlank()) {
 				System.out.println("none");
 			} else {
 				System.out.printf("%s, %s\n", x.getpBeneficiaryLast(), x.getpBeneficiaryFirst());
 				System.out.println(x.getpEmailAddressesB());
-				System.out.printf("%s\n",x.getpAddressB().getStreet());
-				System.out.printf("%s, %s %s %s\n",x.getpAddressB().getCity(), x.getpAddressB().getState(), x.getpAddressB().getCountry(), x.getpAddressB().getZip());
+				System.out.printf("%s\n", x.getpAddressB().getStreet());
+				System.out.printf("%s, %s %s %s\n", x.getpAddressB().getCity(), x.getpAddressB().getState(),
+						x.getpAddressB().getCountry(), x.getpAddressB().getZip());
 			}
-			
+
 			System.out.println("Assets");
-			System.out.println("Code       Asset                           Return Rate          Risk          Annual Return      Value");
-			for(AssetString y : x.getpAssetString()) {
-				if(y.getsValue() != 0) {
+			System.out.println(
+					"Code       Asset                           Return Rate          Risk          Annual Return      Value");
+			for (AssetString y : x.getpAssetString()) {
+				if (y.getsValue() != 0) {
 					System.out.printf("%-11s", y.getsAssetCode());
 					System.out.printf("%-39s", y.getsTitle());
 					System.out.printf("%-15.2f", y.getsReturnRate());
@@ -212,8 +203,11 @@ public class PortfolioReport {
 					System.out.printf("%-13.2f\n", y.getsValue());
 				}
 			}
-			System.out.println("                                                        --------------------------------------------");
-			System.out.printf("                                                         Totals %-13.4f  $%-13.2f  $%-13.2f\n",x.getpRisk(), x.getpReturns(), x.getpValue());
+			System.out.println(
+					"                                                        --------------------------------------------");
+			System.out.printf(
+					"                                                         Totals %-13.4f  $%-13.2f  $%-13.2f\n",
+					x.getpRisk(), x.getpReturns(), x.getpValue());
 			System.out.printf("\n");
 		}
 	}
