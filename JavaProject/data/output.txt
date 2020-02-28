@@ -1,10 +1,131 @@
-
 Portfolio Summary Report
 ===============================================================================================================================
-Portfolio  Owner                Manager                        Fees      Commisions   Weighted Risk         Return          Total
-PT001      McGee, Jake          Kane, Elly            $        225  $    1341.021     0.0894       $         107281.68      288629.8
-PF404      Johnson, Allison     McGee, Jake           $        0    $    1.43         0.0000       $         38.14          457.98
-MAGS09     Kane, Elly           McGee, Jake           $        0    $    1106.57      0.0099       $         29508.54       10581.43                                                        
-KAPA05     Trump, Donald        Zhang, Kexin          $        0    $    506.28       0.6673       $         13500.82       4153.9
-IDK400     Gregory, Zach        Gregory, Zach         $        0    $    0.00         0.00         $         0.00
-PF457      Allison, Johnson     Gregory, Zach         $        0    $    0.00         0.00         $         0.00
+Portfolio  Owner                Manager                       Fees     Commisions  Weighted Risk         Return          Total
+KAPA50     Donald, Trump        Donald, Trump       $         0.00  $       70.53         0.4308  $     1880.81  $     1216.64
+IDK400     Gregory, Zach        Gregory, Zach       $         0.00  $        0.00         0.0000  $        0.00  $        0.00
+PF404      Johnson, Allison     McGee, Jake         $         0.00  $        0.01         0.0000  $        0.37  $      457.98
+PF457      Johnson, Allison     Gregory, Zach       $         0.00  $        0.00         0.0000  $        0.00  $        0.00
+MAGS09     Kane, Elly           McGee, Jake         $         0.00  $       22.57         0.0099  $      601.99  $    10581.43
+PT001      McGee, Jake          Kane, Elly          $       225.00  $       11.61         0.0020  $      929.14  $   272456.97
+                                                     -------------------------------------------------------------------------
+                                             Totals $      225.00  $     104.73                 $   3412.30  $  284713.02
+
+
+
+
+Portfolio Details
+================================================================================================================
+Portfolio KAPA50------------------------------------------
+Owner:
+Donald, Trump
+Expert Broker
+[dtrump001@gmail.com]
+1600 Pennsylvania Ave NW
+ Washington,  DC  USA  20500
+Manager:
+Donald, Trump
+Beneficiary:
+Zhang, Kexin
+[639837278@qq.com]
+13 Jinyu Hutong Dongcheng
+ Beijing,  BJ  China  100012
+Assets
+Code       Asset                           Return Rate          Risk          Annual Return      Value
+YUPPI08    Yogurt Wow                             154.59         0.43             $1880.81        $1216.64      
+YUPPI08    Yogurt Wow                             154.59         0.43             $1880.81        $1216.64      
+                                                        --------------------------------------------
+                                                         Totals 0.4308         $1880.81        $1216.64      
+
+Portfolio IDK400------------------------------------------
+Owner:
+Gregory, Zach
+Expert Broker
+[]
+908 N 22nd St APT693
+ Chicago, IL USA 60289
+Manager:
+Gregory, Zach
+Beneficiary:
+McGee, Jake
+[jmcgee263@gmail.com, happyj@who.com]
+687 N 697th Street
+New York,  NY  USA  10006
+Assets
+Code       Asset                           Return Rate          Risk          Annual Return      Value
+                                                        --------------------------------------------
+                                                         Totals 0.0000         $0.00           $0.00         
+
+Portfolio PF404------------------------------------------
+Owner:
+Johnson, Allison
+[ajohnson97@gmail.com]
+8930 S 167th Street
+ Omaha,  NE  USA  68138
+Manager:
+McGee, Jake
+Beneficiary:
+none
+Assets
+Code       Asset                           Return Rate          Risk          Annual Return      Value
+WHATUI     Savings Account                        0.08           0.00             $0.37           $457.98       
+                                                        --------------------------------------------
+                                                         Totals 0.0000         $0.37           $457.98       
+
+Portfolio PF457------------------------------------------
+Owner:
+Johnson, Allison
+[ajohnson97@gmail.com]
+8930 S 167th Street
+ Omaha,  NE  USA  68138
+Manager:
+Gregory, Zach
+Beneficiary:
+none
+Assets
+Code       Asset                           Return Rate          Risk          Annual Return      Value
+                                                        --------------------------------------------
+                                                         Totals 0.0000         $0.00           $0.00         
+
+Portfolio MAGS09------------------------------------------
+Owner:
+Kane, Elly
+Junior Broker
+[]
+3124  Doctors Drive
+ Los Angeles,  CA  USA  90017
+Manager:
+McGee, Jake
+Beneficiary:
+McGee, Jake
+[jmcgee263@gmail.com, happyj@who.com]
+687 N 697th Street
+New York,  NY  USA  10006
+Assets
+Code       Asset                           Return Rate          Risk          Annual Return      Value
+VALVE01    Counter Strike                         5.73           0.01             $601.97         $10502.50     
+GOYGRC     Checkings Account                      0.02           0.00             $0.02           $78.93        
+                                                        --------------------------------------------
+                                                         Totals 0.0099         $601.99         $10581.43     
+
+Portfolio PT001------------------------------------------
+Owner:
+McGee, Jake
+Expert Broker
+[jmcgee263@gmail.com, happyj@who.com]
+687 N 697th Street
+New York,  NY  USA  10006
+Manager:
+Kane, Elly
+Beneficiary:
+Johnson, Allison
+[ajohnson97@gmail.com]
+8930 S 167th Street
+ Omaha,  NE  USA  68138
+Assets
+Code       Asset                           Return Rate          Risk          Annual Return      Value
+GOYGRC     Checkings Account                      0.02           0.00             $49.14          $245689.67    
+KIWIAT     Australao                              3.29           0.02             $879.99         $26767.30     
+KIWIAT     Australao                              3.29           0.02             $879.99         $26767.30     
+                                                        --------------------------------------------
+                                                         Totals 0.0020         $929.14         $272456.97    
+
