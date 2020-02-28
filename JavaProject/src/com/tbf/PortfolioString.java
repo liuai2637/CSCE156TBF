@@ -10,8 +10,6 @@ public class PortfolioString {
 	private String pOwnerLast;
 	private String pManagerFirst;
 	private String pManagerLast;
-	private String pBeneficiaryFirst;
-	private String pBeneficiaryLast;
 	private double pFees;
 	private double pCommissions;
 	private double pRisk;
@@ -20,23 +18,19 @@ public class PortfolioString {
 	private List<String> pEmailAddresses = new ArrayList<>();
 	private Address pAddress;
 	private String pBroker;
-	private List<String> pEmailAddressesB = new ArrayList<>();
-	private Address pAddressB;
 	private List<AssetString> pAssetString= new ArrayList<>();
 
 	
 	public PortfolioString(String pCode, String pOwnerFirst, String pOwnerLast, String pManagerFirst,
-			String pManagerLast, String pBeneficiaryFirst, String pBeneficiaryLast, double pFees, double pCommissions,
+			String pManagerLast, double pFees, double pCommissions,
 			double pRisk, double pReturns, double pValue, List<String> pEmailAddresses, Address pAddress,
-			String pBroker, List<String> pEmailAddressesB, Address pAddressB, List<AssetString> pAssetString) {
+			String pBroker, List<AssetString> pAssetString) {
 		super();
 		this.pCode = pCode;
 		this.pOwnerFirst = pOwnerFirst;
 		this.pOwnerLast = pOwnerLast;
 		this.pManagerFirst = pManagerFirst;
 		this.pManagerLast = pManagerLast;
-		this.pBeneficiaryFirst = pBeneficiaryFirst;
-		this.pBeneficiaryLast = pBeneficiaryLast;
 		this.pFees = pFees;
 		this.pCommissions = pCommissions;
 		this.pRisk = pRisk;
@@ -45,21 +39,11 @@ public class PortfolioString {
 		this.pEmailAddresses = pEmailAddresses;
 		this.pAddress = pAddress;
 		this.pBroker = pBroker;
-		this.pEmailAddressesB = pEmailAddressesB;
-		this.pAddressB = pAddressB;
 		this.pAssetString = pAssetString;
 	}
 
 	public List<AssetString> getpAssetString() {
 		return pAssetString;
-	}
-
-	public List<String> getpEmailAddressesB() {
-		return pEmailAddressesB;
-	}
-
-	public Address getpAddressB() {
-		return pAddressB;
 	}
 
 	public String getpCode() {
@@ -82,13 +66,6 @@ public class PortfolioString {
 		return pManagerLast;
 	}
 
-	public String getpBeneficiaryFirst() {
-		return pBeneficiaryFirst;
-	}
-
-	public String getpBeneficiaryLast() {
-		return pBeneficiaryLast;
-	}
 
 	public double getpFees() {
 		return pFees;

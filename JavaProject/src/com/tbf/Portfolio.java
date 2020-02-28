@@ -41,8 +41,4 @@ public class Portfolio {
 	public List<String> getAssets() {
 		return assets;
 	}
-
-	
-	
-	
 }

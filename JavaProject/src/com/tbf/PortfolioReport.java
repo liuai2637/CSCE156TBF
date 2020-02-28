@@ -11,7 +11,7 @@ public class PortfolioReport {
 
 	public static void main(String[] args) {
 
-		ArrayList<PortfolioString> portfolioStringArray = new ArrayList<>();
+		ArrayList<PortBeneficiaryString> portfolioStringArray = new ArrayList<>();
 		double totalValue = 0.0;
 		double totalAnnualReturn = 0.0;
 		double totalCommissions = 0.0;
@@ -149,7 +149,7 @@ public class PortfolioReport {
 			// Calling the getAnnualReturn method for each of them
 			// Set pReturn to the sum of them
 
-			PortfolioString portfolioReport = new PortfolioString(pCode, pOwnerFirst, pOwnerLast, pManagerFirst,
+			PortBeneficiaryString portfolioReport = new PortBeneficiaryString(pCode, pOwnerFirst, pOwnerLast, pManagerFirst,
 					pManagerLast, pBeneficiaryFirst, pBeneficiaryLast, pFees, pCommissions, pRisk, pReturns, pValue,
 					pEmailAddresses, pAddress, pBroker, pEmailAddressesB, pAddressB, pAssetString);
 			portfolioStringArray.add(portfolioReport);
@@ -179,7 +179,7 @@ public class PortfolioReport {
 		System.out.printf("\n\n\n\n\n");
 		System.out.printf("Portfolio Details\r\n"
 				+ "================================================================================================================\n");
-		for (PortfolioString x : portfolioStringArray) {
+		for (PortBeneficiaryString x : portfolioStringArray) {
 			System.out.printf("Portfolio %s", x.getpCode());
 			System.out.printf("------------------------------------------\n");
 			System.out.printf("Owner:\n");
@@ -198,23 +198,25 @@ public class PortfolioReport {
 				System.out.println("none");
 			} else {
 				System.out.printf("%s, %s\n", x.getpBeneficiaryLast(), x.getpBeneficiaryFirst());
+				System.out.println(x.getpEmailAddressesB());
+				System.out.printf("%s\n",x.getpAddressB().getStreet());
+				System.out.printf("%s, %s %s %s\n",x.getpAddressB().getCity(), x.getpAddressB().getState(), x.getpAddressB().getCountry(), x.getpAddressB().getZip());
 			}
-			System.out.println(x.getpEmailAddressesB());
-			System.out.printf("%s\n",x.getpAddressB().getStreet());
-			System.out.printf("%s, %s %s %s\n",x.getpAddressB().getCity(), x.getpAddressB().getState(), x.getpAddressB().getCountry(), x.getpAddressB().getZip());
-			System.out.println("Assets");
-			System.out.println("Code       Asset                           Return Rate          Risk  Annual Return          Value");
-			for(AssetString y : x.getpAssetString()) {
-				System.out.printf("%-11s", y.getsAssetCode());
-				System.out.printf("%-39s", y.getsTitle());
-				System.out.printf("%-15.2f", y.getsReturnRate());
-				System.out.printf("%-15.2f  $", y.getsRisk());
-				System.out.printf("%-13.2f  $", y.getsAnnualReturn());
-				System.out.printf("%-13.2f\n", y.getsValue());
 			
+			System.out.println("Assets");
+			System.out.println("Code       Asset                           Return Rate          Risk          Annual Return      Value");
+			for(AssetString y : x.getpAssetString()) {
+				if(y.getsValue() != 0) {
+					System.out.printf("%-11s", y.getsAssetCode());
+					System.out.printf("%-39s", y.getsTitle());
+					System.out.printf("%-15.2f", y.getsReturnRate());
+					System.out.printf("%-15.2f  $", y.getsRisk());
+					System.out.printf("%-13.2f  $", y.getsAnnualReturn());
+					System.out.printf("%-13.2f\n", y.getsValue());
+				}
 			}
 			System.out.println("                                                        --------------------------------------------");
-			System.out.printf(" Totals        %.4f  $     %.2f  $   %.2f\n",x.getpRisk(), x.getpReturns(), x.getpValue());
+			System.out.printf("                                                         Totals %-13.4f  $%-13.2f  $%-13.2f\n",x.getpRisk(), x.getpReturns(), x.getpValue());
 			System.out.printf("\n");
 		}
 	}
