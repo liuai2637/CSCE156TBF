@@ -8,7 +8,7 @@ public class PortfolioReport {
 
 	public static void main(String[] args) {
 
-		ArrayList<PortBeneficiaryString> portfolioStringArray = new ArrayList<>();
+		ArrayList<PortfolioString> portfolioStringArray = new ArrayList<>();
 		double totalValue = 0.0;
 		double totalAnnualReturn = 0.0;
 		double totalCommissions = 0.0;
@@ -135,7 +135,7 @@ public class PortfolioReport {
 			
 
 
-			PortBeneficiaryString portfolioReport = new PortBeneficiaryString(pCode, pOwnerFirst, pOwnerLast,
+			PortfolioString portfolioReport = new PortfolioString(pCode, pOwnerFirst, pOwnerLast,
 					pManagerFirst, pManagerLast, pBeneficiaryFirst, pBeneficiaryLast, pFees, pCommissions, pRisk,
 					pReturns, pValue, pEmailAddresses, pAddress, pBroker, pEmailAddressesB, pAddressB, pAssetString);
 			portfolioStringArray.add(portfolioReport);
@@ -165,7 +165,7 @@ public class PortfolioReport {
 		System.out.printf("\n\n\n\n\n");
 		System.out.printf("Portfolio Details\r\n"
 				+ "================================================================================================================\n");
-		for (PortBeneficiaryString x : portfolioStringArray) {
+		for (PortfolioString x : portfolioStringArray) {
 			System.out.printf("Portfolio %s", x.getpCode());
 			System.out.printf("------------------------------------------\n");
 			System.out.printf("Owner:\n");

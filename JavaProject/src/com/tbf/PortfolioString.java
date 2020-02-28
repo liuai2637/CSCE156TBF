@@ -19,12 +19,16 @@ public class PortfolioString {
 	private Address pAddress;
 	private String pBroker;
 	private List<AssetString> pAssetString= new ArrayList<>();
+	private String pBeneficiaryFirst = "";
+	private String pBeneficiaryLast = "";
+	private List<String> pEmailAddressesB = new ArrayList<>();
+	private Address pAddressB;
 
 	
 	public PortfolioString(String pCode, String pOwnerFirst, String pOwnerLast, String pManagerFirst,
-			String pManagerLast, double pFees, double pCommissions,
+			String pManagerLast, String pBeneficiaryFirst, String pBeneficiaryLast, double pFees, double pCommissions,
 			double pRisk, double pReturns, double pValue, List<String> pEmailAddresses, Address pAddress,
-			String pBroker, List<AssetString> pAssetString) {
+			String pBroker, List<String> pEmailAddressesB, Address pAddressB, List<AssetString> pAssetString) {
 		super();
 		this.pCode = pCode;
 		this.pOwnerFirst = pOwnerFirst;
@@ -40,6 +44,10 @@ public class PortfolioString {
 		this.pAddress = pAddress;
 		this.pBroker = pBroker;
 		this.pAssetString = pAssetString;
+		this.pBeneficiaryFirst = pBeneficiaryFirst;
+		this.pBeneficiaryLast = pBeneficiaryLast;
+		this.pEmailAddressesB = pEmailAddressesB;
+		this.pAddressB = pAddressB;
 	}
 
 	public List<AssetString> getpAssetString() {
@@ -97,5 +105,21 @@ public class PortfolioString {
 
 	public String getpBroker() {
 		return pBroker;
+	}
+	
+	public String getpBeneficiaryFirst() {
+		return pBeneficiaryFirst;
+	}
+
+	public String getpBeneficiaryLast() {
+		return pBeneficiaryLast;
+	}
+
+	public List<String> getpEmailAddressesB() {
+		return pEmailAddressesB;
+	}
+
+	public Address getpAddressB() {
+		return pAddressB;
 	}
 }
