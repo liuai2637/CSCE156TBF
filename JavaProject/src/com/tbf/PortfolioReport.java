@@ -44,12 +44,12 @@ public class PortfolioReport {
 			double risk = 0.0;
 			double weightedRisk = 0.0;
 			int count = 0;
-			String sAssetCode;
-			String sTitle;
-			double sReturnRate;
-			double sRisk;
-			double sAnnualReturn;
-			double sValue;
+			String sAssetCode = "";
+			String sTitle = "";
+			double sReturnRate = 0.0;
+			double sRisk = 0.0;
+			double sAnnualReturn= 0.0;
+			double sValue = 0.0;
 			
 			
 			
@@ -62,12 +62,21 @@ public class PortfolioReport {
 				String info[] = z.split(":", -1);
 				for (Asset i : DataLoader.assetReadIn("data/Assets.dat")) {
 					if (info[0].equals(i.getCode())) {
+						sAssetCode = i.getCode();
+						sTitle = i.getLabel();
+						sReturnRate = i.getAnnualReturn(Double.parseDouble(info[1])) / i.getValue(Double.parseDouble(info[1]))  * 100.0;
+						sRisk = i.getRisk();
+						sAnnualReturn = i.getAnnualReturn(Double.parseDouble(info[1]));
+						sValue = i.getValue(Double.parseDouble(info[1]));
 						value = i.getValue(Double.parseDouble(info[1])) + value;
 						annualReturn = i.getAnnualReturn(Double.parseDouble(info[1])) + annualReturn;
 						risk = i.getRisk() * i.getValue(Double.parseDouble(info[1]));
 						weightedRisk = risk + weightedRisk;
+						
 					}
 				}
+				AssetString assetString = new AssetString(sAssetCode, sTitle, sReturnRate,  sRisk, sAnnualReturn, sValue);
+				pAssetString.add(assetString);
 			}
 
 			for (Person y : DataLoader.peopleReadIn("data/Persons.dat")) {
@@ -142,7 +151,7 @@ public class PortfolioReport {
 
 			PortfolioString portfolioReport = new PortfolioString(pCode, pOwnerFirst, pOwnerLast, pManagerFirst,
 					pManagerLast, pBeneficiaryFirst, pBeneficiaryLast, pFees, pCommissions, pRisk, pReturns, pValue,
-					pEmailAddresses, pAddress, pBroker, pEmailAddressesB, pAddressB);
+					pEmailAddresses, pAddress, pBroker, pEmailAddressesB, pAddressB, pAssetString);
 			portfolioStringArray.add(portfolioReport);
 		}
 		Collections.sort(portfolioStringArray, new SortByOwnerLast());
@@ -195,8 +204,17 @@ public class PortfolioReport {
 			System.out.printf("%s, %s %s %s\n",x.getpAddressB().getCity(), x.getpAddressB().getState(), x.getpAddressB().getCountry(), x.getpAddressB().getZip());
 			System.out.println("Assets");
 			System.out.println("Code       Asset                           Return Rate          Risk  Annual Return          Value");
-
-
+			for(AssetString y : x.getpAssetString()) {
+				System.out.printf("%-11s", y.getsAssetCode());
+				System.out.printf("%-39s", y.getsTitle());
+				System.out.printf("%-15.2f", y.getsReturnRate());
+				System.out.printf("%-15.2f  $", y.getsRisk());
+				System.out.printf("%-13.2f  $", y.getsAnnualReturn());
+				System.out.printf("%-13.2f\n", y.getsValue());
+			
+			}
+			System.out.println("                                                        --------------------------------------------");
+			System.out.printf(" Totals        %.4f  $     %.2f  $   %.2f\n",x.getpRisk(), x.getpReturns(), x.getpValue());
 			System.out.printf("\n");
 		}
 	}
