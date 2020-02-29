@@ -6,6 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * 
+ * @author Sunny Liu and Bryce Yong
+ * Dataloader class for reading through file and output information
+ * according to person type, asset type or portfolio type
+ * 28 February 2020
+ */
+
 public class DataLoader {
 	public static ArrayList<Person> peopleReadIn(String fileName) {
 		Scanner s = null;
@@ -100,8 +108,9 @@ public class DataLoader {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
+		//Collect number of portfolio from first line
 		int n = Integer.parseInt(s.nextLine());
+		//iterate through the file and separate each line into different codes and asset array
 		ArrayList<Portfolio> portfolioArrayList = new ArrayList<>();
 		for(int i=0; i<n; i++) {
 			String data = s.nextLine();
@@ -111,15 +120,12 @@ public class DataLoader {
 			String managerCode = info[2];
 			String beneficiaryCode = info[3];
 			String[] assetArr = info[4].split(",", -1);
-			
-			//Instead of making it a list of assets, make it a list of assetWrappers
-			//This way we can pass the value and the asset into the assetWrapper and have the portfolio 
-			//contain a list of assetWrappers for each asset it has
-			//Still need to determine the type of asset first so that we can construct it adn add it to the assetWrapper
+			//put array of asset into an arrayList
 			List<String> assetList = new ArrayList<String>();
 			for(String x: assetArr) {
 				assetList.add(x);
 			}
+			//add portfolio in portfolio type format into an arrayList of portfolio
 			Portfolio portfolio = new Portfolio(portfolioCode, ownerCode, managerCode, beneficiaryCode, assetList);
 			portfolioArrayList.add(portfolio);		
  					

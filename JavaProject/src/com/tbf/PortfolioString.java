@@ -3,28 +3,40 @@ package com.tbf;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PortfolioString {
+/**
+ * 
+ * @author Sunny Liu and Bryce Yong
+ * Constructor class for PortfolioString that hold information for each portfolio
+ * 28 February 2020
+ */
 
+public class PortfolioString {
+	
+	//initialize information of owners
 	private String pCode;
 	private String pOwnerFirst;
 	private String pOwnerLast;
+	private List<String> pEmailAddresses = new ArrayList<>();
+	private Address pAddress;
+	private String pBroker;
+	//information of managers and the corresponding fees and commissions
 	private String pManagerFirst;
 	private String pManagerLast;
 	private double pFees;
 	private double pCommissions;
+	//information of total risk, return and value for the portfolio 
 	private double pRisk;
 	private double pReturns;
 	private double pValue;
-	private List<String> pEmailAddresses = new ArrayList<>();
-	private Address pAddress;
-	private String pBroker;
+	//List of information  of assets in format of AssetString
 	private List<AssetString> pAssetString= new ArrayList<>();
+	//Information about beneficiary
 	private String pBeneficiaryFirst = "";
 	private String pBeneficiaryLast = "";
 	private List<String> pEmailAddressesB = new ArrayList<>();
 	private Address pAddressB;
 
-	
+	//Constructor for portfolioString
 	public PortfolioString(String pCode, String pOwnerFirst, String pOwnerLast, String pManagerFirst,
 			String pManagerLast, String pBeneficiaryFirst, String pBeneficiaryLast, double pFees, double pCommissions,
 			double pRisk, double pReturns, double pValue, List<String> pEmailAddresses, Address pAddress,
@@ -50,6 +62,7 @@ public class PortfolioString {
 		this.pAddressB = pAddressB;
 	}
 
+	//Getter for portfolioString
 	public List<AssetString> getpAssetString() {
 		return pAssetString;
 	}

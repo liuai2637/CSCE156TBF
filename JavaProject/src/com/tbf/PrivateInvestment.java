@@ -2,8 +2,9 @@ package com.tbf;
 
 /**
  * 
- * @author Sunny Liu and Bryce Yong Constructor class for PrivateInvestment 14
- *         February 2020
+ * @author Sunny Liu and Bryce Yong 
+ * Constructor class for PrivateInvestment 
+ * 14 February 2020
  */
 public class PrivateInvestment extends Asset {
 

@@ -28,13 +28,13 @@ Beneficiary:
 Zhang, Kexin
 [639837278@qq.com]
 13 Jinyu Hutong Dongcheng
- Beijing,  BJ  China  100012
+Beijing,  BJ  China  100012
 Assets
 Code       Asset                           Return Rate          Risk          Annual Return      Value
-YUPPI08    Yogurt Wow                             154.59         0.43             $1880.81        $1216.64      
-ACSEST     AppleWasps                             78.95          0.77             $2318.86        $2937.26      
+YUPPI08    Yogurt Wow                             154.59         0.43           $  1880.81      $  1216.64      
+ACSEST     AppleWasps                             78.95          0.77           $  2318.86      $  2937.26      
                                                         --------------------------------------------
-                                                         Totals 0.6673         $4199.67        $4153.90      
+                                                         Totals 0.6673         $  4199.67        $  4153.90      
 
 Portfolio IDK400------------------------------------------
 Owner:
@@ -53,7 +53,7 @@ New York,  NY  USA  10006
 Assets
 Code       Asset                           Return Rate          Risk          Annual Return      Value
                                                         --------------------------------------------
-                                                         Totals 0.0000         $0.00           $0.00         
+                                                         Totals 0.0000         $  0.00           $  0.00         
 
 Portfolio PF404------------------------------------------
 Owner:
@@ -67,9 +67,9 @@ Beneficiary:
 none
 Assets
 Code       Asset                           Return Rate          Risk          Annual Return      Value
-WHATUI     Savings Account                        0.08           0.00             $0.37           $457.98       
+WHATUI     Savings Account                        0.08           0.00           $  0.37         $  457.98       
                                                         --------------------------------------------
-                                                         Totals 0.0000         $0.37           $457.98       
+                                                         Totals 0.0000         $  0.37           $  457.98       
 
 Portfolio PF457------------------------------------------
 Owner:
@@ -84,7 +84,7 @@ none
 Assets
 Code       Asset                           Return Rate          Risk          Annual Return      Value
                                                         --------------------------------------------
-                                                         Totals 0.0000         $0.00           $0.00         
+                                                         Totals 0.0000         $  0.00           $  0.00         
 
 Portfolio MAGS09------------------------------------------
 Owner:
@@ -102,10 +102,10 @@ McGee, Jake
 New York,  NY  USA  10006
 Assets
 Code       Asset                           Return Rate          Risk          Annual Return      Value
-VALVE01    Counter Strike                         5.73           0.01             $601.97         $10502.50     
-GOYGRC     Checkings Account                      0.02           0.00             $0.02           $78.93        
+VALVE01    Counter Strike                         5.73           0.01           $  601.97       $  10502.50     
+GOYGRC     Checkings Account                      0.02           0.00           $  0.02         $  78.93        
                                                         --------------------------------------------
-                                                         Totals 0.0099         $601.99         $10581.43     
+                                                         Totals 0.0099         $  601.99         $  10581.43     
 
 Portfolio PT001------------------------------------------
 Owner:
@@ -123,10 +123,8 @@ Johnson, Allison
 Omaha,  NE  USA  68138
 Assets
 Code       Asset                           Return Rate          Risk          Annual Return      Value
-GOYGRC     Checkings Account                      0.02           0.00             $49.14          $245689.67    
-KIWIAT     Australao                              3.29           0.02             $879.99         $26767.30     
-ACSEST     AppleWasps                             78.95          0.77             $12767.90       $16172.83     
+GOYGRC     Checkings Account                      0.02           0.00           $  49.14        $  245689.67    
+KIWIAT     Australao                              3.29           0.02           $  879.99       $  26767.30     
+ACSEST     AppleWasps                             78.95          0.77           $  12767.90     $  16172.83     
                                                         --------------------------------------------
-                                                         Totals 0.0447         $13697.04       $288629.80    
-
-
+                                                         Totals 0.0447         $  13697.04       $  288629.80    

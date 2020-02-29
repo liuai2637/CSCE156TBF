@@ -1,5 +1,12 @@
 package com.tbf;
 
+/**
+ * 
+ * @author Sunny Liu and Bryce Yong
+ * Constructor class for broker
+ * 14 February 2020
+ */
+
 	public class Broker {
 		private String type;
 		private String brokerCode;

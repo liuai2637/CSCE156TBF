@@ -1,7 +1,16 @@
 package com.tbf;
 
-public class AssetString {
+/**
+ * 
+ * @author Sunny Liu and Bryce Yong
+ * Constructor class for AssetString that hold information for each asset
+ * 28 February 2020
+ */
 
+
+public class AssetString {
+	//Initialize information about individual asset including 
+	//asset code, name, return rate, risk, annual return and value
 	private String sAssetCode;
 	private String sTitle;
 	private double sReturnRate;
@@ -9,7 +18,7 @@ public class AssetString {
 	private double sAnnualReturn;
 	private double sValue;
 
-	
+	//Constructor for assetString class
 	public AssetString(String sAssetCode, String sTitle, double sReturnRate, double sRisk, double sAnnualReturn,
 			double sValue) {
 
@@ -22,6 +31,7 @@ public class AssetString {
 
 	}
 
+	//Getters for AssetString class
 	public String getsAssetCode() {
 		return sAssetCode;
 	}
@@ -45,9 +55,6 @@ public class AssetString {
 	public double getsValue() {
 		return sValue;
 	}
-	
-	
-	
 	
 
 }
