@@ -38,5 +38,10 @@ public class Address {
 	public String getCountry() {
 		return country;
 	}
+	public void printAddress() {
+		System.out.printf( "%s\n%s, %s %s %s ",street, city, state, country, zip);
+	}
+
+	
 	
 }

@@ -2,7 +2,7 @@ package com.tbf;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.HashMap;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
@@ -22,7 +22,7 @@ public class DataConverter {
 	public static void main(String[] args) {
 		//read in the file
 		String fileName = "data/Persons.dat";
-		ArrayList<Person> peopleArrayList = DataLoader.peopleReadIn(fileName);
+		HashMap<String, Person> codePeopleHashMap = DataLoader.peopleReadIn(fileName);
 		
 		//Initialize new json object g
 		Gson g = new GsonBuilder().setPrettyPrinting().create();
@@ -36,8 +36,8 @@ public class DataConverter {
 			PrintWriter pwJson = new PrintWriter(outputJson);
 			PrintWriter pwXml = new PrintWriter(outputXml);
 			
-			pwJson.println(g.toJson(peopleArrayList));
-			pwXml.println(xstream.toXML(peopleArrayList));
+			pwJson.println(g.toJson(codePeopleHashMap.values()));
+			pwXml.println(xstream.toXML(codePeopleHashMap.values()));
 			pwJson.close();
 			pwXml.close();
 		} catch (JsonIOException e) {
@@ -48,7 +48,7 @@ public class DataConverter {
 		
 		// Scan in the asset data file and record number of entries into nAsset
 				String fileNameAsset = "data/Assets.dat";
-				ArrayList<Asset> assetArrayList = DataLoader.assetReadIn(fileNameAsset);
+				HashMap<String, Asset> codeAssetHashMap = DataLoader.assetReadIn(fileNameAsset);
 				//output in format of jason and xml with Gson and xstream
 				Gson gAsset = new GsonBuilder().setPrettyPrinting().create();
 				XStream xstreamAsset = new XStream();
@@ -57,8 +57,8 @@ public class DataConverter {
 					File outputXml = new File("data/Assets.xml");
 					PrintWriter pwJson = new PrintWriter(outputJson);
 					PrintWriter pwXml = new PrintWriter(outputXml);
-					pwJson.println(gAsset.toJson(assetArrayList));
-					pwXml.println(xstreamAsset.toXML(assetArrayList));
+					pwJson.println(gAsset.toJson(codeAssetHashMap.values()));
+					pwXml.println(xstreamAsset.toXML(codeAssetHashMap.values()));
 					pwJson.close();
 					pwXml.close();
 				} catch (JsonIOException e) {

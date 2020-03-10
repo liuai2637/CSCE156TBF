@@ -27,10 +27,20 @@ public abstract class Asset {
 		return label;
 	}
 
-	//abstract method for calculation
-	public abstract double getAnnualReturn(double input);
+	//abstract method for calculation (delete input variable)
+	
+	
+	public abstract double getAnnualReturn();
+	
+	public abstract void setNumAsset(double input);
 
-	public abstract double getValue(double input);
+	public abstract double getValue();
 
 	public abstract double getRisk();
+	
+	public double getTotalRiskPerAsset(double input) {
+		return this.getRisk() * this.getValue();
+	}
+	
+	
 }

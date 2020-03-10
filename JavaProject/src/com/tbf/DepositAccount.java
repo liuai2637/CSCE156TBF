@@ -10,6 +10,8 @@ import java.lang.Math;
  */
 public class DepositAccount extends Asset{
 	private double apr;
+	private double balance;
+	private double annualReturn;
 	
 	//DepositAccount Constructor
 	public DepositAccount(String code, String label, double apr) {
@@ -23,15 +25,23 @@ public class DepositAccount extends Asset{
 	}
 	
 	//method to return value
-	public double getValue(double balance) {
+	public double getValue() {
 		return balance;
 	}
 	//Method to return the Annual Return for Deposit Accounts
-	public double getAnnualReturn(double balance) {
-		return (Math.exp(this.apr/100) - 1) * balance;
+	public double getAnnualReturn() {
+		this.annualReturn = (Math.exp(this.apr/100) - 1) * balance;
+		return annualReturn;
 	}
 	//Method to return risk
 	public double getRisk() {
 		return 0.0;
 	}
+
+	public void setNumAsset(double balance) {
+		this.balance = balance;
+	}
+
+
+
 }

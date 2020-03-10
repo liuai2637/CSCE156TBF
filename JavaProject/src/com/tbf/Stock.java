@@ -12,9 +12,14 @@ public class Stock extends Asset{
 	private String stockSymbol;
 	private double sharePrice;
 	private double beta;
+	private double numOfShare;
+	private double annualReturn;
+	private double value;
 	
 	//Stock Constructor
-	public Stock(String code, String label, double baseQuarterlyDividend, double baseRateOfReturn, double beta, String stockSymbol, double sharePrice) {
+	public Stock(String code, String label, double baseQuarterlyDividend, 
+			     double baseRateOfReturn, double beta, String stockSymbol, 
+			     double sharePrice) {
 		super(code, label);
 		this.baseQuarterlyDividend = baseQuarterlyDividend;
 		this.baseRateOfReturn = baseRateOfReturn;
@@ -41,15 +46,32 @@ public class Stock extends Asset{
 	}
 	
 	//Method to return value of stock
-	public double getValue(double numStock) {
-		return (numStock * this.sharePrice);
+	public double getValue() {
+		if(value != 0) {
+			return value;
+		} else {
+		this.value = numOfShare * this.sharePrice;
+		return value;
+		}
 	}
 	//Method to return the Annual Return for Stocks
-	public double getAnnualReturn(double numStock) {
-		return ((this.baseRateOfReturn/100) * this.sharePrice * numStock) + (4 * this.baseQuarterlyDividend * numStock);
+	public double getAnnualReturn() {
+		this.annualReturn = ((this.baseRateOfReturn/100) * this.sharePrice * numOfShare) + (4 * this.baseQuarterlyDividend * numOfShare);
+		return annualReturn;
 	}
 	//Method to return risk
 	public double getRisk() {
-		return this.beta;
+		return this.beta * this.getValue();
 	}
+
+	public double getNumOfShare() {
+		return numOfShare;
+	}
+
+	public void setNumAsset(double numOfShare) {
+		this.numOfShare = numOfShare;
+	}
+
+
+	
 }

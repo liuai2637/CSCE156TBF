@@ -3,6 +3,7 @@ package com.tbf;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,7 +16,7 @@ import java.util.Scanner;
  */
 
 public class DataLoader {
-	public static ArrayList<Person> peopleReadIn(String fileName) {
+	public static HashMap<String, Person> peopleReadIn(String fileName) {
 		Scanner s = null;
 		try {
 			s = new Scanner(new File(fileName));
@@ -23,7 +24,7 @@ public class DataLoader {
 			e.printStackTrace();
 		}
 		int n = Integer.parseInt(s.nextLine());
-		ArrayList<Person> peopleArrayList = new ArrayList<>();
+		HashMap<String, Person> codePersonHashMap = new HashMap<>();
 		// Iterate through each entry
 		for (int i = 1; i <= n; i++) {
 			String account = s.nextLine();
@@ -52,15 +53,15 @@ public class DataLoader {
 			// broker or not
 			if (!broker.isBroker()) {
 				Person person = new Person(personCode, name, address, email);
-				peopleArrayList.add(person);
+				codePersonHashMap.put(personCode, person);
 			} else {
 				Person person = new Person(personCode, broker, name, address, email);
-				peopleArrayList.add(person);
+				codePersonHashMap.put(personCode, person);
 			}
 		}
-		return peopleArrayList;
+		return codePersonHashMap;
 	}
-	public static ArrayList<Asset> assetReadIn(String fileName){
+	public static HashMap<String, Asset> assetReadIn(String fileName){
 		Scanner sAsset = null;
 		try {
 			sAsset = new Scanner(new File(fileName));
@@ -70,7 +71,7 @@ public class DataLoader {
 		int nAsset = Integer.parseInt(sAsset.nextLine());
 
 		// List to store the assets
-		ArrayList<Asset> assetArrayList = new ArrayList<>();
+		HashMap<String, Asset> codeAssetHashMap = new HashMap<>();
 
 		// Iterate through each entry
 		for (int i = 0; i < nAsset; i++) {
@@ -85,19 +86,19 @@ public class DataLoader {
 			// asset and add to asset list
 			if (numInfoAsset == 4) {
 				Asset asset = new DepositAccount(infoAsset[0], infoAsset[2], Double.parseDouble(infoAsset[3]));
-				assetArrayList.add(asset);
+				codeAssetHashMap.put(infoAsset[0], asset);
 			} else if (numInfoAsset == 8) {
 				Asset asset = new Stock(infoAsset[0], infoAsset[2], Double.parseDouble(infoAsset[3]), Double.parseDouble(infoAsset[4]),
 						Double.parseDouble(infoAsset[5]), infoAsset[6], Double.parseDouble(infoAsset[7]));
-				assetArrayList.add(asset);
+				codeAssetHashMap.put(infoAsset[0],asset);
 			} else {
 				Asset asset = new PrivateInvestment(infoAsset[0], infoAsset[2],
 						Double.parseDouble(infoAsset[3]), Double.parseDouble(infoAsset[4]), Double.parseDouble(infoAsset[5]),
 						Double.parseDouble(infoAsset[6]));
-				assetArrayList.add(asset);
+				codeAssetHashMap.put(infoAsset[0],asset);
 			}
 		}
-		return assetArrayList;
+		return codeAssetHashMap;
 		
 	}
 	//data loader for portfolio
@@ -112,22 +113,39 @@ public class DataLoader {
 		int n = Integer.parseInt(s.nextLine());
 		//iterate through the file and separate each line into different codes and asset array
 		ArrayList<Portfolio> portfolioArrayList = new ArrayList<>();
+		HashMap<String, Person> peopleMap = peopleReadIn("data/Persons.dat");
 		for(int i=0; i<n; i++) {
 			String data = s.nextLine();
 			String[] info = data.split(";", -1);
 			String portfolioCode = info[0];
 			String ownerCode = info[1];
+			Person owner = peopleMap.get(ownerCode);
 			String managerCode = info[2];
+			Person manager = peopleMap.get(managerCode);
 			String beneficiaryCode = info[3];
+			Person beneficiary = peopleMap.get(beneficiaryCode);
 			String[] assetArr = info[4].split(",", -1);
-			//put array of asset into an arrayList
-			List<String> assetList = new ArrayList<String>();
-			for(String x: assetArr) {
-				assetList.add(x);
+			HashMap<String, Asset> assetMap = assetReadIn("data/Assets.dat");
+			if(!assetArr.equals(null)) {
+				List<Asset> assetList = new ArrayList<Asset>();
+				for(String x: assetArr) {
+					String[] xAsset= x.split(":", -1);
+					Asset a = assetMap.get(xAsset[0]);
+					if(xAsset.length == 2) {
+						a.setNumAsset(Double.parseDouble(xAsset[1]));
+						assetList.add(a);
+					}
+					
+				}
+				//add portfolio in portfolio type format into an arrayList of portfolio
+				Portfolio portfolio = new Portfolio(portfolioCode, owner, manager, beneficiary, assetList);
+				portfolioArrayList.add(portfolio);	
+			} else {
+				Portfolio portfolio = new Portfolio(portfolioCode, owner, manager, beneficiary);
+				portfolioArrayList.add(portfolio);	
 			}
-			//add portfolio in portfolio type format into an arrayList of portfolio
-			Portfolio portfolio = new Portfolio(portfolioCode, ownerCode, managerCode, beneficiaryCode, assetList);
-			portfolioArrayList.add(portfolio);		
+			
+				
  					
 		}
 		return portfolioArrayList;				
