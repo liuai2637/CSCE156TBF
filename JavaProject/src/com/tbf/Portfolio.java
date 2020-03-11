@@ -69,7 +69,7 @@ public class Portfolio {
 
 	//Method to return the sum of Annual Return of all assets in this portfolio
 	public double getPortReturn() {
-		if(portReturn == 0) {
+		if(portReturn == 0) { //Ensures this is only calculated once
 			for (Asset a : this.assets) {
 				portReturn += a.getAnnualReturn();
 			}
