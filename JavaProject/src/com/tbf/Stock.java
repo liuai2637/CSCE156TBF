@@ -50,24 +50,28 @@ public class Stock extends Asset{
 		if(value != 0) {
 			return value;
 		} else {
-		this.value = numOfShare * this.sharePrice;
+		this.value = numOfShare * this.sharePrice;	//Only calculates once for every Stock
 		return value;
 		}
 	}
+	
 	//Method to return the Annual Return for Stocks
 	public double getAnnualReturn() {
 		this.annualReturn = ((this.baseRateOfReturn/100) * this.sharePrice * numOfShare) + (4 * this.baseQuarterlyDividend * numOfShare);
 		return annualReturn;
 	}
+	
 	//Method to return risk
 	public double getRisk() {
 		return this.beta * this.getValue();
 	}
 
+	//Method to return the number of shares
 	public double getNumOfShare() {
 		return numOfShare;
 	}
 
+	//Setter which sets this Stock's number of shares (from portfolio input value)
 	public void setNumAsset(double numOfShare) {
 		this.numOfShare = numOfShare;
 	}

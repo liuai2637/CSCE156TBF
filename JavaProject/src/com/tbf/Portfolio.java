@@ -9,8 +9,7 @@ import java.util.List;
  */
 
 public class Portfolio {
-	// a portfolio holding portfolio code, owner code, manager code,
-	// beneficiary code and a list of assets
+	// a portfolio holding portfolio code, owner code, manager code, beneficiary code and a list of assets
 	private String portfolioCode;
 	private Person owner;
 	private Person manager;
@@ -18,12 +17,11 @@ public class Portfolio {
 	private List<Asset> assets;
 	private double portReturn = 0;
 	private double portValue = 0;
-	private double portRisk;
-	private double portFee;
-	private double portCommision;
+	private double portRisk = 0;
+	private double portFee = 0;
+	private double portCommision = 0;
 
-	// Constructor of portfolio class
-	
+	// Constructor used if portfolio HAS NO assets
 	public Portfolio(String portfolioCode, Person owner, Person manager, Person beneficiary) {
 		this.portfolioCode = portfolioCode;
 		this.owner = owner;
@@ -31,6 +29,7 @@ public class Portfolio {
 		this.beneficiary = beneficiary;
 	}
 	
+	// Constructor used if portfolio HAS assets
 	public Portfolio(String portfolioCode, Person owner, Person manager, Person beneficiary, List<Asset> assets) {
 		this.portfolioCode = portfolioCode;
 		this.owner = owner;
@@ -39,7 +38,7 @@ public class Portfolio {
 		this.assets = assets;
 	}
 
-	// getters for portfolio code, owner code, beneficiary code and list of assets
+	// getters and setters for all String information
 	public String getPortfolioCode() {
 		return portfolioCode;
 	}
@@ -68,6 +67,7 @@ public class Portfolio {
 		this.beneficiary = beneficiary;
 	}
 
+	//Method to return the sum of Annual Return of all assets in this portfolio
 	public double getPortReturn() {
 		if(portReturn == 0) {
 			for (Asset a : this.assets) {
@@ -78,53 +78,57 @@ public class Portfolio {
 		return portReturn;
 	}
 
+	//Method to return the sum of Value of all assets in this portfolio
 	public double getPortValue() {
 		if(portValue == 0) {
 			for (Asset a : this.assets) {
 				portValue += a.getValue();
 			}
 		}
+		
 		return portValue;
 	}
 
+	//Method to return the sum of Risk of all assets in this portfolio
 	public double getPortRisk() {
 		for (Asset a : this.assets) {
 			portRisk += (a.getRisk()/this.getPortValue());
 		}
+		
 		return portRisk;
 	}
 
+	//Method to return the sum of Fees of all assets in this portfolio
 	public double getFee() {
 		if ((manager.getBroker().getType()).equals("E")) {
 			portFee = 0.0;
-			// pCommissions = 0.0375 * tAnnualReturn;
-			// totalFee += pFees;
-			// totalAmount[2] += pCommissions;
 		} else if ((manager.getBroker().getType()).equals("J")) {
 			portFee = 75 * this.getAssets().size();
 		}
 		return portFee;
 	}
 
+	//Method to return the sum of Commissions of all assets in this portfolio
 	public double getComission() {
 		if ((manager.getBroker().getType()).equals("E")) {
 			portCommision = 0.0375 * this.getPortReturn();
-			// totalFee += pFees;
-			// totalAmount[2] += pCommissions;
 		} else if ((manager.getBroker().getType()).equals("J")) {
 			portCommision = 0.0125 * this.getPortReturn();
 		}
 		return portCommision;
 	}
 
+	//Method to return the list of assets in this portfolio
 	public List<Asset> getAssets() {
 		return assets;
 	}
 	
+	//Method to print out the 2nd section of the report
 	public void printPortfolio() {
 		
 			System.out.printf("Portfolio %s", this.portfolioCode);
 			System.out.printf("------------------------------------------\n");
+			
 			// Print information about owner
 			System.out.printf("Owner:\n");
 			System.out.printf("%s, %s\n", this.owner.getName().getLastName(), this.owner.getName().getFirstName());
@@ -135,14 +139,15 @@ public class Portfolio {
 					System.out.println("Junior Broker");
 				}
 			}
-		
 			System.out.println(this.owner.getEmailAddresses());
 			System.out.printf("%s\n", this.owner.getAddress().getStreet());
 			System.out.printf("%s, %s %s %s\n", this.owner.getAddress().getCity(), this.owner.getAddress().getState(),
 					this.owner.getAddress().getCountry(), this.owner.getAddress().getZip());
+			
 			// print information about manager
 			System.out.println("Manager:");
 			System.out.printf("%s, %s\n", this.manager.getName().getLastName(), this.manager.getName().getFirstName());
+			
 			// print information about beneficiary
 			System.out.println("Beneficiary:");
 			if (this.beneficiary == null) {
@@ -154,6 +159,7 @@ public class Portfolio {
 				System.out.printf("%s, %s %s %s\n", this.beneficiary.getAddress().getCity(),this.beneficiary.getAddress().getState(),
 						this.beneficiary.getAddress().getCountry(), this.beneficiary.getAddress().getZip());
 			}
+			
 			// print asset list and corresponding amount for each asset
 			System.out.println("Assets");
 			System.out.println(

@@ -28,11 +28,12 @@ public class PrivateInvestment extends Asset {
 		this.totalAmount = totalAmount;
 	}
 
-	// Getters for all fields
+	//Method to return Quarterly Dividend
 	public double getBaseQuarterlyDividend() {
 		return baseQuarterlyDividend;
 	}
 
+	//Method to return the rate of return
 	public double getBaseRateOfReturn() {
 		return baseRateOfReturn;
 	}
@@ -50,13 +51,12 @@ public class PrivateInvestment extends Asset {
 		if(value != 0) {
 			return value;
 		} else {
-		this.value = (percentStake / 100 * this.totalAmount);
-		return value;
+			this.value = (percentStake / 100 * this.totalAmount);	//Only calculates once for every Private Investment
+			return value;
 		}
 	}
 
-	// Method to return the Annual Return for Private Investments (input ranges
-	// [0,1])
+	// Method to return the Annual Return for Private Investments (input ranges [0,1])
 	public double getAnnualReturn() {
 		this.annualReturn = ((this.baseRateOfReturn / 100) * this.totalAmount * percentStake / 100)
 				+ (4 * this.baseQuarterlyDividend * percentStake / 100);
@@ -73,11 +73,12 @@ public class PrivateInvestment extends Asset {
 		return risk;
 	}
 
-	public double getPerecentStake() {
+	//Method to return Percent Stake
+	public double getPercentStake() {
 		return percentStake;
-		
 	}
 
+	//Setter which sets this Private Investments's Percent Stake (from portfolio input value)
 	public void setNumAsset(double percentStake) {
 		this.percentStake = percentStake;
 	}

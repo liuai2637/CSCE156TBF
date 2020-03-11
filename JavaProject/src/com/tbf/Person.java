@@ -50,10 +50,8 @@ public class Person {
 	public Address getAddress() {
 		return address;
 	}
+	
 	public List<String> getEmailAddresses() {
 		return emailAddresses;
 	}
-
-	
-	
 }

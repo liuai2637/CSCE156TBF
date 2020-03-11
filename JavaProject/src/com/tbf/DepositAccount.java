@@ -9,6 +9,7 @@ import java.lang.Math;
  * 14 February 2020
  */
 public class DepositAccount extends Asset{
+	
 	private double apr;
 	private double balance;
 	private double annualReturn;
@@ -19,12 +20,12 @@ public class DepositAccount extends Asset{
 		this.apr = apr;
 	}
 
-	//Getters for all fields
+	//Method to return apr
 	public double getApr() {
 		return apr;
 	}
 	
-	//method to return value
+	//Method to return value
 	public double getValue() {
 		return balance;
 	}
@@ -38,6 +39,7 @@ public class DepositAccount extends Asset{
 		return 0.0;
 	}
 
+	//Setter which sets this deposit account's balance (from portfolio input value)
 	public void setNumAsset(double balance) {
 		this.balance = balance;
 	}
