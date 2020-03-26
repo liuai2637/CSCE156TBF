@@ -1,0 +1,231 @@
+\documentclass[12pt]{scrartcl}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{.25cm}
+
+\usepackage{graphicx}
+
+\usepackage{xcolor}
+
+\definecolor{darkred}{rgb}{0.5,0,0}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+\usepackage{hyperref}
+\hypersetup{
+  letterpaper,
+  colorlinks,
+  linkcolor=red,
+  citecolor=darkgreen,
+  menucolor=darkred,
+  urlcolor=blue,
+  pdfpagemode=none,
+  pdftitle={CSCE 156 Lab Handout},
+  pdfauthor={Christopher M. Bourke},
+  pdfsubject={},
+  pdfkeywords={}
+}
+
+\definecolor{MyDarkBlue}{rgb}{0,0.08,0.45}
+\definecolor{MyDarkRed}{rgb}{0.45,0.08,0}
+\definecolor{MyDarkGreen}{rgb}{0.08,0.45,0.08}
+
+\definecolor{mintedBackground}{rgb}{0.95,0.95,0.95}
+\definecolor{mintedInlineBackground}{rgb}{.90,.90,1}
+
+%\usepackage{newfloat}
+\usepackage[newfloat=true]{minted}
+\setminted{mathescape,
+               linenos,
+               autogobble,
+               frame=none,
+               framesep=2mm,
+               framerule=0.4pt,
+               %label=foo,
+               xleftmargin=2em,
+               xrightmargin=0em,
+               startinline=true,  %PHP only, allow it to omit the PHP Tags *** with this option, variables using dollar sign in comments are treated as latex math
+               numbersep=10pt, %gap between line numbers and start of line
+               style=default, %syntax highlighting style, default is "default"
+               			    %gallery: http://help.farbox.com/pygments.html
+			    	    %list available: pygmentize -L styles
+               bgcolor=mintedBackground} %prevents breaking across pages
+               
+\setmintedinline{bgcolor={mintedBackground}}
+\setminted[text]{bgcolor={mintedBackground},linenos=false,autogobble,xleftmargin=1em}
+%\setminted[php]{bgcolor=mintedBackgroundPHP} %startinline=True}
+\SetupFloatingEnvironment{listing}{name=Code Sample}
+\SetupFloatingEnvironment{listing}{listname=List of Code Samples}
+
+
+\title{CSCE 156 -- Computer Science II}
+\subtitle{Lab 9.0 - JDBC in a Webapp I}
+\author{~}
+\date{~}
+
+\begin{document}
+
+\maketitle
+
+\section*{Prior to Lab}
+
+\begin{enumerate}
+  \item Review this laboratory handout prior to lab.
+  \item Make sure that the Albums database is installed and available 
+  	in your MySQL instance on CSE
+  \item Review the SQL and JDBC lecture notes
+  \item Review a JDBC tutorial from Oracle: \\
+	\url{http://download.oracle.com/javase/tutorial/jdbc/}
+\end{enumerate}
+
+\section*{Lab Objectives \& Topics}
+Following the lab, you should be able to:
+\begin{itemize}
+  \item Write SQL queries for use in JDBC
+  \item Make a JDBC connection, query and process a result set from a database
+  \item Have some exposure to a multi-tiered application and a web 
+  	application server
+\end{itemize}
+
+\section*{Peer Programming Pair-Up}
+
+To encourage collaboration and a team environment, labs will be
+structured in a \emph{pair programming} setup.  At the start of
+each lab, you will be randomly paired up with another student 
+(conflicts such as absences will be dealt with by the lab instructor).
+One of you will be designated the \emph{driver} and the other
+the \emph{navigator}.  
+
+The navigator will be responsible for reading the instructions and
+telling the driver what to do next.  The driver will be in charge of the
+keyboard and workstation.  Both driver and navigator are responsible
+for suggesting fixes and solutions together.  Neither the navigator
+nor the driver is ``in charge.''  Beyond your immediate pairing, you
+are encouraged to help and interact and with other pairs in the lab.
+
+Each week you should alternate: if you were a driver last week, 
+be a navigator next, etc.  Resolve any issues (you were both drivers
+last week) within your pair.  Ask the lab instructor to resolve issues
+only when you cannot come to a consensus.  
+
+Because of the peer programming setup of labs, it is absolutely 
+essential that you complete any pre-lab activities and familiarize
+yourself with the handouts prior to coming to lab.  Failure to do
+so will negatively impact your ability to collaborate and work with 
+others which may mean that you will not be able to complete the
+lab.  
+
+\section*{JDBC in a Web Application}
+
+In this lab you will familiarize yourself with the Java Database 
+Connectivity API (JDBC) by finishing a simple, nearly complete 
+retrieve-and-display web application and deploying it to an 
+application server (Glassfish).  The design of the webapp is 
+simple: it consists of an index page that loads album data 
+via Ajax (Asynchronous JavaScript and XML) and displays it in
+a table.  
+
+It is not necessary to understand the details of the application 
+(the HTML, JavaScript, Servlets, or application server).  The 
+main goal of this lab is to give you some familiarity with JDBC 
+and exposure to a multi-tiered application and web application 
+server environment.
+
+\section*{Getting Started}
+
+\textbf{Note:} For this lab, you will need to use the JEE (Java 
+Enterprise Edition) version of Eclipse, not the JSE (Java Standard 
+Edition).  If you have this installed you should be able to use your
+own machine, but if not you will need to use one of the lab computers.
+In addition, it would be a good idea to reset your Albums database 
+by rerunning the SQL script from a prior lab.
+
+For this lab, you will need to use the JEE (Java Enterprise Edition) 
+version of Eclipse, not the JSE (Java Standard Edition).  In Windows, 
+click the start menu and enter ``Eclipse'', the ``Java EE Eclipse'' 
+should show up, select this version.  You may use the same workspace 
+as with the JSE (Java Standard Edition) version of Eclipse.
+
+Clone the project code for this lab from GitHub using the URL, 
+\url{https://github.com/cbourke/CSCE156-Lab09}.  Refer to Lab 
+1.0 for instructions on how to clone a project from GitHub.	
+
+\section*{Activities}
+
+\subsection*{Modifying Your Application}
+
+\begin{enumerate}
+  \item You will first need to make changes to the 
+  	\mintinline{java}{unl.cse.albums.DatabaseInfo} source file.  In 
+	particular, change the login and password information to your
+	MySQL credentials.  You can reset these by going to \url{http://cse.unl.edu/check}.
+  \item The HTML, JavaScript, etc. has been provided for you.  Feel
+    free to make modifications these files, but you should know what
+    you are doing as changes can break functionality in other parts
+    of the application.
+  \item The application will not display any album data until you have
+	completed the methods in the \mintinline{java}{Album} class.
+	\begin{itemize}
+	  \item \mintinline{java}{public static List<Album> getAlbumSummaries()} -- 
+	  This method will query the database and get a complete list of all 
+	  albums in the database.  It will create and populate 
+	  \mintinline{java}{Album} objects and put them in a list 
+	  which will then be returned.  This method will be used to 
+	  generate the album table, so it doesn't need all information, just
+	  a subset (see the documentation as to what is required).  
+	  You should optimize your queries to only select the relevant columns.
+
+	  \item \mintinline{java}{public static Album getDetailedAlbum(int albumId)} --
+	  this method will query the database for the specific album with 
+	  the given primary key and return an \mintinline{java}{Album}
+	  instance with \emph{all} relevant data (band and its members, 
+	  songs, etc.) specified. 
+
+	  \item Important: do not forget to close your database resources 
+      (especially connections) after you are finished using them.  
+ 	  \item A \mintinline{java}{Test} class has been provided for you 
+      to test your \mintinline{java}{getAlbumSummaries()} method
+      which you can also adapt to test your 
+      \mintinline{java}{getDetailedAlbum()} method.  You should use 
+      it to debug your methods before deploying your application.
+    \end{itemize}
+\end{enumerate}
+    
+\subsection*{Running Your Application}
+
+When working with a Java Web Application you generally build
+a Web Archive (WAR) file and \emph{deploy} it to an application server.  
+For this lab, we'll ``deploy'' locally using Eclipse.  To start
+your application follow these instructions.
+
+\begin{enumerate}
+  \item Change to the ``Java EE'' perspective in Eclipse
+  \item Right click your project and select ``Run As'' 
+  $\rightarrow$ ``Run on Server''
+  \item Select ``J2EE Preview as localhost''
+  \item After a brief startup, a preview browser window 
+  should appear and you can interact with your application.
+  \item To stop the server, hit the stop button in the terminal
+  \item You may need to restart the server if you make any
+  changes to your code.
+\end{enumerate}
+
+\subsection*{Completing Your Lab}
+
+Complete the worksheet and have your lab instructor sign off on it.
+
+\section*{Advanced Activities (Optional)}
+
+\begin{enumerate}
+  \item The album listing page utilizes a web framework called Bootstrap
+  	(see \url{http://getbootstrap.com/}).  However, the album detail and 
+	band detail pages do not.  Take this opportunity to learn about 
+	Bootstrap and use it to add stylistic elements to these pages.
+  \item Many JavaScript plugins are available to add additional 
+    functionality to a plain HTML table (the ability to sort, pagination,
+    column rearrangement, searching, filtering, etc.).  One of the best 
+    plugins is datatables, a jQuery plugin available at 
+    \url{http://datatables.net/}.  Download and incorporate datatable's 
+    code into your project and add the appropriate JavaScript code 
+    to make your Album table more dynamic.
+\end{enumerate}
+
+\end{document}

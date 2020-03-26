@@ -1,0 +1,91 @@
+\documentclass[12pt]{scrartcl}
+%\printanswers
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{.25cm}
+
+\usepackage{graphicx}
+
+\usepackage{xcolor}
+
+\definecolor{darkred}{rgb}{0.5,0,0}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+\usepackage{hyperref}
+\hypersetup{
+  letterpaper,
+  colorlinks,
+  linkcolor=red,
+  citecolor=darkgreen,
+  menucolor=darkred,
+  urlcolor=blue,
+  pdfpagemode=none,
+  pdftitle={CS2 - Lab Worksheet},
+  pdfauthor={~},
+  pdfsubject={},
+  pdfkeywords={}
+}
+
+\definecolor{MyDarkBlue}{rgb}{0,0.08,0.45}
+\definecolor{MyDarkRed}{rgb}{0.45,0.08,0}
+\definecolor{MyDarkGreen}{rgb}{0.08,0.45,0.08}
+
+\definecolor{mintedBackground}{rgb}{0.95,0.95,0.95}
+\definecolor{mintedInlineBackground}{rgb}{.90,.90,1}
+
+%\usepackage{newfloat}
+\usepackage[newfloat=true]{minted}
+\setminted{mathescape,
+               linenos,
+               autogobble,
+               frame=none,
+               framesep=2mm,
+               framerule=0.4pt,
+               %label=foo,
+               xleftmargin=2em,
+               xrightmargin=0em,
+               startinline=true,  %PHP only, allow it to omit the PHP Tags *** with this option, variables using dollar sign in comments are treated as latex math
+               numbersep=10pt, %gap between line numbers and start of line
+               style=default, %syntax highlighting style, default is "default"
+               			    %gallery: http://help.farbox.com/pygments.html
+			    	    %list available: pygmentize -L styles
+               bgcolor=mintedBackground} %prevents breaking across pages
+               
+\setmintedinline{bgcolor={mintedBackground}}
+\setminted[text]{bgcolor={mintedBackground},linenos=false,autogobble,xleftmargin=1em}
+%\setminted[php]{bgcolor=mintedBackgroundPHP} %startinline=True}
+\SetupFloatingEnvironment{listing}{name=Code Sample}
+\SetupFloatingEnvironment{listing}{listname=List of Code Samples}
+
+
+\begin{document}
+
+\section*{CSCE 156 - Lab 9.0 - JDBC in a Web App I - Worksheet}
+
+Names: \underline{\hspace{10cm}}
+
+\begin{enumerate}
+
+  \item Demonstrate your working \mintinline{java}{main} method 
+  in the \mintinline{java}{Test} class before you deploy to the server.
+
+  \item Think about how you made your JDBC queries and processed 
+  the results.  What would happen if there were no results?  
+
+  \item What values in the database are allowed to be null?  What 
+  potential problems does that pose to the end user?
+  
+  \item What other values in the database could pose a problem 
+  with your code?  How (or where) did/should you handle these 
+  contingencies?  At the database level?  During a query?  
+  In code?  Which solution is ideal?
+
+  \item Demonstrate your working application to a lab instructor 
+  and have them sign this worksheet.
+
+\end{enumerate}
+
+Lab Instructor Signature\underline{\hspace{7.5cm}}
+
+
+\end{document}
