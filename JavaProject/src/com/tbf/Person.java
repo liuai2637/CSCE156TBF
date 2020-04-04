@@ -14,24 +14,27 @@ public class Person {
 	private Name name;
 	private Address address;
 	private List<String> emailAddresses = new ArrayList<>();
+	private int personId;
 	
 	//Constructor that's called if person IS NOT a broker
 	public Person(String personCode, Name name,
-			Address address, List<String> emailAddresses) {
+			Address address, List<String> emailAddresses, int personId) {
 		this.personCode = personCode;
 		this.name = name;
 		this.address = address;
 		this.emailAddresses = emailAddresses;
+		this.personId = personId;
 	}
 	
 	//Constructor that's called if person IS a broker
 	public Person(String personCode, Broker broker, Name name,
-			Address address, List<String> emailAddresses) {
+			Address address, List<String> emailAddresses, int personId) {
 		this.personCode = personCode;
 		this.broker = broker;
 		this.name = name;
 		this.address = address;
 		this.emailAddresses = emailAddresses;
+		this.personId = personId;
 	}
 	
 	//Getters for all fields

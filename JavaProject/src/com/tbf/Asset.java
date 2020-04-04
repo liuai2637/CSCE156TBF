@@ -10,19 +10,25 @@ public abstract class Asset {
 	
 	private String code;	//Every Asset has a unique assetCode
 	private String label;	//Name of the Asset
+	private String type;
 	
 	//Constructor
-	public Asset(String code, String label) {
+	public Asset(String code, String label, String type) {
 		super();
 		this.code = code;
 		this.label = label;
+		this.type = type;
 	}
 
 	//Getters
 	public String getCode() {
 		return code;
 	}
-
+	
+	public String getType() {
+		return type;
+	}
+	
 	public String getLabel() {
 		return label;
 	}

@@ -15,8 +15,8 @@ public class DepositAccount extends Asset{
 	private double annualReturn;
 	
 	//DepositAccount Constructor
-	public DepositAccount(String code, String label, double apr) {
-		super(code, label);
+	public DepositAccount(String code, String label, String type, double apr) {
+		super(code, label, type);
 		this.apr = apr;
 	}
 

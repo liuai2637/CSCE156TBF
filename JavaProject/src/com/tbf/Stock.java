@@ -17,10 +17,10 @@ public class Stock extends Asset{
 	private double value;
 	
 	//Stock Constructor
-	public Stock(String code, String label, double baseQuarterlyDividend, 
+	public Stock(String code, String label, String type, double baseQuarterlyDividend, 
 			     double baseRateOfReturn, double beta, String stockSymbol, 
 			     double sharePrice) {
-		super(code, label);
+		super(code, label, type);
 		this.baseQuarterlyDividend = baseQuarterlyDividend;
 		this.baseRateOfReturn = baseRateOfReturn;
 		this.beta = beta;

@@ -11,29 +11,15 @@ import java.util.List;
 
 public class DataLoaderSql {
 
-	public static HashMap<String, Person> loadPerson() {
+	public static HashMap<Integer, Person> loadPerson() {
 
-		HashMap<String, Person> codePersonHashMap = new HashMap<>();
+		HashMap<Integer, Person> personHashMap = new HashMap<>();
 
 		// loading jdbc driver
-		try {
-			String DRIVER_CLASS = "com.mysql.cj.jdbc.Driver";
-			Class.forName(DRIVER_CLASS).getDeclaredConstructor().newInstance();
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		ConnectionFactory.loadDriver();
 
 		// creating connection
-		Connection conn = null;
-		String url = "jdbc:mysql://cse.unl.edu/byong?useLegacyDatetimeCode=false&serverTimezone=UTC";
-		String username = "byong";
-		String password = "iK3anPF4";
-
-		try {
-			conn = DriverManager.getConnection(url, username, password);
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
+		Connection conn = ConnectionFactory.createConnection();
 
 		// prepare query
 		String getPerson = "select * from Person p " + "join Address a on p.addressId = a.addressId "
@@ -41,18 +27,15 @@ public class DataLoaderSql {
 
 		String getEmail = "select * from Email where personId = ? ;";
 
-		
-		
 		PreparedStatement psPerson = null;
 		ResultSet rsPerson = null;
-
 		PreparedStatement psEmail = null;
 		ResultSet rsEmail = null;
 
 		try {
 			psPerson = conn.prepareStatement(getPerson);
 			rsPerson = psPerson.executeQuery();
-			
+
 			while (rsPerson.next()) {
 				List<String> emailAddresses = new ArrayList<>();
 				// proccess the record for person
@@ -67,55 +50,218 @@ public class DataLoaderSql {
 				String state = rsPerson.getString("state");
 				String zip = rsPerson.getString("zip");
 				String country = rsPerson.getString("country");
-				
-				Name name =  new Name(lastName, firstName);
-			
+
+				Name name = new Name(lastName, firstName);
+
 				Address address = new Address(street, city, state, zip, country);
-				
+
 				psEmail = conn.prepareStatement(getEmail);
 				psEmail.setInt(1, personId);
 
 				rsEmail = psEmail.executeQuery();
-				
+
 				while (rsEmail.next()) {
-					//proccess email for each person
-					
+					// proccess email for each person
+
 					String emailAddress = rsEmail.getString("emailAddress");
 					emailAddresses.add(emailAddress);
 				}
-				
-				if(brokerType != null && brokerCode != null) {
+
+				if (brokerType != null && brokerCode != null) {
 					Broker broker = new Broker(brokerType, brokerCode);
-					Person person = new Person(personCode, broker, name, address, emailAddresses);
-					codePersonHashMap.put(personCode, person);
+					Person person = new Person(personCode, broker, name, address, emailAddresses, personId);
+					personHashMap.put(personId, person);
 				} else {
-					Person person = new Person(personCode, name, address, emailAddresses);
-					codePersonHashMap.put(personCode, person);
+					Person person = new Person(personCode, name, address, emailAddresses, personId);
+					personHashMap.put(personId, person);
 				}
-				
+
 			}
-	
+
 		} catch (SQLException sqle) {
 			throw new RuntimeException(sqle);
 		}
 
 		// close the connection
-		try {
-			if (rsPerson != null && !rsPerson.isClosed()) {
-				rsPerson.close();
-			}
-			if (psPerson != null && !psPerson.isClosed()) {
-				psPerson.close();
-			}
-			if (conn != null && !conn.isClosed()) {
-				conn.close();
-			}
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
+		ConnectionFactory.closeConnection(psPerson);
+		ConnectionFactory.closeConnection(rsPerson);
+		ConnectionFactory.closeConnection(psEmail);
+		ConnectionFactory.closeConnection(rsEmail);
+		ConnectionFactory.closeConnection(conn);
 
-		return codePersonHashMap;
+		return personHashMap;
 
 	}
 
+	public static HashMap<Integer, Asset> loadAsset() {
+
+		HashMap<Integer, Asset> assetHashMap = new HashMap<>();
+
+		// conncetion driver
+		ConnectionFactory.loadDriver();
+
+		// creating connection
+		Connection conn = ConnectionFactory.createConnection();
+
+		// prepare query
+		String getAsset = "select * from Asset;";
+
+		// process data
+		PreparedStatement psAsset = null;
+		ResultSet rsAsset = null;
+
+		try {
+			psAsset = conn.prepareStatement(getAsset);
+			rsAsset = psAsset.executeQuery();
+
+			while (rsAsset.next()) {
+				int assetId = rsAsset.getInt("assetId");
+				String code = rsAsset.getString("code");
+				String label = rsAsset.getString("label");
+				String type = rsAsset.getString("type");
+
+				if (type.equals("D")) { // if its deposit account
+					double apr = rsAsset.getDouble("apr");
+					Asset asset = new DepositAccount(code, label, type, apr);
+					assetHashMap.put(assetId, asset);
+				} else if (type.equals("S")) { // if its a stock
+					double baseQuarterlyDividend = rsAsset.getDouble("baseQuarterlyDividend");
+					double baseRateOfReturn = rsAsset.getDouble("baseRateOfReturn");
+					String stockSymbol = rsAsset.getString("stockSymbol");
+					double sharePrice = rsAsset.getDouble("sharePrice");
+					double beta = rsAsset.getDouble("beta");
+					Asset asset = new Stock(code, label, type, baseQuarterlyDividend, baseRateOfReturn, beta, stockSymbol,
+							sharePrice);
+					assetHashMap.put(assetId, asset);
+				} else if (type.equals("P")) { // if its a private investment
+					double baseQuarterlyDividend = rsAsset.getDouble("baseQuarterlyDividend");
+					double baseRateOfReturn = rsAsset.getDouble("baseRateOfReturn");
+					double totalAmount = rsAsset.getDouble("totalAmount");
+					double omega = rsAsset.getDouble("omega");
+					Asset asset = new PrivateInvestment(code, label, type, baseQuarterlyDividend,
+							baseRateOfReturn, omega, totalAmount);
+					assetHashMap.put(assetId, asset);
+				}
+			}
+
+		} catch (SQLException sqle) {
+			throw new RuntimeException(sqle);
+		}
+		
+		ConnectionFactory.closeConnection(psAsset);
+		ConnectionFactory.closeConnection(rsAsset);
+		ConnectionFactory.closeConnection(conn);
+
+		return assetHashMap;
+	}
+	
+	public static ArrayList<Portfolio> loadPortfolio() {
+
+		ArrayList<Portfolio> portfolioList = new ArrayList<>();
+
+		// conncetion driver
+		ConnectionFactory.loadDriver();
+
+		// creating connection
+		Connection conn = ConnectionFactory.createConnection();
+
+		// prepare query
+		String getPortfolio = "select * from Portfolio;";
+		String getPortfolioAsset = "select * from PortfolioAsset where portfolioId = ?;";
+
+		// process data
+		PreparedStatement psPortfolio = null;
+		ResultSet rsPortfolio = null;
+		PreparedStatement psPortfolioAsset = null;
+		ResultSet rsPortfolioAsset = null;
+		
+		try {
+			psPortfolio = conn.prepareStatement(getPortfolio);
+			rsPortfolio = psPortfolio.executeQuery();
+			
+			HashMap<Integer, Person> personHashMap = loadPerson();
+			HashMap<Integer, Asset> assetHashMap = loadAsset();
+			
+			
+			while (rsPortfolio.next()) {	
+				List<Asset> assets = new ArrayList<>();
+				int portfolioId = rsPortfolio.getInt("portfolioId");
+				String code = rsPortfolio.getString("code");
+				int ownerId = rsPortfolio.getInt("ownerId");
+				int managerId = rsPortfolio.getInt("managerId");
+				int beneficiaryId = rsPortfolio.getInt("beneficiaryId");
+				
+				Person owner = personHashMap.get(ownerId);
+				Person manager = personHashMap.get(managerId);
+				Person beneficiary = personHashMap.get(beneficiaryId);
+				
+				psPortfolioAsset = conn.prepareStatement(getPortfolioAsset);
+				psPortfolioAsset.setInt(1, portfolioId);
+				rsPortfolioAsset = psPortfolioAsset.executeQuery();
+				
+				while(rsPortfolioAsset.next()) {	
+					int assetId = rsPortfolioAsset.getInt("assetId");
+					Asset asset = assetHashMap.get(assetId);
+					
+					double value = rsPortfolioAsset.getDouble("value");
+					
+					if(asset.getType().equals("D")) {
+						DepositAccount d = (DepositAccount) asset;
+						String copyCode = d.getCode();
+						String label = d.getLabel();
+						String type = d.getType();
+						double apr = d.getApr();
+						DepositAccount copy = new DepositAccount(copyCode, label, type, apr);
+						copy.setNumAsset(value);
+						assets.add(copy);
+					} else if (asset.getType().equals("S")) {
+						Stock s = (Stock) asset;
+						String copyCode = s.getCode();
+						String label = s.getLabel();
+						String type = s.getType();
+						double baseQuarterlyDividend = s.getBaseQuarterlyDividend();
+						double baseRateOfReturn = s.getBaseRateOfReturn();
+						String stockSymbol = s.getStockSymbol();
+						double sharePrice = s.getSharePrice();
+						double beta = s.getBeta();
+						Stock copy = new Stock(copyCode, label, type, baseQuarterlyDividend, baseRateOfReturn, beta, stockSymbol,
+								sharePrice);
+						copy.setNumAsset(value);
+						assets.add(copy);
+					} else if (asset.getType().equals("P")) {
+						PrivateInvestment p = (PrivateInvestment) asset;
+						String copyCode = p.getCode();
+						String label = p.getLabel();
+						String type = p.getType();
+						double baseQuarterlyDividend = p.getBaseQuarterlyDividend();
+						double baseRateOfReturn = p.getBaseRateOfReturn();
+						double totalAmount = p.getTotalAmount();
+						double omega = p.getOmega();
+						PrivateInvestment copy = new PrivateInvestment(copyCode, label, type, baseQuarterlyDividend,
+								baseRateOfReturn, omega, totalAmount);
+						copy.setNumAsset(value);
+						assets.add(copy);
+					}
+					
+					
+					
+					
+				}
+				Portfolio portfolio = new Portfolio(code, owner, manager, beneficiary, assets);
+				portfolioList.add(portfolio);
+			}
+			
+			
+			
+		} catch (SQLException sqle) {
+			throw new RuntimeException(sqle);
+		}
+
+		ConnectionFactory.closeConnection(psPortfolio);
+		ConnectionFactory.closeConnection(rsPortfolio);
+		ConnectionFactory.closeConnection(conn);
+
+		return portfolioList;
+	}
+	
 }

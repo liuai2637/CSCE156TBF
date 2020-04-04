@@ -15,7 +15,7 @@ public class PortfolioReport {
 	public static void main(String[] args) {
 		
 		ArrayList<Portfolio> portfolioArray = new ArrayList<>();
-		portfolioArray = DataLoader.portReadIn("data/Portfolios.dat");	//portfolioArray contains all the portfolios in the system
+		portfolioArray = DataLoaderSql.loadPortfolio();	//portfolioArray contains all the portfolios in the system
 		
 		// initialize variables for the overall total amount for value, annualReturn, commissions and fees. (Sum of all portfolios)
 		double totalValue = 0;

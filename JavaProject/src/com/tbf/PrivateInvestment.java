@@ -19,9 +19,9 @@ public class PrivateInvestment extends Asset {
 	//TODO: include input
 
 	// PrivateInvestment Constructor
-	public PrivateInvestment(String code, String label, double baseQuarterlyDividend, double baseRateOfReturn,
+	public PrivateInvestment(String code, String label, String type, double baseQuarterlyDividend, double baseRateOfReturn,
 			double omega, double totalAmount) {
-		super(code, label);
+		super(code, label, type);
 		this.baseQuarterlyDividend = baseQuarterlyDividend;
 		this.baseRateOfReturn = baseRateOfReturn;
 		this.omega = omega;
