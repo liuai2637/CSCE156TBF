@@ -6,12 +6,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Author: Sunny Liu, Bryce Yong Date: 03/04/2020 This is a connection factory with methods to connect to the jdbc driver
+ * and close the connection 
+ * 
+ */
+
 public class ConnectionFactory {
-	
+	//database info
 	public static final String url = "jdbc:mysql://cse.unl.edu/byong?useLegacyDatetimeCode=false&serverTimezone=UTC";
 	public static final String username = "byong";
 	public static final String password = "iK3anPF4";
 	
+	//method to load jdbc driver
 	public static void loadDriver() {
 		try {
 			String DRIVER_CLASS = "com.mysql.cj.jdbc.Driver";
@@ -22,6 +29,7 @@ public class ConnectionFactory {
 
 	}
 	
+	//method to make connection
 	public static Connection createConnection() {	
 		try {
 			Connection conn = DriverManager.getConnection(url, username, password);
@@ -31,6 +39,7 @@ public class ConnectionFactory {
 		}
 	}
 	
+	//method to close connection
 	public static void closeConnection(PreparedStatement ps) {
 		try {
 			if (ps != null && !ps.isClosed()) {
@@ -42,6 +51,7 @@ public class ConnectionFactory {
 
 	}
 	
+	//method to close connection
 	public static void closeConnection(ResultSet rs) {
 		try {
 			if (rs != null && !rs.isClosed()) {
@@ -53,6 +63,7 @@ public class ConnectionFactory {
 
 	}
 	
+	//method to close connection
 	public static void closeConnection(Connection conn) {
 		try {
 			if (conn != null && !conn.isClosed()) {

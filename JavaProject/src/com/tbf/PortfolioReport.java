@@ -3,6 +3,9 @@ package com.tbf;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.core.config.Configurator;
+import org.apache.logging.log4j.core.config.DefaultConfiguration;
 /**
  * Author: Sunny Liu, Bryce Yong Date: 02/28/2020 This program output a report
  * on commend line including calculation in fees, return and risk and detailed
@@ -13,6 +16,10 @@ import java.util.Collections;
 public class PortfolioReport {
 
 	public static void main(String[] args) {
+		
+		// configurator for logging
+		Configurator.initialize(new DefaultConfiguration());
+		Configurator.setRootLevel(Level.INFO);
 		
 		ArrayList<Portfolio> portfolioArray = new ArrayList<>();
 		portfolioArray = DataLoaderSql.loadPortfolio();	//portfolioArray contains all the portfolios in the system
