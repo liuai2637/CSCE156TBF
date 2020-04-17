@@ -275,6 +275,8 @@ public class DataLoaderSql {
 		} catch (SQLException sqle) {
 			ConnectionFactory.closeConnection(psPortfolio);
 			ConnectionFactory.closeConnection(rsPortfolio);
+			ConnectionFactory.closeConnection(psPortfolioAsset);
+			ConnectionFactory.closeConnection(rsPortfolioAsset);
 			ConnectionFactory.closeConnection(conn);
 			LOG.error("something bad happened", sqle);
 			throw new RuntimeException(sqle);
@@ -282,6 +284,8 @@ public class DataLoaderSql {
 		//close connection
 		ConnectionFactory.closeConnection(psPortfolio);
 		ConnectionFactory.closeConnection(rsPortfolio);
+		ConnectionFactory.closeConnection(psPortfolioAsset);
+		ConnectionFactory.closeConnection(rsPortfolioAsset);
 		ConnectionFactory.closeConnection(conn);
 
 		return portfolioList;
