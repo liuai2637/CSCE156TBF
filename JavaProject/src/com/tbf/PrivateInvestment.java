@@ -58,8 +58,8 @@ public class PrivateInvestment extends Asset {
 
 	// Method to return the Annual Return for Private Investments (input ranges [0,1])
 	public double getAnnualReturn() {
-		this.annualReturn = ((this.baseRateOfReturn) * this.totalAmount * percentStake / 100)
-				+ (4 * this.baseQuarterlyDividend * percentStake / 100);
+		this.annualReturn = ((this.baseRateOfReturn) * this.totalAmount * percentStake)
+				+ (4 * this.baseQuarterlyDividend * percentStake );
 		return annualReturn;
 	}
 
