@@ -91,10 +91,10 @@ public class DataLoaderSql {
 			}
 
 		} catch (SQLException sqle) {
-			ConnectionFactory.closeConnection(psPerson);
 			ConnectionFactory.closeConnection(rsPerson);
-			ConnectionFactory.closeConnection(psEmail);
+			ConnectionFactory.closeConnection(psPerson);
 			ConnectionFactory.closeConnection(rsEmail);
+			ConnectionFactory.closeConnection(psEmail);
 			ConnectionFactory.closeConnection(conn);
 
 			LOG.error("something bad happened", sqle);
@@ -102,10 +102,10 @@ public class DataLoaderSql {
 		}
 
 		// close the connection
-		ConnectionFactory.closeConnection(psPerson);
 		ConnectionFactory.closeConnection(rsPerson);
-		ConnectionFactory.closeConnection(psEmail);
+		ConnectionFactory.closeConnection(psPerson);
 		ConnectionFactory.closeConnection(rsEmail);
+		ConnectionFactory.closeConnection(psEmail);
 		ConnectionFactory.closeConnection(conn);
 
 		return personHashMap;
@@ -164,16 +164,16 @@ public class DataLoaderSql {
 			}
 
 		} catch (SQLException sqle) {
-			ConnectionFactory.closeConnection(psAsset);
 			ConnectionFactory.closeConnection(rsAsset);
+			ConnectionFactory.closeConnection(psAsset);
 			ConnectionFactory.closeConnection(conn);
 
 			LOG.error("something bad happened", sqle);
 			throw new RuntimeException(sqle);
 		}
 		//close connection
-		ConnectionFactory.closeConnection(psAsset);
 		ConnectionFactory.closeConnection(rsAsset);
+		ConnectionFactory.closeConnection(psAsset);
 		ConnectionFactory.closeConnection(conn);
 
 		return assetHashMap;
@@ -273,19 +273,19 @@ public class DataLoaderSql {
 			}
 
 		} catch (SQLException sqle) {
-			ConnectionFactory.closeConnection(psPortfolio);
-			ConnectionFactory.closeConnection(rsPortfolio);
-			ConnectionFactory.closeConnection(psPortfolioAsset);
 			ConnectionFactory.closeConnection(rsPortfolioAsset);
+			ConnectionFactory.closeConnection(psPortfolioAsset);
+			ConnectionFactory.closeConnection(rsPortfolio);
+			ConnectionFactory.closeConnection(psPortfolio);
 			ConnectionFactory.closeConnection(conn);
 			LOG.error("something bad happened", sqle);
 			throw new RuntimeException(sqle);
 		}
 		//close connection
-		ConnectionFactory.closeConnection(psPortfolio);
-		ConnectionFactory.closeConnection(rsPortfolio);
-		ConnectionFactory.closeConnection(psPortfolioAsset);
 		ConnectionFactory.closeConnection(rsPortfolioAsset);
+		ConnectionFactory.closeConnection(psPortfolioAsset);
+		ConnectionFactory.closeConnection(rsPortfolio);
+		ConnectionFactory.closeConnection(psPortfolio);
 		ConnectionFactory.closeConnection(conn);
 
 		return portfolioList;
