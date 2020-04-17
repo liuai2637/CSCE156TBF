@@ -51,14 +51,14 @@ public class PrivateInvestment extends Asset {
 		if(value != 0) {
 			return value;
 		} else {
-			this.value = (percentStake / 100 * this.totalAmount);	//Only calculates once for every Private Investment
+			this.value = (percentStake  * this.totalAmount);	//Only calculates once for every Private Investment
 			return value;
 		}
 	}
 
 	// Method to return the Annual Return for Private Investments (input ranges [0,1])
 	public double getAnnualReturn() {
-		this.annualReturn = ((this.baseRateOfReturn / 100) * this.totalAmount * percentStake / 100)
+		this.annualReturn = ((this.baseRateOfReturn) * this.totalAmount * percentStake / 100)
 				+ (4 * this.baseQuarterlyDividend * percentStake / 100);
 		return annualReturn;
 	}

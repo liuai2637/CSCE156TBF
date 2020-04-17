@@ -91,6 +91,12 @@ public class DataLoaderSql {
 			}
 
 		} catch (SQLException sqle) {
+			ConnectionFactory.closeConnection(psPerson);
+			ConnectionFactory.closeConnection(rsPerson);
+			ConnectionFactory.closeConnection(psEmail);
+			ConnectionFactory.closeConnection(rsEmail);
+			ConnectionFactory.closeConnection(conn);
+
 			LOG.error("something bad happened", sqle);
 			throw new RuntimeException(sqle);
 		}
@@ -158,6 +164,10 @@ public class DataLoaderSql {
 			}
 
 		} catch (SQLException sqle) {
+			ConnectionFactory.closeConnection(psAsset);
+			ConnectionFactory.closeConnection(rsAsset);
+			ConnectionFactory.closeConnection(conn);
+
 			LOG.error("something bad happened", sqle);
 			throw new RuntimeException(sqle);
 		}
@@ -263,6 +273,9 @@ public class DataLoaderSql {
 			}
 
 		} catch (SQLException sqle) {
+			ConnectionFactory.closeConnection(psPortfolio);
+			ConnectionFactory.closeConnection(rsPortfolio);
+			ConnectionFactory.closeConnection(conn);
 			LOG.error("something bad happened", sqle);
 			throw new RuntimeException(sqle);
 		}

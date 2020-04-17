@@ -168,16 +168,16 @@ public class Portfolio {
 				if (y.getValue() != 0) {
 					System.out.printf("%-11s", y.getCode());
 					System.out.printf("%-39s", y.getLabel());
-					System.out.printf("%-15.2f", y.getAnnualReturn()/y.getValue());
-					System.out.printf("%-15.2f%%", y.getRisk() / y.getValue());
-					System.out.printf("$  %-13.2f", y.getAnnualReturn());
+					System.out.printf("%-15.2f", y.getAnnualReturn()/y.getValue() * 100);
+					System.out.printf("%-15.2f ", y.getRisk() / y.getValue());
+					System.out.printf("$  %-13.2f", (y.getAnnualReturn()));
 					System.out.printf("$  %-13.2f\n", y.getValue());
 				}
 			}
 			System.out.println(
 					"                                                        --------------------------------------------");
 			System.out.printf(
-					"                                                         Totals %-13.4f%%  $  %-13.2f  $  %-13.2f\n",
+					"                                                         Totals %-13.4f  $  %-13.2f  $  %-13.2f\n",
 					this.portRisk, this.portReturn, this.portValue);
 			System.out.printf("\n");
 		}

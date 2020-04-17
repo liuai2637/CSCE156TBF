@@ -43,9 +43,11 @@ public class PortfolioData {
 			ps = conn.prepareStatement(queryPerson);
 			ps.executeUpdate();
 
-		} catch (SQLException e) {
+		} catch (SQLException e) {	
+			ConnectionFactory.closeConnection(ps);
+			ConnectionFactory.closeConnection(conn);
 			throw new RuntimeException(e);
-		}
+		} 
 
 		// close connection
 		ConnectionFactory.closeConnection(ps);
@@ -110,6 +112,8 @@ public class PortfolioData {
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
+			ConnectionFactory.closeConnection(ps);
+			ConnectionFactory.closeConnection(conn);
 			throw new RuntimeException(e);
 		}
 
@@ -172,6 +176,9 @@ public class PortfolioData {
 			}
 
 		} catch (SQLException e) {
+			ConnectionFactory.closeConnection(ps);
+			ConnectionFactory.closeConnection(rs);
+			ConnectionFactory.closeConnection(conn);
 			throw new RuntimeException(e);
 		}
 
@@ -221,6 +228,9 @@ public class PortfolioData {
 			}
 
 		} catch (SQLException e) {
+			ConnectionFactory.closeConnection(ps);
+			ConnectionFactory.closeConnection(rs);
+			ConnectionFactory.closeConnection(conn);
 			throw new RuntimeException(e);
 		}
 
@@ -279,6 +289,9 @@ public class PortfolioData {
 			}
 
 		} catch (SQLException e) {
+			ConnectionFactory.closeConnection(ps);
+			ConnectionFactory.closeConnection(rs);
+			ConnectionFactory.closeConnection(conn);
 			throw new RuntimeException(e);
 		}
 
@@ -314,6 +327,8 @@ public class PortfolioData {
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
+			ConnectionFactory.closeConnection(ps);
+			ConnectionFactory.closeConnection(conn);
 			throw new RuntimeException(e);
 		}
 
@@ -346,6 +361,8 @@ public class PortfolioData {
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
+			ConnectionFactory.closeConnection(ps);
+			ConnectionFactory.closeConnection(conn);
 			throw new RuntimeException(e);
 		}
 
@@ -379,6 +396,8 @@ public class PortfolioData {
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
+			ConnectionFactory.closeConnection(ps);
+			ConnectionFactory.closeConnection(conn);
 			throw new RuntimeException(e);
 		}
 
@@ -415,6 +434,8 @@ public class PortfolioData {
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
+			ConnectionFactory.closeConnection(ps);
+			ConnectionFactory.closeConnection(conn);
 			throw new RuntimeException(e);
 		}
 
@@ -449,6 +470,8 @@ public class PortfolioData {
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
+			ConnectionFactory.closeConnection(ps);
+			ConnectionFactory.closeConnection(conn);
 			throw new RuntimeException(e);
 		}
 
@@ -491,6 +514,8 @@ public class PortfolioData {
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
+			ConnectionFactory.closeConnection(ps);
+			ConnectionFactory.closeConnection(conn);
 			throw new RuntimeException(e);
 		}
 
@@ -534,6 +559,8 @@ public class PortfolioData {
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
+			ConnectionFactory.closeConnection(ps);
+			ConnectionFactory.closeConnection(conn);
 			throw new RuntimeException(e);
 		}
 
@@ -567,6 +594,8 @@ public class PortfolioData {
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
+			ConnectionFactory.closeConnection(ps);
+			ConnectionFactory.closeConnection(conn);
 			throw new RuntimeException(e);
 		}
 
@@ -603,6 +632,8 @@ public class PortfolioData {
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
+			ConnectionFactory.closeConnection(ps);
+			ConnectionFactory.closeConnection(conn);
 			throw new RuntimeException(e);
 		}
 
@@ -650,6 +681,8 @@ public class PortfolioData {
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
+			ConnectionFactory.closeConnection(ps);
+			ConnectionFactory.closeConnection(conn);
 			throw new RuntimeException(e);
 		}
 
@@ -688,6 +721,8 @@ public class PortfolioData {
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
+			ConnectionFactory.closeConnection(ps);
+			ConnectionFactory.closeConnection(conn);
 			throw new RuntimeException(e);
 		}
 

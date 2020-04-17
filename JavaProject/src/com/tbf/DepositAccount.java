@@ -31,7 +31,7 @@ public class DepositAccount extends Asset{
 	}
 	//Method to return the Annual Return for Deposit Accounts
 	public double getAnnualReturn() {
-		this.annualReturn = (Math.exp(this.apr/100) - 1) * balance;
+		this.annualReturn = (Math.exp(this.apr) - 1) * balance;
 		return annualReturn;
 	}
 	//Method to return risk

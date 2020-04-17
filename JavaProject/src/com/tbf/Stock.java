@@ -57,7 +57,7 @@ public class Stock extends Asset{
 	
 	//Method to return the Annual Return for Stocks
 	public double getAnnualReturn() {
-		this.annualReturn = ((this.baseRateOfReturn/100) * this.sharePrice * numOfShare) + (4 * this.baseQuarterlyDividend * numOfShare);
+		this.annualReturn = ((this.baseRateOfReturn) * this.sharePrice * numOfShare) + (4 * this.baseQuarterlyDividend * numOfShare);
 		return annualReturn;
 	}
 	

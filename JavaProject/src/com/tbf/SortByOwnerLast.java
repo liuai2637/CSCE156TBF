@@ -16,6 +16,9 @@ public class SortByOwnerLast implements Comparator<Portfolio> {
 	    	if(x == 0) {
 	    		x = a.getOwner().getName().getFirstName().compareTo(b.getOwner().getName().getFirstName());
 	    	}
+	    	if(x == 0) {
+	    		x = a.getManager().getName().getFirstName().compareTo(b.getManager().getName().getFirstName());
+	    	}
 	        return x ; 
 	    } 
 	} 
