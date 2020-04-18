@@ -78,6 +78,9 @@ public class DataLoaderSql {
 					String emailAddress = rsEmail.getString("emailAddress");
 					emailAddresses.add(emailAddress);
 				}
+				
+				ConnectionFactory.closeConnection(rsEmail);
+				ConnectionFactory.closeConnection(psEmail);
 
 				if (brokerType != null && brokerCode != null) {
 					Broker broker = new Broker(brokerType, brokerCode);
@@ -88,6 +91,8 @@ public class DataLoaderSql {
 					personHashMap.put(personId, person);
 				}
 
+
+							
 			}
 
 		} catch (SQLException sqle) {
@@ -267,7 +272,11 @@ public class DataLoaderSql {
 						assets.add(copy);
 					}
 
+					
+					
 				}
+				ConnectionFactory.closeConnection(rsPortfolioAsset);
+				ConnectionFactory.closeConnection(psPortfolioAsset);
 				Portfolio portfolio = new Portfolio(code, owner, manager, beneficiary, assets);
 				portfolioList.add(portfolio);
 			}

@@ -82,6 +82,7 @@ public class PortfolioData {
 			ps = conn.prepareStatement(queryEmail);
 			ps.setString(1, personCode);
 			ps.executeUpdate();
+			
 
 			ps = conn.prepareStatement(queryOwner);
 			ps.setString(1, personCode);
@@ -158,7 +159,6 @@ public class PortfolioData {
 
 			if(rs.next()) {
 				stateId = rs.getInt("stateId");
-				return stateId;
 			}	else  {
 				ps = conn.prepareStatement(queryState);
 				ps.setString(1, state);
@@ -170,7 +170,6 @@ public class PortfolioData {
 				
 				if(rs.next()) {
 					stateId = rs.getInt("stateId");
-					return stateId;
 				}
 
 			}
@@ -210,7 +209,6 @@ public class PortfolioData {
 
 			if(rs.next()) {
 				countryId = rs.getInt("countryId");
-				return countryId;
 			}	else  {
 				ps = conn.prepareStatement(queryCountry);
 				ps.setString(1, country);
@@ -222,7 +220,6 @@ public class PortfolioData {
 				
 				if(rs.next()) {
 					countryId = rs.getInt("countryId");
-					return countryId;
 				}
 
 			}
