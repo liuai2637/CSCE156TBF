@@ -91,10 +91,10 @@ public class DataLoaderSql {
 			}
 
 		} catch (SQLException sqle) {
-			ConnectionFactory.closeConnection(rsPerson);
-			ConnectionFactory.closeConnection(psPerson);
 			ConnectionFactory.closeConnection(rsEmail);
 			ConnectionFactory.closeConnection(psEmail);
+			ConnectionFactory.closeConnection(rsPerson);
+			ConnectionFactory.closeConnection(psPerson);
 			ConnectionFactory.closeConnection(conn);
 
 			LOG.error("something bad happened", sqle);
@@ -102,10 +102,10 @@ public class DataLoaderSql {
 		}
 
 		// close the connection
-		ConnectionFactory.closeConnection(rsPerson);
-		ConnectionFactory.closeConnection(psPerson);
 		ConnectionFactory.closeConnection(rsEmail);
 		ConnectionFactory.closeConnection(psEmail);
+		ConnectionFactory.closeConnection(rsPerson);
+		ConnectionFactory.closeConnection(psPerson);
 		ConnectionFactory.closeConnection(conn);
 
 		return personHashMap;

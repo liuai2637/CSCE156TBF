@@ -176,15 +176,15 @@ public class PortfolioData {
 			}
 
 		} catch (SQLException e) {
-			ConnectionFactory.closeConnection(ps);
 			ConnectionFactory.closeConnection(rs);
+			ConnectionFactory.closeConnection(ps);
 			ConnectionFactory.closeConnection(conn);
 			throw new RuntimeException(e);
 		}
 
 		// close connection
-		ConnectionFactory.closeConnection(ps);
 		ConnectionFactory.closeConnection(rs);
+		ConnectionFactory.closeConnection(ps);
 		ConnectionFactory.closeConnection(conn);
 		return stateId;
 
@@ -228,15 +228,15 @@ public class PortfolioData {
 			}
 
 		} catch (SQLException e) {
-			ConnectionFactory.closeConnection(ps);
 			ConnectionFactory.closeConnection(rs);
+			ConnectionFactory.closeConnection(ps);
 			ConnectionFactory.closeConnection(conn);
 			throw new RuntimeException(e);
 		}
 
 		// close connection
-		ConnectionFactory.closeConnection(ps);
 		ConnectionFactory.closeConnection(rs);
+		ConnectionFactory.closeConnection(ps);
 		ConnectionFactory.closeConnection(conn);
 		return countryId;
 
@@ -289,15 +289,15 @@ public class PortfolioData {
 			}
 
 		} catch (SQLException e) {
-			ConnectionFactory.closeConnection(ps);
 			ConnectionFactory.closeConnection(rs);
+			ConnectionFactory.closeConnection(ps);
 			ConnectionFactory.closeConnection(conn);
 			throw new RuntimeException(e);
 		}
 
 		// close connection
-		ConnectionFactory.closeConnection(ps);
 		ConnectionFactory.closeConnection(rs);
+		ConnectionFactory.closeConnection(ps);
 		ConnectionFactory.closeConnection(conn);
 		return addressId;
 
