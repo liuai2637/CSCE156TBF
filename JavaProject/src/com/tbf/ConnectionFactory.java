@@ -7,7 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Author: Sunny Liu, Bryce Yong Date: 03/04/2020 This is a connection factory with methods to connect to the jdbc driver
+ * Author: Sunny Liu, Bryce Yong 
+ * Date: 03/04/2020 
+ * This is a connection factory with methods to connect to the jdbc driver
  * and close the connection 
  * 
  */
@@ -39,7 +41,7 @@ public class ConnectionFactory {
 		}
 	}
 	
-	//method to close connection
+	//method to close connection for prepared statement
 	public static void closeConnection(PreparedStatement ps) {
 		try {
 			if (ps != null && !ps.isClosed()) {
@@ -51,7 +53,7 @@ public class ConnectionFactory {
 
 	}
 	
-	//method to close connection
+	//method to close connection for result set
 	public static void closeConnection(ResultSet rs) {
 		try {
 			if (rs != null && !rs.isClosed()) {
@@ -63,7 +65,7 @@ public class ConnectionFactory {
 
 	}
 	
-	//method to close connection
+	//method to close connection 
 	public static void closeConnection(Connection conn) {
 		try {
 			if (conn != null && !conn.isClosed()) {

@@ -12,7 +12,9 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
 /**
- * Author: Sunny Liu, Bryce Yong Date: 03/04/2020 This program to load the portfolio database from mySQL into objects
+ * Author: Sunny Liu, Bryce Yong 
+ * Date: 03/04/2020 
+ * This program to load the portfolio database from mySQL into objects
  * 
  */
 
@@ -184,6 +186,7 @@ public class DataLoaderSql {
 		return assetHashMap;
 	}
 
+	//This method load all portfolios from the database
 	public static ArrayList<Portfolio> loadPortfolio() {
 		
 		LOG.info("loading all portfolios...");
@@ -234,7 +237,7 @@ public class DataLoaderSql {
 
 					double value = rsPortfolioAsset.getDouble("value");
 					//making a deep copy
-					if (asset.getType().equals("D")) {
+					if (asset.getType().equals("D")) {//deposit account
 						DepositAccount d = (DepositAccount) asset;
 						String copyCode = d.getCode();
 						String label = d.getLabel();
@@ -243,7 +246,7 @@ public class DataLoaderSql {
 						DepositAccount copy = new DepositAccount(copyCode, label, type, apr);
 						copy.setNumAsset(value);
 						assets.add(copy);
-					} else if (asset.getType().equals("S")) {
+					} else if (asset.getType().equals("S")) {//stock
 						Stock s = (Stock) asset;
 						String copyCode = s.getCode();
 						String label = s.getLabel();
@@ -257,7 +260,7 @@ public class DataLoaderSql {
 								stockSymbol, sharePrice);
 						copy.setNumAsset(value);
 						assets.add(copy);
-					} else if (asset.getType().equals("P")) {
+					} else if (asset.getType().equals("P")) {//private investment
 						PrivateInvestment p = (PrivateInvestment) asset;
 						String copyCode = p.getCode();
 						String label = p.getLabel();

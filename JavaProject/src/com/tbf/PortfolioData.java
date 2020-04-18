@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
+ * Author: Sunny Liu, Bryce Yong
+ * Date: 04/17/20
  * This is a collection of utility methods that define a general API for
  * interacting with the database supporting this application.
  *
@@ -66,7 +68,7 @@ public class PortfolioData {
 		// creating connection
 		Connection conn = ConnectionFactory.createConnection();
 
-		// prepare query
+		// prepare query that delete each element including the person first and then delete the person 
 		String queryEmail = "delete from Email where personId = (select personId from Person where personCode = ?);";
 		String queryOwner = "delete from PortfolioAsset where portfolioId in (select portfolioId from Portfolio where ownerId = (select personId from Person where personCode = ?));";
 		String queryManager = "delete from PortfolioAsset where portfolioId in (select portfolioId from Portfolio where managerId = (select personId from Person where personCode = ?))";
@@ -143,7 +145,7 @@ public class PortfolioData {
 
 		Connection conn = ConnectionFactory.createConnection();
 
-		// prepare query
+		// prepare query that add a state into the database
 		String querySearch = "select stateId from State where state = ?";
 		String queryState = "insert into State (state) values (?)";
 
@@ -246,7 +248,7 @@ public class PortfolioData {
 
 		Connection conn = ConnectionFactory.createConnection();
 
-		// prepare query
+		// prepare query to add address
 		String querySearch = "select addressId from Address where street = ?";
 		String queryAddress = "insert into Address (street, city, stateId, zip, countryId) values (?, ?, ?, ?, ?);";
 
@@ -306,7 +308,7 @@ public class PortfolioData {
 		// creating connection
 		Connection conn = ConnectionFactory.createConnection();
 
-		// prepare query
+		// prepare query to add person
 		
 		String queryPerson = "insert into Person (personCode, brokerType, brokerCode, lastName, firstName, addressId) values (?, ?, ?, ?, ?, ?);";
 		PreparedStatement ps = null;
