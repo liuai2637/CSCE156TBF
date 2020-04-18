@@ -96,18 +96,10 @@ public class DataLoaderSql {
 			}
 
 		} catch (SQLException sqle) {
-<<<<<<< HEAD
 			ConnectionFactory.closeConnection(rsPerson);
 			ConnectionFactory.closeConnection(psPerson);
-=======
->>>>>>> branch 'master' of https://github.com/liuai2637/CSCE156TBF.git
 			ConnectionFactory.closeConnection(rsEmail);
 			ConnectionFactory.closeConnection(psEmail);
-<<<<<<< HEAD
-=======
-			ConnectionFactory.closeConnection(rsPerson);
-			ConnectionFactory.closeConnection(psPerson);
->>>>>>> branch 'master' of https://github.com/liuai2637/CSCE156TBF.git
 			ConnectionFactory.closeConnection(conn);
 
 			LOG.error("something bad happened", sqle);
@@ -115,18 +107,10 @@ public class DataLoaderSql {
 		}
 
 		// close the connection
-<<<<<<< HEAD
 		ConnectionFactory.closeConnection(rsPerson);
 		ConnectionFactory.closeConnection(psPerson);
-=======
->>>>>>> branch 'master' of https://github.com/liuai2637/CSCE156TBF.git
 		ConnectionFactory.closeConnection(rsEmail);
 		ConnectionFactory.closeConnection(psEmail);
-<<<<<<< HEAD
-=======
-		ConnectionFactory.closeConnection(rsPerson);
-		ConnectionFactory.closeConnection(psPerson);
->>>>>>> branch 'master' of https://github.com/liuai2637/CSCE156TBF.git
 		ConnectionFactory.closeConnection(conn);
 
 		return personHashMap;
@@ -298,35 +282,19 @@ public class DataLoaderSql {
 			}
 
 		} catch (SQLException sqle) {
-<<<<<<< HEAD
 			ConnectionFactory.closeConnection(rsPortfolio);
 			ConnectionFactory.closeConnection(psPortfolio);
-=======
->>>>>>> branch 'master' of https://github.com/liuai2637/CSCE156TBF.git
 			ConnectionFactory.closeConnection(rsPortfolioAsset);
 			ConnectionFactory.closeConnection(psPortfolioAsset);
-<<<<<<< HEAD
-=======
-			ConnectionFactory.closeConnection(rsPortfolio);
-			ConnectionFactory.closeConnection(psPortfolio);
->>>>>>> branch 'master' of https://github.com/liuai2637/CSCE156TBF.git
 			ConnectionFactory.closeConnection(conn);
 			LOG.error("something bad happened", sqle);
 			throw new RuntimeException(sqle);
 		}
 		//close connection
-<<<<<<< HEAD
 		ConnectionFactory.closeConnection(rsPortfolio);
 		ConnectionFactory.closeConnection(psPortfolio);
-=======
->>>>>>> branch 'master' of https://github.com/liuai2637/CSCE156TBF.git
 		ConnectionFactory.closeConnection(rsPortfolioAsset);
 		ConnectionFactory.closeConnection(psPortfolioAsset);
-<<<<<<< HEAD
-=======
-		ConnectionFactory.closeConnection(rsPortfolio);
-		ConnectionFactory.closeConnection(psPortfolio);
->>>>>>> branch 'master' of https://github.com/liuai2637/CSCE156TBF.git
 		ConnectionFactory.closeConnection(conn);
 
 		return portfolioList;
