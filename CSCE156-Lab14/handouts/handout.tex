@@ -1,0 +1,338 @@
+\documentclass[12pt]{scrartcl}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{.25cm}
+
+\usepackage{graphicx}
+
+\usepackage{xcolor}
+
+\definecolor{darkred}{rgb}{0.5,0,0}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+\usepackage{hyperref}
+\hypersetup{
+  letterpaper,
+  colorlinks,
+  linkcolor=red,
+  citecolor=darkgreen,
+  menucolor=darkred,
+  urlcolor=blue,
+  pdfpagemode=none,
+  pdftitle={CSCE 156 Lab Handout},
+  pdfauthor={Christopher M. Bourke},
+  pdfsubject={},
+  pdfkeywords={}
+}
+
+\definecolor{MyDarkBlue}{rgb}{0,0.08,0.45}
+\definecolor{MyDarkRed}{rgb}{0.45,0.08,0}
+\definecolor{MyDarkGreen}{rgb}{0.08,0.45,0.08}
+
+\definecolor{mintedBackground}{rgb}{0.95,0.95,0.95}
+\definecolor{mintedInlineBackground}{rgb}{.90,.90,1}
+
+%\usepackage{newfloat}
+\usepackage[newfloat=true]{minted}
+\setminted{mathescape,
+               linenos,
+               autogobble,
+               frame=none,
+               framesep=2mm,
+               framerule=0.4pt,
+               %label=foo,
+               xleftmargin=2em,
+               xrightmargin=0em,
+               startinline=true,  %PHP only, allow it to omit the PHP Tags *** with this option, variables using dollar sign in comments are treated as latex math
+               numbersep=10pt, %gap between line numbers and start of line
+               style=default, %syntax highlighting style, default is "default"
+               			    %gallery: http://help.farbox.com/pygments.html
+			    	    %list available: pygmentize -L styles
+               bgcolor=mintedBackground} %prevents breaking across pages
+               
+\setmintedinline{bgcolor={mintedBackground}}
+\setminted[text]{bgcolor={mintedBackground},linenos=false,autogobble,xleftmargin=1em}
+%\setminted[php]{bgcolor=mintedBackgroundPHP} %startinline=True}
+\SetupFloatingEnvironment{listing}{name=Code Sample}
+\SetupFloatingEnvironment{listing}{listname=List of Code Samples}
+
+
+\usepackage{tikz}
+\usetikzlibrary{calc,shapes.multipart,chains,arrows}
+
+\title{CSCE 156 -- Computer Science II}
+\subtitle{Lab 14.0 - Stacks \& Queues}
+\author{~}
+\date{~}
+
+\begin{document}
+
+\maketitle
+
+\section*{Prior to Lab}
+
+\begin{enumerate}
+  \item Review this laboratory handout prior to lab.
+\end{enumerate}
+
+\section*{Lab Objectives \& Topics}
+Following the lab, you should be able to:
+\begin{itemize}
+  \item Understand how stacks and queues operate and how to use them
+  \item Know how to implement stacks and queues using a linked list 
+    data structure
+  \item Know how to use stack and queue data structures in an application
+  \item Optionally, you will have exposure to advanced queue usage 
+    in a multi-threaded programming environment
+\end{itemize}
+
+
+\section*{Peer Programming Pair-Up}
+
+To encourage collaboration and a team environment, labs will be
+structured in a \emph{pair programming} setup.  At the start of
+each lab, you will be randomly paired up with another student 
+(conflicts such as absences will be dealt with by the lab instructor).
+One of you will be designated the \emph{driver} and the other
+the \emph{navigator}.  
+
+The navigator will be responsible for reading the instructions and
+telling the driver what to do next.  The driver will be in charge of the
+keyboard and workstation.  Both driver and navigator are responsible
+for suggesting fixes and solutions together.  Neither the navigator
+nor the driver is ``in charge.''  Beyond your immediate pairing, you
+are encouraged to help and interact and with other pairs in the lab.
+
+Each week you should alternate: if you were a driver last week, 
+be a navigator next, etc.  Resolve any issues (you were both drivers
+last week) within your pair.  Ask the lab instructor to resolve issues
+only when you cannot come to a consensus.  
+
+Because of the peer programming setup of labs, it is absolutely 
+essential that you complete any pre-lab activities and familiarize
+yourself with the handouts prior to coming to lab.  Failure to do
+so will negatively impact your ability to collaborate and work with 
+others which may mean that you will not be able to complete the
+lab.  
+
+Clone the starter code for this lab from GitHub using the following
+url: \url{https://github.com/cbourke/CSCE156-Lab14}.
+
+\section*{Stacks}
+
+Postfix notation (also known as Reverse Polish Notation) is a 
+parenthesis-free way of writing arithmetic expressions where one 
+places the operator symbol after its two operands.  For example, 
+the expression \mintinline{text}{(3 + 2)} would be written 
+\mintinline{text}{3 2 +}.  The result of this value multiplied by 
+4 could be written \mintinline{text}{3 2 + 4 *}.  As another example, 
+the expression \mintinline{text}{((3 + 2) * 4) / (5 - 1)} would be
+written as: \mintinline{text}{3 2 + 4 * 5 1 - /}.  Manually computing
+this would done as follows
+
+\begin{minted}{text}
+    3 2 + 4 * 5 1 - /
+=>  5 4 * 5 1 - /
+=>  20 5 1 - /
+=>  20 4 /
+=>  5
+\end{minted}
+
+The advantage of postfix notation is that no precedence rules are 
+necessary as the order of operation is completely unambiguous.  
+Many calculators, mathematical tools, and other systems utilize 
+this notation.  Evaluation of postfix expressions can be done using 
+a stack data structure.
+
+Recall that a stack is a LIFO (Last-In First-Out) data structure.  
+Stacks, like many data structures, can be implemented in many 
+different ways.  In this lab, our implementation will utilize a 
+linked list data structure.  This data structure has been completely 
+implemented for you.  Most of the code needed to read-in a postfix 
+expression and evaluate it has also been provided to you.  You will 
+complete the application by implementing the stack data structure 
+and use it in the postfix evaluation program.
+
+\subsection*{Instructions}
+
+\begin{enumerate}
+  \item Implement the four methods in the 
+    \mintinline{java}{unl.cse.stack.Stack} class (which uses the fully 
+    implemented \mintinline{java}{LinkedList} class).
+  \item You should test your implementation by creating a small 
+    \mintinline{java}{main()} method and push/pop elements off your 
+    stack to see if you get the expected behavior.
+  \item Once your stack is implemented, modify the 
+    \mintinline{java}{evaluateExpression()} method in the 
+    \mintinline{java}{PostfixEvaluator} class as described in the 
+    source code.  Run the program, complete your worksheet and have 
+    a lab instructor check your work.
+\end{enumerate}
+
+\section*{Queues}
+
+Queue data structures, in contrast to Stacks, are a FIFO (First-In 
+First-Out) data structure.  Like stacks, they can easily be 
+implemented using a linked list.  Queues have numerous applications; 
+one such application is as a data buffer.  In many applications, 
+processing a stream of data is expensive.  The data stream may be 
+faster than an application can process it.  For this reason, incoming 
+data is temporarily stored in a buffer (a queue).  The application 
+then reads from the buffer and processes the data independent of the 
+data stream. 
+
+In this activity, you will implement and use a queue that acts as a 
+data buffer for a plain text file.  The application reads an entire 
+text file and stores lines into your queue for later processing.  The 
+processing in this case is a human user that reads the text file 
+page-by-page (by pressing enter).   In addition, the text file is 
+not well-formatted for human readers as it contains very long lines.  
+The application processes these lines and displays them page-by-page 
+with a predefined limit on the number of characters per line so that it is 
+more human-user friendly.
+
+It will be your responsibility to complete the implementation of the 
+\mintinline{java}{Queue} class and to use it properly in the 
+\mintinline{java}{FileReader} class.
+
+\subsection*{Instructions}
+
+\begin{enumerate}
+  \item Implement the four methods in the 
+    \mintinline{java}{unl.cse.queue.Queue} class (which uses the fully 
+    implemented \mintinline{java}{LinkedList} class)
+  \item As before, you should test your implementation by creating a 
+    small \mintinline{java}{main()} method and enqueue/dequeue elements 
+    from your to see if you get the expected behavior.
+  \item Once your queue is implemented, modify the 
+    \mintinline{java}{FileReader} class as specified in the source 
+    code (the \mintinline{java}{TODO} tasks) to use your queue to 
+    process the text file.
+\end{enumerate}    
+    
+\section*{JSON Validation}
+
+Recall that JSON (JavaScript Object Notation) is a data exchange 
+format that uses key-value pairs and opening/closing curly brackets 
+to indicate sub-objects.  A small example:
+
+\begin{minted}{json}
+{
+  "employees": [
+    { 
+      "firstName":"John", 
+      "lastName":"Doe" 
+    }, 
+    { 
+      "firstName":"Anna", 
+      "lastName":"Smith"
+    }, 
+    { 
+      "firstName":"Peter", 
+      "lastName":"Jones" 
+    }
+  ],
+  "deptIds": [1, 5, 4, 21],
+  "department": "sales",
+  "budget": 120000.00
+}
+\end{minted}
+
+JSON validation involves determining if a particular string represents 
+a valid JSON formatted string.  While not too complicated, full 
+validation does require several complex rules that need to be checked.  
+For this exercise, you will design and implement a JSON validator that 
+will simply check that the opening and closing curly brackets, 
+\mintinline{text}{{ }} and square brackets
+\mintinline{text}{[ ]} are well-balanced.  That is, 
+for every opening bracket there is a corresponding closing bracket 
+of the same type.  Moreover, brackets of different types must not 
+overlap.  For example, \mintinline{text}{ { [ } ] } would be invalid. 
+
+\subsection*{Instructions}
+
+\begin{enumerate}
+  \item Open the \mintinline{java}{unl.cse.stack.JsonValidator} class.
+    Some basic code has been implemented for you that grabs the 
+    contents of a specified file
+  \item Using an appropriate data structure, implement the 
+    \mintinline{java}{validate()} method (you may change its signature 
+    if you wish)
+  \item Test your program on the 5 JSON data files in the 
+    \mintinline{java}{data/} directory and answer the questions 
+    on your worksheet
+  \item \textbf{Extra}: time permitting; modify your program to also 
+    check that double-quote characters (used to denote strings) are 
+    well balanced.  Note that inside a string square and curly brackets 
+    need \emph{not} be balanced (and should be ignored).  Moreover, 
+    double quotes may appear inside of strings as long as they are 
+    escaped: \mintinline{text}{\"}
+\end{enumerate}
+
+\section*{Submission}
+
+We have included a test suite of unit tests written in JUnit 
+(\url{https://junit.org/junit5/}) a popular unit testing framework for
+Java.  Even though the test driver (in the \mintinline{text}{src/test}
+source folder) has no main method, you can still run it in Eclipse and
+get a report on how many of the tests passed, failed or resulted in 
+an unexpected exception.  Be sure all of the unit tests pass before
+submitting your source files through webhandin.  You can rerun this
+test suite in the webgrader to ensure everything works.  
+
+
+\section*{Advanced Activity (optional)}
+
+Queues are often used in a common software pattern called a 
+\emph{Consumer-Producer} pattern.  The pattern follows the idea that 
+many independent producer agents (threads, processes, users, etc.) 
+could be generating data or requests that must be processed or handled 
+by independent consumer agents.  This pattern is very useful in 
+improving system performance because it facilitates asynchronous 
+behavior--producer and consumer agents can act independently of each 
+other in a multi-threaded environment while requests are stored in a 
+thread-safe queue.  Producers enqueue requests that do not require 
+immediate processing and are free to continue in their execution.  
+Consumers dequeue and process requests as they are able to, enabling 
+asynchronous and independent processing.
+
+Consider the following scenario.  A web browser posts a form request 
+to a web application which processes the data, writes to a database, 
+updates a log, and sends an email notification to the user and serves 
+a response page back to the user.  If this process were synchronous, 
+each action would have to wait for the previous action to terminate 
+before it could begin even if each of the actions were not dependent 
+on each other.  The end user would have to wait for all of the actions 
+to terminate, giving a less than ideal user experience.  In a multi-user 
+system, this wait time would only compound.
+
+The advanced activity for this lab will be to familiarize you with the c
+onsumer-producer pattern using Java.  We have mocked up a simple 
+\mintinline{java}{Producer} class which makes an HTTPS connection to 
+an API provided by Twitter (\url{http://www.twitter.com}) which serves 
+a continuous stream of a subsample of twitter posts in a JSON 
+(JavaScript Object Notation).  The \mintinline{java}{Producer} streams 
+these tweets (represented as a JSON string) and places them in a 
+\mintinline{java}{BlockingQueue<T>}, a thread-safe queue implementation.  
+When threads dequeue elements from the queue if none are available, the 
+queue ``blocks'' the thread (places it in a sleep status) until an 
+element is available.
+
+We have also designed a \mintinline{java}{Consumer} class that grabs 
+elements off the queue and process them by parsing the JSON String 
+and creating an instance of a Tweet class.  Subsequently, it outputs 
+this tweet to the standard output.
+
+The \mintinline{java}{PCDemo} creates one \mintinline{java}{Producer} 
+instance and several Consumer instances (with ?names? for demonstration 
+purposes) and starts each one in their own thread.  This is accomplished 
+by making the \mintinline{java}{Producer} and \mintinline{java}{Consumer} 
+classes implement the \mintinline{java}{Runnable} interface (there are 
+alternatives).
+
+Unfortunately, Twitter decided to change its API and require an 
+API key to connect to its firehose.  If you modify and update the
+code to work with their API (possibly using a library), inform
+the instructor and share your code!
+
+\end{document}
