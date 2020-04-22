@@ -9,7 +9,7 @@ import java.util.Comparator;
  * 28 February 2020
  */
 
-public class SortByOwnerLast implements Comparator<Portfolio> {
+public class SortBy implements Comparator<Portfolio> {
 	   
 	    public int compare(Portfolio a, Portfolio b){ 
 	    	int x = a.getOwner().getName().getLastName().compareTo(b.getOwner().getName().getLastName());
@@ -21,6 +21,7 @@ public class SortByOwnerLast implements Comparator<Portfolio> {
 	    	}
 	        return x ; 
 	    } 
+	    
 	} 
 
 	

@@ -31,7 +31,7 @@ public class PortfolioReport {
 		double totalReturn = 0;
 		
 		// Sort portfolioArrary by alphabetic order
-		Collections.sort(portfolioArray, new SortByOwnerLast());
+		Collections.sort(portfolioArray, new SortBy());
 		
 		// Print out summary report on command line
 		System.out.println("Portfolio Summary Report");
