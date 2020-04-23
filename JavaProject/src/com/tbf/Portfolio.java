@@ -123,6 +123,53 @@ public class Portfolio {
 		return assets;
 	}
 	
+	public static void printSummary(LinkedList<Portfolio> list) {
+		
+		// initialize variables for the overall total amount for value, annualReturn, commissions and fees. (Sum of all portfolios)
+		double totalValue = 0;
+		double totalFee = 0;
+		double totalCommission = 0;
+		double totalReturn = 0;
+		
+		// Print out summary report on command line
+		System.out.println("Portfolio Summary Report");
+		System.out.println(
+				"===============================================================================================================================");
+		System.out.println(
+				"Portfolio  Owner                Manager                       Fees     Commisions  Weighted Risk         Return          Total");
+		
+		//Iterate through each portfolio in portfolioArray
+		for (Portfolio x : list) {
+			
+			//Print out all the information in the first section of the report
+			System.out.printf("%-11s", x.getPortfolioCode());
+			System.out.printf("%-21s", String.format("%s, %s", x.getOwner().getName().getLastName(), x.getOwner().getName().getFirstName()));
+			System.out.printf("%-20s", String.format("%s, %s", x.getManager().getName().getLastName(), x.getManager().getName().getFirstName()));
+			System.out.printf("$ %12.2f", x.getFee());
+			System.out.printf("  $ %11.2f", x.getComission());
+			System.out.printf("%15.4f", x.getPortRisk());
+			System.out.printf("  $ %11.2f", x.getPortReturn());
+			System.out.printf("  $ %11.2f", x.getPortValue());
+			System.out.printf("\n");
+			
+			//Calculate the sum of fees, commission, return, and value of all portfolios in the system
+			totalFee += x.getFee();
+			totalCommission += x.getComission();
+			totalReturn += x.getPortReturn();
+			totalValue += x.getPortValue();
+		}
+		System.out.println(
+				"                                                     -------------------------------------------------------------------------");
+		System.out.printf(
+				"                                             Totals $      %.2f  $     %.2f                 $   %.2f  $  %.2f",
+				totalFee, totalCommission, totalReturn, totalValue); //Print out totals (last line of first section of report)
+		System.out.printf("\n\n\n\n\n");
+		
+
+	}
+	
+	
+	
 	//Method to print out the 2nd section of the report
 	public void printPortfolio() {
 		

@@ -2,6 +2,8 @@ package com.tbf;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.core.config.Configurator;
@@ -25,53 +27,39 @@ public class PortfolioReport {
 		portfolioArray = DataLoaderSql.loadPortfolio();	//portfolioArray contains all the portfolios in the system
 		
 		// initialize variables for the overall total amount for value, annualReturn, commissions and fees. (Sum of all portfolios)
-		double totalValue = 0;
-		double totalFee = 0;
-		double totalCommission = 0;
-		double totalReturn = 0;
+		//double totalValue = 0;
+		//double totalFee = 0;
+		//double totalCommission = 0;
+		//double totalReturn = 0;
 		
 		// Sort portfolioArrary by alphabetic order
-		Collections.sort(portfolioArray, new SortBy());
-		
-		// Print out summary report on command line
-		System.out.println("Portfolio Summary Report");
-		System.out.println(
-				"===============================================================================================================================");
-		System.out.println(
-				"Portfolio  Owner                Manager                       Fees     Commisions  Weighted Risk         Return          Total");
-		
-		//Iterate through each portfolio in portfolioArray
-		for (Portfolio x : portfolioArray) {
-			
-			//Print out all the information in the first section of the report
-			System.out.printf("%-11s", x.getPortfolioCode());
-			System.out.printf("%-21s", String.format("%s, %s", x.getOwner().getName().getLastName(), x.getOwner().getName().getFirstName()));
-			System.out.printf("%-20s", String.format("%s, %s", x.getManager().getName().getLastName(), x.getManager().getName().getFirstName()));
-			System.out.printf("$ %12.2f", x.getFee());
-			System.out.printf("  $ %11.2f", x.getComission());
-			System.out.printf("%15.4f", x.getPortRisk());
-			System.out.printf("  $ %11.2f", x.getPortReturn());
-			System.out.printf("  $ %11.2f", x.getPortValue());
-			System.out.printf("\n");
-			
-			//Calculate the sum of fees, commission, return, and value of all portfolios in the system
-			totalFee += x.getFee();
-			totalCommission += x.getComission();
-			totalReturn += x.getPortReturn();
-			totalValue += x.getPortValue();
+		LinkedList <Portfolio> sortedByOwnerLastName = new LinkedList<Portfolio>(LinkedList.sortByOwnerLastName);
+		for(Portfolio x : portfolioArray) {
+			sortedByOwnerLastName.insertIntoSorted(x);
 		}
-		System.out.println(
-				"                                                     -------------------------------------------------------------------------");
-		System.out.printf(
-				"                                             Totals $      %.2f  $     %.2f                 $   %.2f  $  %.2f",
-				totalFee, totalCommission, totalReturn, totalValue); //Print out totals (last line of first section of report)
-		System.out.printf("\n\n\n\n\n");
+		Portfolio.printSummary(sortedByOwnerLastName);
 		
-		// Print reports for each individual portfolio
+		// Sort portfolio by value (descending)
+		LinkedList <Portfolio> sortedByPortfolioValueDesc = new LinkedList<Portfolio>(LinkedList.sortByPortfolioValueDesc);
+		for(Portfolio x : portfolioArray) {
+			sortedByPortfolioValueDesc.insertIntoSorted(x);
+		}
+		Portfolio.printSummary(sortedByPortfolioValueDesc);
+		
+		// Sort portfolio by manager
+		LinkedList <Portfolio> sortedByManager = new LinkedList<Portfolio>(LinkedList.sortByManager);
+		for(Portfolio x : portfolioArray) {
+			sortedByManager.insertIntoSorted(x);
+		}
+		Portfolio.printSummary(sortedByManager);
+
+		
+		/**
 		System.out.printf("Portfolio Details\r\n"
 				+ "================================================================================================================\n");
-		for (Portfolio x : portfolioArray) {
+		for (Portfolio x : sortedByOwnerLastName) {
 			x.printPortfolio();
 		}
+		**/
 	}
 }
