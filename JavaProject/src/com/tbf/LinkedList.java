@@ -1,5 +1,12 @@
 package com.tbf;
-
+/*
+ * Author: Sunny Liu, Bryce Yong
+ * Date: 04/24/2020
+ * This class include method that modify the linkedlist for the ATD structure
+ * and also inclue three comparator that sort portfolios in order of 
+ * last name of owners, total value of portfolio from high to low and 
+ * by manager of the portfolio first by broker type and then by last name
+ */
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -30,7 +37,7 @@ public class LinkedList<T> implements Iterable<T> {
 		}
 		return curr;
 	}
-
+	//insert from a certain index
 	public void insertAtIndex(T item, int index) {
 		if (index < 0 || index > this.size) {
 			throw new IllegalArgumentException("index out of bounds!");
@@ -49,14 +56,14 @@ public class LinkedList<T> implements Iterable<T> {
 		}
 
 	}
-
+	//Insert at beginning
 	public void insertAtHead(T item) {
 		Node<T> newHead = new Node<>(item);
 		newHead.setNext(this.head);
 		this.head = newHead;
 		this.size++;
 	}
-
+	//Insert at bottom 
 	public void insertAtTail(T item) {
 		if (this.isEmpty()) {
 			insertAtHead(item);
@@ -79,6 +86,7 @@ public class LinkedList<T> implements Iterable<T> {
 		return (this.size == 0);
 	}
 
+	//insert into a sorted LinkedList
 	public void insertIntoSorted(T itemA) {
 		if (this.isEmpty()) {
 			insertAtHead(itemA);
@@ -109,7 +117,7 @@ public class LinkedList<T> implements Iterable<T> {
 
 		}
 	}
-
+	//Comparator that sort first by last name then first name of portfolio owner
 	public static final Comparator<Portfolio> sortByOwnerLastName = new Comparator<Portfolio>() {
 		public int compare(Portfolio a, Portfolio b) {
 			int x = a.getOwner().getName().getLastName().compareTo(b.getOwner().getName().getLastName());
@@ -119,7 +127,7 @@ public class LinkedList<T> implements Iterable<T> {
 			return x;
 		}
 	};
-
+	//Comparator that sort by total value of portfolio from highest to lowest
 	public static final Comparator<Portfolio> sortByPortfolioValueDesc = new Comparator<Portfolio>() {
 		public int compare(Portfolio a, Portfolio b) {
 			if (a.getPortValue() == b.getPortValue()) {
@@ -131,7 +139,7 @@ public class LinkedList<T> implements Iterable<T> {
 			}
 		}
 	};
-
+	//Comparator that sort portfolio by manager first by broker type then by last name ore manager.
 	public static final Comparator<Portfolio> sortByManager = new Comparator<Portfolio>() {
 		public int compare(Portfolio a, Portfolio b) {
 			int x = a.getManager().getBroker().getType().compareTo(b.getManager().getBroker().getType());

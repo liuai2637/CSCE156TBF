@@ -2,7 +2,8 @@ package com.tbf;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
-
+//Author: Sunny Liu, Bryce Yong
+//Date: 04/24/2020
 public class iterator {
 	public static void main(String[] args) {
 		LinkedList<String> linkedList = new LinkedList<String>();
