@@ -1,0 +1,58 @@
+%\documentclass{article}
+%\usepackage{fullpage}
+%\usepackage{tikz}
+%\begin{document}
+\begin{tikzpicture}[scale=0.75,transform shape,level distance=1.25cm,level/.style={sibling distance=5cm/#1},every node/.style={circle,draw,minimum size=.75cm}]
+\node{$50$}
+child {node {$40$} 
+child {node {$20$} 
+child {node {$10$} 
+child {node {$2$} 
+child[draw opacity=0.0] {}
+child[draw opacity=0.0] {}
+}
+child {node[circle,draw,minimum size=.60cm] {$15$} 
+child {node[circle,draw] {$12$}}
+child[draw opacity=0.0] {}
+}
+}
+child {node {$24$} 
+child[draw opacity=0.0] {}
+child {node {$28$} 
+child[draw opacity=0.0] {}
+child[draw opacity=0.0] {}
+}
+}
+}
+child {node {$45$} 
+child[draw opacity=0.0] {}
+child {node {$49$} 
+child {node {$48$} 
+child[draw opacity=0.0] {}
+child[draw opacity=0.0] {}
+}
+child[draw opacity=0.0] {}
+}
+}
+}
+child {node {$60$} 
+child[draw opacity=0.0] {}
+child {node {$90$} 
+child {node {$80$} 
+child {node {$75$} 
+child[draw opacity=0.0] {}
+child[draw opacity=0.0] {}
+}
+child {node {$85$} 
+child[draw opacity=0.0] {}
+child[draw opacity=0.0] {}
+}
+}
+child {node {$95$} 
+}
+}
+}
+;
+\end{tikzpicture}
+
+%\end{document}

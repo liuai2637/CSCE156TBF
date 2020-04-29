@@ -1,0 +1,85 @@
+\documentclass[12pt]{scrartcl}
+
+\usepackage{fullpage}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{.25cm}
+
+\usepackage{graphicx}
+
+\usepackage{xcolor}
+
+\definecolor{darkred}{rgb}{0.5,0,0}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+\usepackage{hyperref}
+\hypersetup{
+  letterpaper,
+  colorlinks,
+  linkcolor=red,
+  citecolor=darkgreen,
+  menucolor=darkred,
+  urlcolor=blue,
+  pdfpagemode=none,
+  pdftitle={CS2 - Lab Worksheet},
+  pdfkeywords={}
+}
+
+\definecolor{MyDarkBlue}{rgb}{0,0.08,0.45}
+\definecolor{MyDarkRed}{rgb}{0.45,0.08,0}
+\definecolor{MyDarkGreen}{rgb}{0.08,0.45,0.08}
+
+\definecolor{mintedBackground}{rgb}{0.95,0.95,0.95}
+\definecolor{mintedInlineBackground}{rgb}{.90,.90,1}
+
+%\usepackage{newfloat}
+\usepackage[newfloat=true]{minted}
+\setminted{mathescape,
+               linenos,
+               autogobble,
+               frame=none,
+               framesep=2mm,
+               framerule=0.4pt,
+               %label=foo,
+               xleftmargin=2em,
+               xrightmargin=0em,
+               startinline=true,  %PHP only, allow it to omit the PHP Tags *** with this option, variables using dollar sign in comments are treated as latex math
+               numbersep=10pt, %gap between line numbers and start of line
+               style=default, %syntax highlighting style, default is "default"
+               			    %gallery: http://help.farbox.com/pygments.html
+			    	    %list available: pygmentize -L styles
+               bgcolor=mintedBackground} %prevents breaking across pages
+               
+\setmintedinline{bgcolor={mintedBackground}}
+\setminted[text]{bgcolor={mintedBackground},linenos=false,autogobble,xleftmargin=1em}
+%\setminted[php]{bgcolor=mintedBackgroundPHP} %startinline=True}
+\SetupFloatingEnvironment{listing}{name=Code Sample}
+\SetupFloatingEnvironment{listing}{listname=List of Code Samples}
+
+\begin{document}
+
+\section*{CSCE 156 - Lab 15.0 - Binary Search Trees - Worksheet}
+
+Names: \underline{\hspace{10cm}}
+
+\begin{enumerate}
+  
+  \item Create a binary search tree and insert the following 
+  elements in the following order:
+  \mintinline{text}{8, 10, 3, 5, 7, 9, 1, 2, 0}
+  \begin{enumerate}
+    \item What is the depth of the resulting BST?
+    \item How many leaves are in the resulting BST?
+    \item Give the preorder traversal of this tree:
+    \item Give the inorder traversal of this tree:
+    \item Give the postorder traversal of this tree:
+  \end{enumerate}
+  
+  \item Verify that your \mintinline{java}{findElement} method 
+  works correctly: write code in your demo program to search 
+  for 8, 0, and 42 (unsuccessful search).
+  
+\end{enumerate}
+
+Lab Instructor Signature\underline{\hspace{7.5cm}}
+
+\end{document}
