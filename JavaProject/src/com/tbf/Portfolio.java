@@ -100,20 +100,22 @@ public class Portfolio {
 
 	//Method to return the sum of Fees of all assets in this portfolio
 	public double getFee() {
-		if ((manager.getBroker().getType()).equals("E")) {
-			portFee = 0.0;
-		} else if ((manager.getBroker().getType()).equals("J")) {
-			portFee = 75 * this.getAssets().size();
+		if(this.manager.getIsBroker()) {
+			Broker brokerManager = (Broker)this.manager;
+			portFee = brokerManager.getFee() * this.getAssets().size();
+			return portFee;
+		} else {
+			return 0;
 		}
-		return portFee;
 	}
 
 	//Method to return the sum of Commissions of all assets in this portfolio
 	public double getComission() {
-		if ((manager.getBroker().getType()).equals("E")) {
-			portCommision = 0.0375 * this.getPortReturn();
-		} else if ((manager.getBroker().getType()).equals("J")) {
-			portCommision = 0.0125 * this.getPortReturn();
+		if (this.manager.getIsBroker()) {
+			Broker brokerManager = (Broker)this.manager;
+			portCommision = brokerManager.getCommissionRate() * this.getPortReturn();
+		} else {
+			portCommision = 0;
 		}
 		return portCommision;
 	}
@@ -179,10 +181,11 @@ public class Portfolio {
 			// Print information about owner
 			System.out.printf("Owner:\n");
 			System.out.printf("%s, %s\n", this.owner.getName().getLastName(), this.owner.getName().getFirstName());
-			if(!(this.owner.getBroker() == null)) {
-				if (this.owner.getBroker().getType().equals("E")) {
+			if(this.owner.getIsBroker()) {
+				Broker brokerOwner = (Broker)this.owner;
+				if (brokerOwner.getType().equals("E")) {
 					System.out.println("Expert Broker");
-				} else if (this.owner.getBroker().getType().equals("E")) {
+				} else if (brokerOwner.getType().equals("J")) {
 					System.out.println("Junior Broker");
 				}
 			}

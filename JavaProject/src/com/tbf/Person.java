@@ -10,41 +10,28 @@ import java.util.List;
  */
 public class Person {
 	private String personCode;
-	private Broker broker;
 	private Name name;
 	private Address address;
 	private List<String> emailAddresses = new ArrayList<>();
-	private int personId;
+	private boolean isBroker = true;
+	
+	
 	
 	//Constructor that's called if person IS NOT a broker
 	public Person(String personCode, Name name,
-			Address address, List<String> emailAddresses, int personId) {
+			Address address, List<String> emailAddresses) {
 		this.personCode = personCode;
 		this.name = name;
 		this.address = address;
 		this.emailAddresses = emailAddresses;
-		this.personId = personId;
 	}
 	
-	//Constructor that's called if person IS a broker
-	public Person(String personCode, Broker broker, Name name,
-			Address address, List<String> emailAddresses, int personId) {
-		this.personCode = personCode;
-		this.broker = broker;
-		this.name = name;
-		this.address = address;
-		this.emailAddresses = emailAddresses;
-		this.personId = personId;
-	}
 	
 	//Getters for all fields
 	public String getPersonCode() {
 		return personCode;
 	}
 
-	public Broker getBroker() {
-		return broker;
-	}
 
 	public Name getName() {
 		return name;
@@ -56,5 +43,13 @@ public class Person {
 	
 	public List<String> getEmailAddresses() {
 		return emailAddresses;
+	}
+	
+	public boolean setIsBroker(boolean isBroker) {
+		return isBroker;
+	}
+	
+	public boolean getIsBroker() {
+		return isBroker;
 	}
 }
